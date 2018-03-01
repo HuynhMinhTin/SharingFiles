@@ -15,8 +15,8 @@
 
 
 	 <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
-  <%--   <script src="<c:url value="/resources/js/jquery.1.10.2.min.js" />"></script>
-    <script src="<c:url value="/resources/js/main.js" />"></script> --%>
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="<c:url value="/resources/js/login.js" />"></script> 
 
 
 </head>
@@ -51,24 +51,64 @@
                             <a class="main-panel__switch__button">Get Started</a>
                         </div>
                         <div class="main-panel__content">
-                            <h1 class="main-panel__heading">
-                            Sign in to Files Sharing.
-                            <small class="main-panel__subheading">Enter your details below.
-                                </small></h1>
-                            <form  action="/d/login/authenticate" method="post" novalidate>
-                                <div class="form__group">
-                                    <label for="emailAddress" class="form__label">Email Address</label>
-                                    <input id="emailAddress" type="email" name="email" class="form__input" name="password" placeholder="as1@gmail.com" value>
-                                </div>
-                                <div class="form__group">
-                                    <label for="password" class="form__label">Password</label>
-                                    <input id="password" type="password" class="form__input" name="password" placeholder="Enter your password">
-                                    <a class="form__help">Forgot password?</a>
-                                </div>
-                                <div class="text--center">
-                                    <button class="form__button">Sign in</button>
-                                </div>
-                            </form>
+                                                     
+	                           <div id ="formSignin">
+				                       <h1 class="main-panel__heading">
+			                            Sign in to Files Sharing.
+			                            <small class="main-panel__subheading">Enter your details below.
+			                                </small></h1>
+			                            <form id="signinform" action="" method="post" novalidate>
+			                                <div id="loginemail" class="form__group">
+			                                    <label for="emailAddress" class="form__label">Email Address</label>
+			                                    <input id="emailAddress" type="email" name="email" class="form__input" name="password" placeholder="as1@gmail.com" value>
+			                                </div>
+			                                <div id="loginpassword" class="form__group">
+			                                    <label for="password" class="form__label">Password</label>
+			                                    <input id="password" type="password" class="form__input" name="password" placeholder="Enter your password">
+			                                    <a class="form__help">Forgot password?</a>
+			                                </div>
+                         				   <div class="text--center">
+                                   				 <button id="login" class="form__button">Sign in</button>
+                              				 </div>
+                              				 <p id="two">Don't have account? <a  href="#"  id="singup">Sign up here</a></p>
+                              				 
+                              				 
+                            			</form>
+	                           
+	                           </div>
+	                           
+	                           <div id ="formRegister">
+	                           	
+	                           	<h3>Create a Free Account</h3>
+		                             <form id="form"  action="" method="post" novalidate>
+	                             		<div  class="form__group">
+		                                    <label for="emailAddress" class="form__label">Full Name</label>
+		                                    <input id="name" type="email" name="email" class="form__input" name="password" placeholder="Name" value>
+	                               		 </div>
+		                                <div class="form__group">
+		                                    <label for="emailAddress" class="form__label">Email Address</label>
+		                                    <input id="emailAddress" type="email" name="email" class="form__input" name="password" placeholder="as1@gmail.com" value>
+		                                </div>
+		                                <div class="form__group">
+		                                    <label for="password" class="form__label">Password</label>
+		                                    <input  id="password" type="password" class="form__input" name="password" placeholder="Enter your password">
+		                                 
+		                                </div>
+		                                 <div class="form__group">
+		                                    <label for="password" class="form__label">Confirm Password</label>
+		                                    <input id="confirmpassword" type="password" class="form__input" name="password" placeholder="Enter your password">
+		                                </div>     
+		                                
+		                                   <div class="text--center">
+                                    			<button id="register" class="form__button">Register</button>
+                              			 </div>  
+                              			 
+                      
+	                           		 </form>
+		                           
+	                           </div>
+                            
+                          
                         </div>
                     </div>
                 </div>
