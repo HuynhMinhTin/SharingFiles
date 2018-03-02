@@ -14,16 +14,15 @@
 <title>Insert title here</title>
 
 
-	 <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
- 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	 <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet" >
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
     <script src="<c:url value="/resources/js/login.js" />"></script> 
 
 
 </head>
 <body>
-
-<div class="panel-wrapper">
-        <div  class = "feature-panel--enterprise">
+        <div class="panel-wrapper">
+           <div  class = "feature-panel--enterprise">
             <h2 id="enterprise-panel__header"  style="pading_top: 330px;">
                 
             <small id="enterprise-panel__subheader">Thông Tin Các Thành Viên</small><br>
@@ -42,79 +41,56 @@
             </div>
 
         </div>
-
-        <div class="main-panel">
+            <div class="main-panel">
                 <div class="main-panel__table">
                     <div class="main-panel__table-cell">
                         <div class="main-panel__switch">
-                            <span class="main-panel__switch__text">Don't have an account?</span>
-                            <a class="main-panel__switch__button">Get Started</a>
+                            <span class="main-panel__switch__text">Already have an account?</span>
+                            <a class="main-panel__switch__button" href="login">Sign in</a>
                         </div>
                         <div class="main-panel__content">
-                                                     
-	                           <div id ="formSignin">
-				                       <h1 class="main-panel__heading">
-			                            Sign in to Files Sharing.
-			                            <small class="main-panel__subheading">Enter your details below.
-			                                </small></h1>
-			                            <form id="signinform" action="" method="post" novalidate>
-			                                <div id="loginemail" class="form__group">
-			                                    <label for="emailAddress" class="form__label">Email Address</label>
-			                                    <input id="emailAddress" type="email" name="email" class="form__input" name="password" placeholder="as1@gmail.com" value>
-			                                </div>
-			                                <div id="loginpassword" class="form__group">
-			                                    <label for="password" class="form__label">Password</label>
-			                                    <input id="password" type="password" class="form__input" name="password" placeholder="Enter your password">
-			                                    <a class="form__help">Forgot password?</a>
-			                                </div>
-                         				   <div class="text--center">
-                                   				 <button id="login" class="form__button">Sign in</button>
-                              				 </div>
-                              				 <p id="two">Don't have account? <a  href="#"  id="singup">Sign up here</a></p>
-                              				 
-                              				 
-                            			</form>
-	                           
-	                           </div>
-	                           
-	                           <div id ="formRegister">
-	                           	
-	                           	<h3>Create a Free Account</h3>
-		                             <form id="form"  action="" method="post" novalidate>
-	                             		<div  class="form__group">
-		                                    <label for="emailAddress" class="form__label">Full Name</label>
-		                                    <input id="name" type="email" name="email" class="form__input" name="password" placeholder="Name" value>
-	                               		 </div>
-		                                <div class="form__group">
-		                                    <label for="emailAddress" class="form__label">Email Address</label>
-		                                    <input id="emailAddress" type="email" name="email" class="form__input" name="password" placeholder="as1@gmail.com" value>
-		                                </div>
-		                                <div class="form__group">
-		                                    <label for="password" class="form__label">Password</label>
-		                                    <input  id="password" type="password" class="form__input" name="password" placeholder="Enter your password">
-		                                 
-		                                </div>
-		                                 <div class="form__group">
-		                                    <label for="password" class="form__label">Confirm Password</label>
-		                                    <input id="confirmpassword" type="password" class="form__input" name="password" placeholder="Enter your password">
-		                                </div>     
-		                                
-		                                   <div class="text--center">
-                                    			<button id="register" class="form__button">Register</button>
-                              			 </div>  
-                              			 
-                      
-	                           		 </form>
-		                           
-	                           </div>
-                            
-                          
-                        </div>
+                            <form  class="main-panel__form" method="post">
+							<h1>Create your Files Sharing Account</h1>
+							<div class="form__page sign-up">
+								<div class="form__group">
+									<label for="email" class="form__label">Email Address</label>
+									<input type="text" class="form__input validate-empty" name="email" id="email_form_signup"
+									placeholder="phu1@gmail.com" value>
+									<div class="alert alert-error alert-email" style="display:none">Please enter your email address.</div>
+								</div>
+								<div class="form__group">
+									<label for="name" class="form__label">Name</label>
+									<input type="text" class="form__input validate-empty" name="name" id="name_form_signup"
+									placeholder="quang phu" value>
+									<div class="alert alert-error alert-name" style="display:none">Please enter your full name</div>
+								</div>
+								<div class="form__group">
+									<label for="password" class="form__label">Password</label>
+									<input type="password" id="password_form_signup" class="form__input validate-empty" name="password" placeholder="5+ characters" value>
+									<div class="alert alert-error alert-password" style="display:none">Your password must be at least 6 characters long</div>
+								</div>
+								<div class="form__group">
+									<label for="password" class="form__label">Confirm Password</label>
+									<input type="password" id="confirmpassword" class="form__input validate-empty" name="passwordAgain" aria-invalid="true">
+									<div class="alert alert-error alert-passwordAgain" style="display:none">Your password doesn't match.</div>
+								</div>
+							</div>
+							<div class="text--center">
+								<button type="submit" class="form__button sign-up__submit" id="btn_form_signup">Continue</button>
+							</div>
+							<p class="form__legal">
+								By click
+								<span class=""sign-up__cta-text>Continue</span>
+									I agree to Files Sharing's "
+									<a href="https://www.facebook.com/dmmnhe" target="_blank">Terms of Service</a>
+									" and "
+									<a href="https://www.facebook.com/dmmnhe" target="_blank">Privacy Policy</a>".
+							</p>
+                            </form>
                     </div>
                 </div>
+            </div>
+            </div>
         </div>
-    </div>
-
-
-</body>
+    </body>
 </html>

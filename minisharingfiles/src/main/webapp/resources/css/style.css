@@ -41,6 +41,7 @@ button{
 	text-align:right
 }
 .invision-logo{
+	display:block;
 	position:absolute;
 	z-index:1;
 	top:38px;
@@ -54,6 +55,7 @@ button{
 }
 .form__input,.form__select{
 	height:50px;
+	display:block;
 	width:100%
 }
 .invision-logo{
@@ -98,6 +100,7 @@ button{
 }
 .form__select:after{
 	content:"";
+	display:block;
 	position:absolute;
 	right:32px;
 	top:50%;
@@ -143,6 +146,7 @@ button{
 	color:#434C5E
 }
 .form__button{
+	display:inline-block;
 	margin:20px auto;
 	background:#F36;
 	border-radius:100px;
@@ -183,6 +187,7 @@ button{
 	display:block
 }
 .panel-wrapper{
+	display:block;
 	width:100%
 }
 
@@ -269,11 +274,296 @@ button{
 	text-decoration:none;
 	-webkit-transition:all .2s ease;
 	transition:all .2s ease
-		
+    
 }
-.formRegister{
-	display :none !important ;
+/////////////////////////////////
+//css for register
+
+body,html,input{
+	font-weight:400;
+	font-size:12px
 }
+body,button,html,input{
+	font-size:12px
+}
+button,button:active,button:focus{
+	border:0;
+	outline:0
+}
+.form__button,.form__label{
+	letter-spacing:1px;
+	text-transform:uppercase
+}
+*{
+	box-sizing:border-box
+}
+body,html{
+	height:100%;
+	margin:0;
+	padding:0;
+	color:#5f697a
+}
+a{
+	text-decoration:none
+}
+img{
+	max-width:100%
+}
+button{
+	font-weight:700
+}
+.text--left{
+	text-align:left
+}
+.text--center{
+	text-align:center
+}
+.text--right{
+	text-align:right
+}
+.invision-logo{
+	display:block;
+	position:absolute;
+	z-index:1;
+	top:38px;
+	left:5%;
+	width:40px;
+	height:40px;
+	background:url(logo.png);
+	background-size:100%;
+	color:transparent;
+	font-size:1px
+}
+.form__input,.form__select{
+	height:50px;
+	display:block;
+	width:100%
+}
+.invision-logo{
+	background-image:url(logo.png)
+}
+.form__group{
+	position:relative;
+	margin-bottom:23px
+}
+.form__label{
+	display:block;
+	font-weight:700;
+	font-size:11px;
+	color:#434C5E;
+	margin-bottom:8px
+}
+.form__input{
+	border:1px solid #D4D9E2;
+	border-radius:3px;
+	padding:15px;
+	font-size:14px;
+	color:#596377;
+	outline:0;
+	-webkit-transition:border-color .2s ease;
+	transition:border-color .2s ease
+}
+.form__input::-webkit-input-placeholder{
+	color:#C6CCD7
+}
+.form__input.error{
+	border:1px solid #E73737;
+	margin-bottom:10px
+}
+.form__select{
+	border:1px solid #D4D9E2;
+	border-radius:3px;
+	padding:14px 15px;
+	overflow:hidden;
+	position:relative;
+	-webkit-transition:border-color .2s ease;
+	transition:border-color .2s ease
+}
+.form__select:after{
+	content:"";
+	display:block;
+	position:absolute;
+	right:32px;
+	top:50%;
+	margin-top:-4px;
+	border-bottom:2px solid #596377;
+	border-left:2px solid #596377;
+	width:6px;
+	height:6px;
+	-webkit-transform:rotate(-45deg);
+	-ms-transform:rotate(-45deg);
+	transform:rotate(-45deg)
+}
+.form__select.focus,.form__select:focus{
+	border-color:#596377
+}
+.form__select.error{
+	border:1px solid #E73737;
+	margin-bottom:10px
+}
+.form__select>select{
+	background:0 0;
+	border:none;
+	width:110%;
+	-webkit-appearance:none;
+	-moz-appearance:none;appearance:none
+}
+.form__select.form__select--empty select{
+	color:#C6CCD7
+}
+.form__help{
+	position:absolute;
+	top:0;
+	right:0;
+	font-size:12px;
+	color:#8C96A9;
+	-webkit-transition:color .2s ease;
+	transition:color .2s ease
+}
+.main-panel,.panel-wrapper{
+	position:relative
+}
+.form__help:focus,.form__help:hover{
+	color:#434C5E
+}
+.form__button{
+	display:inline-block;
+	margin:20px auto;
+	background:#F36;
+	border-radius:100px;
+	height:50px;
+	line-height:50px;
+	padding:0 60px;
+	font-size:12px;
+	font-weight:700;
+	color:#FFF;
+	cursor:pointer;
+	-webkit-transition:box-shadow .2s ease,border .2s ease;
+	transition:box-shadow .2s ease,border .2s ease
+}
+.form__button:focus,.form__button:hover{
+	cursor:pointer;
+	box-shadow:0 3px 15px 0 rgba(0,0,0,.25)
+}
+.form__button:active{
+	box-shadow:0 1px 4px rgba(0,0,0,.2)
+}
+.form__button--alternate{
+	background-color:#11B683
+}
+.form__error{
+	font-size:14px;
+	font-weight:600;
+	color:#E73737;
+	letter-spacing:0;
+	margin-bottom:24px
+}
+.alert-dynamic,.alert-error{
+	color:#E73737
+}
+.alert-error{
+	display:none
+}
+.alert-dynamic{
+	display:block
+}
+.panel-wrapper{
+	display:block;
+	width:100%
+}
+
+.fromregister{
+	margin-left:460px
+}
+
+.panel-wrapper{
+	height:100%
+	}
+.main-panel{
+	height:100%;
+	overflow:auto
+}
+.main-panel__switch{
+	position:absolute;
+	right:0;
+	top:0;
+	margin-top:38px;
+	margin-bottom:46px;
+	margin-right:5%;
+	font-size:13px;
+	color:#596377;
+	letter-spacing:0;
+	line-height:36px
+}
+.main-panel__switch__text{
+	display:none
+}
+.invision-logo{
+    left:38px
+}
+.main-panel__switch{
+    margin-right:38px
+}
+.main-panel__switch__text{
+    display:inline
+}
+.main-panel__table{
+	display:table;
+	width:100%;
+	height:100%
+}
+.main-panel__table-cell{
+	position:relative;
+	display:table-cell;
+	vertical-align:middle;
+	padding-top:100px;
+	padding-bottom:100px
+}
+.main-panel__content{
+	clear:both;
+	width:90%;
+	max-width:540px;
+	margin:0 auto
+}
+.main-panel__heading{
+	font-size:28px;
+	font-weight:400;
+	color:#434C5F;
+	margin-bottom:50px
+}
+.main-panel__subheading{
+	display:block;
+	margin-top:10px;
+	font-size:16px;
+	color:#596377
+}
+.main-panel__switch__button{
+	display:inline-block;
+	vertical-align:middle;
+	background:#fff;
+	border:1px solid #C6CCD7;
+	border-radius:100px;
+	font-weight:700;
+	font-size:10px;
+	color:#596377;
+	letter-spacing:1px;
+	text-transform:uppercase;
+	margin-left:12px;
+	padding:0 28px;
+	height:36px;
+	line-height:36px;
+	text-decoration:none;
+	-webkit-transition:all .2s ease;
+	transition:all .2s ease
+    
+}
+
+
+
+////////////////////////////////////
+
+
+
 
 ////////////////////////////////////////
 #enterprise-panel__header{
@@ -331,7 +621,7 @@ button{
     padding-top: 400px;
     color: antiquewhite
 }
-
 //////////////////////////////////////////
 
 
+f
