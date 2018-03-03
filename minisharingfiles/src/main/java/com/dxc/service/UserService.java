@@ -1,11 +1,14 @@
 package com.dxc.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.dxc.dao.UserDAO;
 import com.dxc.daoImp.UserDAOImp;
 import com.dxc.entitty.UserEntity;
 
+
+@Service
 public class UserService implements UserDAOImp{
 	
 	

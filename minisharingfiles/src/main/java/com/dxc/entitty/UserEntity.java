@@ -21,13 +21,15 @@ public class UserEntity {
 	String emailUser;
 	String passwordUser;
 	
+	@OneToOne
+	@JoinColumn(name="idPosition")
+	PositionEntity idPosition;
+	
 	@OneToMany
 	@JoinColumn(name="idFile")
 	Set<FileEntity> idFile;
 	
-	@OneToOne
-	@JoinColumn(name="idPosition")
-	PositionEntity idPosition;
+	
 	
 	
 	
@@ -83,6 +85,13 @@ public class UserEntity {
 	public UserEntity() {
 		super();
 	}
+	@Override
+	public String toString() {
+		return "UserEntity [idUser=" + idUser + ", nameUser=" + nameUser + ", emailUser=" + emailUser
+				+ ", passwordUser=" + passwordUser + ", idFile=" + idFile + ", idPosition=" + idPosition + "]";
+	}
+	
+	
 	
 	
 }

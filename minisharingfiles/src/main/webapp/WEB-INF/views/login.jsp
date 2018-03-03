@@ -60,11 +60,11 @@
 			                            <form id="signinform" action="" method="post" novalidate>
 			                                <div id="loginemail" class="form__group">
 			                                    <label for="emailAddress" class="form__label">Email Address</label>
-			                                    <input id="emailAddress" type="email" name="email" class="form__input" name="password" placeholder="as1@gmail.com" value>
+			                                    <input id="emailAddress" type="email" name="email_login_form" class="form__input"  placeholder="as1@gmail.com" >
 			                                </div>
 			                                <div id="loginpassword" class="form__group">
 			                                    <label for="password" class="form__label">Password</label>
-			                                    <input id="password" type="password" class="form__input" name="password" placeholder="Enter your password">
+			                                    <input id="password" type="password" class="form__input" name="password_login_form" placeholder="Enter your password">
 			                                    <a class="form__help">Forgot password?</a>
 			                                </div>
                          				   <div class="text--center">

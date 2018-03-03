@@ -54,24 +54,22 @@
 							<div class="form__page sign-up">
 								<div class="form__group">
 									<label for="email" class="form__label">Email Address</label>
-									<input type="text" class="form__input validate-empty" name="email" id="email_form_signup"
-									placeholder="phu1@gmail.com" value>
+									<input type="text" class="form__input validate-empty" name="email_form_signup" placeholder="phu1@gmail.com" value>
 									<div class="alert alert-error alert-email" style="display:none">Please enter your email address.</div>
 								</div>
 								<div class="form__group">
 									<label for="name" class="form__label">Name</label>
-									<input type="text" class="form__input validate-empty" name="name" id="name_form_signup"
-									placeholder="quang phu" value>
+									<input type="text" class="form__input validate-empty" name="name_form_signup" placeholder="quang phu" value>
 									<div class="alert alert-error alert-name" style="display:none">Please enter your full name</div>
 								</div>
 								<div class="form__group">
 									<label for="password" class="form__label">Password</label>
-									<input type="password" id="password_form_signup" class="form__input validate-empty" name="password" placeholder="5+ characters" value>
+									<input type="password" class="form__input validate-empty" name="password_form_signup" placeholder="5+ characters" value>
 									<div class="alert alert-error alert-password" style="display:none">Your password must be at least 6 characters long</div>
 								</div>
 								<div class="form__group">
 									<label for="password" class="form__label">Confirm Password</label>
-									<input type="password" id="confirmpassword" class="form__input validate-empty" name="passwordAgain" aria-invalid="true">
+									<input type="password" class="form__input validate-empty" name="confirmpassword" aria-invalid="true">
 									<div class="alert alert-error alert-passwordAgain" style="display:none">Your password doesn't match.</div>
 								</div>
 							</div>

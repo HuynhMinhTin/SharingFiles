@@ -28,11 +28,15 @@ public class UserDAO implements UserDAOImp{
 		
 		Session session = sessionFactory.getCurrentSession();
 		
+		String firstLetter ="";
+		System.out.println(email);
 		try{
 			
 			UserEntity user = (UserEntity) session.createQuery("from user where emailUser='"+email+"' AND passwordUser='"+password+"'").getSingleResult();
 			
 			if(user != null){
+				
+					System.out.println(user.getEmailUser());
 				return true;
 			}else{
 				return false;
@@ -50,25 +54,32 @@ public class UserDAO implements UserDAOImp{
 	@Transactional
 	public boolean AddEmployees(UserEntity user) {
 		// TODO Auto-generated method stub
+		
 		Session session = sessionFactory.getCurrentSession();
 		String emailUser = user.getEmailUser();
 		
+		//System.out.println(user.getEmailUser());
 		//check email exist in server
-		try{
-			UserEntity email = (UserEntity) session.createQuery("from user where emailUser='"+emailUser+"").getSingleResult();
-			if(email != null){
+		try {
+			UserEntity email = (UserEntity) session.createQuery("from user where emailUser='"+emailUser+"'").getSingleResult();
+			if(email.getEmailUser() != null){	
+				System.out.println(emailUser);
 				return false;
 			}
-			else{
+		}catch(Exception e) {
+			Session sessionUser = sessionFactory.getCurrentSession();
+			int idUser = (Integer) sessionUser.save(user);
+			if(idUser > 0) {
+				System.out.println(emailUser +"OK");
 				return true;
+			}else {
+				System.out.println(emailUser + "wrong");
+				return false;
 			}
-		}catch(Exception e){
-			
 		}
 		
+		return true;
 		
-		
-		return false;
 	}
 	
 	
