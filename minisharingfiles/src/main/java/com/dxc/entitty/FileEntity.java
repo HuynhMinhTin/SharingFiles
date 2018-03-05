@@ -32,7 +32,7 @@ public class FileEntity {
 	String nameFile;
 	int sizeFile;
 	String commentFile;
-	String detail;
+	byte[] detail;
 	String dateCreateFile;//date
 	String statusFile;
 	String imageLinksFile;
@@ -75,12 +75,6 @@ public class FileEntity {
 	public void setCommentFile(String commentFile) {
 		this.commentFile = commentFile;
 	}
-	public String getDetail() {
-		return detail;
-	}
-	public void setDetail(String detail) {
-		this.detail = detail;
-	}
 	public String getDateCreateFile() {
 		return dateCreateFile;
 	}
@@ -106,9 +100,22 @@ public class FileEntity {
 		this.countDowloadFile = countDowloadFile;
 	}
 	
+	
+	
+	public byte[] getDetail() {
+		return detail;
+	}
+	public void setDetail(byte[] detail) {
+		this.detail = detail;
+	}
+	
+	
+	public FileEntity() {
+		super();
+	}
 	public FileEntity(int idFile, Set<CategoryEntity> idCategory,
 			UserEntity idUser, String nameFile, int sizeFile,
-			String commentFile, String detail, String dateCreateFile,
+			String commentFile, byte[] detail, String dateCreateFile,
 			String statusFile, String imageLinksFile, int countDowloadFile) {
 		super();
 		this.idFile = idFile;
@@ -122,9 +129,6 @@ public class FileEntity {
 		this.statusFile = statusFile;
 		this.imageLinksFile = imageLinksFile;
 		this.countDowloadFile = countDowloadFile;
-	}
-	public FileEntity() {
-		super();
 	}
 	
 	

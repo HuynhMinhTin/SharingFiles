@@ -29,14 +29,13 @@ public class UserDAO implements UserDAOImp{
 		Session session = sessionFactory.getCurrentSession();
 		
 		String firstLetter ="";
-		System.out.println(email);
+		//System.out.println(email);
 		try{
 			
 			UserEntity user = (UserEntity) session.createQuery("from user where emailUser='"+email+"' AND passwordUser='"+password+"'").getSingleResult();
 			
 			if(user != null){
-				
-					System.out.println(user.getEmailUser());
+					//System.out.println(user.getEmailUser());
 				return true;
 			}else{
 				return false;

@@ -70,9 +70,14 @@
                          				   <div class="text--center">
                                    				 <button id="login" class="form__button">Sign in</button>
                               				 </div>
-                              				 <p id="two">Don't have account? <a  href="register"  id="singup">Sign up here</a></p>
+                              				 
  		 
                             			</form>
+                            			
+                            				<span>${checkUserLogin}</span>
+                            			
+                            				 <p id="two">Don't have account? <a  href="register"  id="singup">Sign up here</a></p>
+                            			
 	                           </div>
                         </div>
                     </div>

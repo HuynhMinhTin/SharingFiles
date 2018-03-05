@@ -54,12 +54,14 @@ public class RegisterController {
 				boolean checkAddUser = userService.AddEmployees(user);
 				
 				if(checkAddUser) {
-					map.addAttribute("checkUserSignUp", "OK");
-					System.out.println("OK");
+					/*map.addAttribute("checkUserSignUp", "OK");
+					System.out.println("OK");*/
+					
+					return "redirect:login";
+					
 				}else {
 					System.out.println("wrong");
 					map.addAttribute("checkUserSignUp", "Wrong! This User existed");
-					
 				}
 
 			}else {

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HomeController {
 	
 	@RequestMapping("/home")
-	@ResponseBody
 	public String Default () {
 		return "home";
 	}

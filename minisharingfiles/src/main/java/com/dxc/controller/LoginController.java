@@ -29,13 +29,13 @@ public class LoginController {
 		boolean checkLogin = userService.CheckLogin(email_login_form, password_login_form);	
 		
 		if(checkLogin) {
+			//map.addAttribute("checkUserLogin", "OK");
+			return "redirect:home";
 			
-			map.addAttribute("checkUserLogin", "OK");
 		}else {
-			map.addAttribute("checkUserLogin", "User isn't exist");
-			return "";
+			map.addAttribute("checkUserLogin", "This email and password combination is incorrect.");
+			return "login";
 		}
-		return "home";
 	}
 	
 	

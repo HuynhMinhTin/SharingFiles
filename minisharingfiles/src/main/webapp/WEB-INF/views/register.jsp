@@ -76,7 +76,10 @@
 							<div class="text--center">
 								<button type="submit" class="form__button sign-up__submit" id="btn_form_signup">Continue</button>
 							</div>
-							<p class="form__legal">
+							
+                            </form>
+                            <span class="span_result">${checkUserSignUp}</span>
+                            <p class="form__legal">
 								By click
 								<span class=""sign-up__cta-text>Continue</span>
 									I agree to Files Sharing's "
@@ -84,7 +87,6 @@
 									" and "
 									<a href="https://www.facebook.com/dmmnhe" target="_blank">Privacy Policy</a>".
 							</p>
-                            </form>
                     </div>
                 </div>
             </div>
