@@ -29,12 +29,33 @@ public class UserEntity {
 	@JoinColumn(name="idFile")
 	Set<FileEntity> idFile;
 	
+	@OneToOne
+	@JoinColumn(name="idLevel")
+	LevelUserEntity idLevel;
 	
 	
 	
 	
 	
+	public UserEntity(int idUser, String nameUser, String emailUser,
+			String passwordUser, PositionEntity idPosition,
+			Set<FileEntity> idFile, LevelUserEntity idLevel) {
+		super();
+		this.idUser = idUser;
+		this.nameUser = nameUser;
+		this.emailUser = emailUser;
+		this.passwordUser = passwordUser;
+		this.idPosition = idPosition;
+		this.idFile = idFile;
+		this.idLevel = idLevel;
+	}
 	
+	public LevelUserEntity getIdLevel() {
+		return idLevel;
+	}
+	public void setIdLevel(LevelUserEntity idLevel) {
+		this.idLevel = idLevel;
+	}
 	public Set<FileEntity> getIdFile() {
 		return idFile;
 	}
@@ -70,17 +91,6 @@ public class UserEntity {
 	}
 	public void setPasswordUser(String passwordUser) {
 		this.passwordUser = passwordUser;
-	}
-	public UserEntity(int idUser, String nameUser, String emailUser,
-			String passwordUser, Set<FileEntity> idFile,
-			PositionEntity idPosition) {
-		super();
-		this.idUser = idUser;
-		this.nameUser = nameUser;
-		this.emailUser = emailUser;
-		this.passwordUser = passwordUser;
-		this.idFile = idFile;
-		this.idPosition = idPosition;
 	}
 	public UserEntity() {
 		super();
