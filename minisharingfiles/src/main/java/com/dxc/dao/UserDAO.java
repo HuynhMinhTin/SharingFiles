@@ -21,6 +21,7 @@ public class UserDAO implements UserDAOImp{
 	@Autowired
 	SessionFactory sessionFactory;
 
+	UserEntity user ;
 	
 	@Transactional
 	public boolean CheckLogin(String email, String password) {
@@ -32,7 +33,7 @@ public class UserDAO implements UserDAOImp{
 		//System.out.println(email);
 		try{
 			
-			UserEntity user = (UserEntity) session.createQuery("from user where emailUser='"+email+"' AND passwordUser='"+password+"'").getSingleResult();
+			user = (UserEntity) session.createQuery("from user where emailUser='"+email+"' AND passwordUser='"+password+"'").getSingleResult();
 			
 			if(user != null){
 					//System.out.println(user.getEmailUser());
@@ -47,6 +48,11 @@ public class UserDAO implements UserDAOImp{
 		
 		
 		return false;
+	}
+	
+	public int getIDUser() {
+		
+		return user.getIdUser();
 	}
 	
 	

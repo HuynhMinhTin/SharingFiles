@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.dxc.service.UserService;
 
 @Controller
 @RequestMapping("/login")
+//@SessionAttributes("idUserLogin")
 public class LoginController {
 
 	@Autowired
@@ -30,7 +32,15 @@ public class LoginController {
 		
 		if(checkLogin) {
 			//map.addAttribute("checkUserLogin", "OK");
-			return "redirect:home";
+			
+		/*	boolean kiemtra = nhanVienService.KiemTraDangNhap(email,matkhau);
+			modelMap.addAttribute("user",email);*/
+			
+			int idUser = userService.getIDUser();
+			
+			//map.addAttribute("idUserLogin", idUser);
+			
+			return "redirect:home/"+idUser;
 			
 		}else {
 			map.addAttribute("checkUserLogin", "This email and password combination is incorrect.");

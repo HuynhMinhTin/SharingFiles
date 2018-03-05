@@ -24,7 +24,7 @@
 		<property name="suffix" value=".jsp"/>
 	</bean>
 	
-	<!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/> -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/> 
 	
 	<import resource="classpath:IoC.xml"/>
 	

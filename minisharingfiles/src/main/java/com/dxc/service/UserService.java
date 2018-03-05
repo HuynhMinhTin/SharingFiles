@@ -27,4 +27,9 @@ public class UserService implements UserDAOImp{
 		return check;
 	}
 
+	public int getIDUser() {
+		// TODO Auto-generated method stub
+		return userDAO.getIDUser();
+	}
+
 }

@@ -8,5 +8,5 @@ public interface UserDAOImp {
 
 	boolean CheckLogin(String email , String password);
 	boolean AddEmployees(UserEntity user);
-	
+	int getIDUser();
 }

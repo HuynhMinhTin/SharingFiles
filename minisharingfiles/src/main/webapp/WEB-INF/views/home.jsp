@@ -26,8 +26,20 @@
 	 <%@ include file="header.jsp" %> --%>
 	
 
-	<!-- add file button -->		
-	<input type ="button" class="btn btn-success add-file">
+	<!-- add file button -->	
+	
+	<form action="" method="post" enctype="multipart/form-data" >	
+		<input type ="file" class="btn btn-success add-file" name="upload_file_form" size="50" >
+		
+	</form>  
+	
+	<!-- <div class="upload-btn-wrapper">
+  			<button class="btn">Upload a file</button>
+  		<input type="file" name="myfile" />
+	</div>  -->
+	
+	
+	
 	<!-- content -->
 	<div class="container-fluid margin-top-60">
 		<!-- search nav -->					
