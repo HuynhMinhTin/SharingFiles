@@ -21,16 +21,17 @@ public class FileEntity {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int idFile ;
 	
-	@OneToMany(fetch=FetchType.EAGER ,cascade=CascadeType.ALL)
+	@OneToMany(fetch=FetchType.LAZY ,cascade=CascadeType.ALL)
 	@JoinColumn(name="idCategory")
 	Set<CategoryEntity> idCategory;
+	
 	
 	@OneToOne
 	@JoinColumn(name="idUser")
 	UserEntity idUser;
 	
 	String nameFile;
-	int sizeFile;
+	long sizeFile;
 	String commentFile;
 	byte[] detail;
 	String dateCreateFile;//date
@@ -57,11 +58,11 @@ public class FileEntity {
 	public void setNameFile(String nameFile) {
 		this.nameFile = nameFile;
 	}
-	public int getSizeFile() {
+	public long getSizeFile() {
 		return sizeFile;
 	}
-	public void setSizeFile(int sizeFile) {
-		this.sizeFile = sizeFile;
+	public void setSizeFile(long l) {
+		this.sizeFile = l;
 	}
 	public int getIdFile() {
 		return idFile;

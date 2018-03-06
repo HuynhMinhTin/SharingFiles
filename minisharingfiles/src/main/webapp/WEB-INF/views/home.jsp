@@ -24,14 +24,10 @@
  	<!-- header -->
 	
 	 <%@ include file="header.jsp" %> --%>
-	
 
 	<!-- add file button -->	
 	
-	<form action="" method="post" enctype="multipart/form-data" >	
-		<input type ="file" class="btn btn-success add-file" name="upload_file_form" size="50" >
-		
-	</form>  
+	
 	
 	<!-- <div class="upload-btn-wrapper">
   			<button class="btn">Upload a file</button>
@@ -149,6 +145,12 @@
 		</div>
 	</div>
 
+<form action="" method="post" enctype="multipart/form-data" >	
+		<input type ="file" name="upload_file_form" size="50" >
+		<input type="submit" value="Upload" /></td></tr>
+	</form>  
+
+<span>${message}</span>
 	<!-- <!-- footer -->
 
 <%@ include file="footer.jsp" %> 
