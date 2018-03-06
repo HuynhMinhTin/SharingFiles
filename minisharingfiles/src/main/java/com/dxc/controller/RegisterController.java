@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dxc.dao.UserDAO;
+import com.dxc.entitty.LevelUserEntity;
 import com.dxc.entitty.PositionEntity;
 import com.dxc.entitty.UserEntity;
 import com.dxc.service.UserService;
@@ -40,6 +41,9 @@ public class RegisterController {
 		PositionEntity positionEntity = new PositionEntity();
 		positionEntity.setIdPosition(2);
 		
+		LevelUserEntity level = new LevelUserEntity();
+		level.setIdLevel(1);
+		
 		if(checkEmail){
 			if(password_form_signup.equals(confirmpassword)){
 				UserEntity user = new UserEntity();
@@ -47,7 +51,7 @@ public class RegisterController {
 				user.setNameUser(name_form_signup);
 				user.setPasswordUser(password_form_signup);
 				user.setIdPosition(positionEntity);
-				
+				user.setIdLevel(level);
 	
 				System.out.println(user);
 				
