@@ -23,6 +23,7 @@ import java.util.List;
 import com.dxc.entitty.FileEntity;
 import com.dxc.entitty.UserEntity;
 import com.dxc.service.FileService;
+import com.dxc.service.UserService;
 
 @Controller
 @RequestMapping("/home")
@@ -30,6 +31,9 @@ public class HomeController {
 	
 	@Autowired
 	FileService fileService;
+	
+	@Autowired
+	UserService userService;
 	
 	FileEntity file = new FileEntity();
 	UserEntity user = new UserEntity();
@@ -70,53 +74,85 @@ public class HomeController {
 	@PostMapping("/{idUser}")
 	public String UploadFile (@PathVariable int idUser , ModelMap modelMap, @RequestParam("upload_file_form") MultipartFile fileUpload) throws Exception {
 		
-		/*System.out.println("This is a idUSer :" + idUser);
-		
-		System.out.println("HttpSession : " + httpSession.getAttribute("idUserLogin"));
-		*/
-		
-		/*	for(CommonsMultipartResolver multi : upload_file) {
-			System.out.println(multi.getFileUpload());			
-		}*/
-		
-		/*for(CommonsMultipartFile multi : btn_upload_file) {
-			System.out.println(multi.getOriginalFilename());
-		}*/
-		//
 		
 		int idLevel = fileService.GetIdUser(idUser);
+		long totalSize = 0;
+		
 		
 		System.out.println(idLevel);
 		//Level User is  Bronze
 		if(idLevel==1){
+			// >5MB
 			if(fileUpload.getSize() > 5242880){
 				modelMap.addAttribute("message", "Level wrong ! You have to upaload file < 5MB");
 			}
-			else{
-				SaveFile(idUser, fileUpload, modelMap);
+			else{			
+				totalSize = userService.GetTotalSize(idUser) + fileUpload.getSize();
+				
+				SaveFile(idUser, fileUpload, modelMap,totalSize);
+				
+				boolean checkUserUpadate = userService.UpdateUser(idUser, totalSize);
+				
+				if(checkUserUpadate){
+					System.out.println("Update auto success");
+				}
+				else{
+					System.out.println("Update auto fails");
+				}
+				
+				
 			}
 		}
 		//Level User is Silver
 		else if(idLevel==2){
+			// >10MB
 			if(fileUpload.getSize() > 10485760){
 				modelMap.addAttribute("message", "Level wrong ! You have to upaload file < 10MB");
 			}
-			else{
-				SaveFile(idUser, fileUpload, modelMap);
+			else{	
+				totalSize = userService.GetTotalSize(idUser) + fileUpload.getSize();
+				
+				SaveFile(idUser, fileUpload, modelMap,totalSize);
+				
+				boolean checkUserUpadate = userService.UpdateUser(idUser, totalSize);
+				
+				if(checkUserUpadate){
+					System.out.println("Update auto success");
+				}
+				else{
+					System.out.println("Update auto fails");
+				}
 			}
 		}
 		//Level User is Gold 
 		else if(idLevel==3){
+			// >20MB
 			if(fileUpload.getSize() > 20971520){
 				modelMap.addAttribute("message", "Level wrong ! You have to upaload file < 20MB");
 			}
 			else{
-				SaveFile(idUser, fileUpload, modelMap);
+				//SaveFile(idUser, fileUpload, modelMap,totalSize);
+				
+				totalSize = userService.GetTotalSize(idUser) + fileUpload.getSize();
+				
+				SaveFile(idUser, fileUpload, modelMap,totalSize);
+				
+				boolean checkUserUpadate = userService.UpdateUser(idUser, totalSize);
+				
+				if(checkUserUpadate){
+					System.out.println("Update auto success");
+				}
+				else{
+					System.out.println("Update auto fails");
+				}	
 			}
 		}
 		else{
 			modelMap.addAttribute("message", "Level wrong !Nothing to show");
 		}
+		
+		
+		
 		
 		//System.out.println(idUser);
 		//modelMap.addAttribute("message", "This is Get Method using @POSTMApping annotation..!");
@@ -124,11 +160,12 @@ public class HomeController {
 		//System.out.println(fileUpload.getOriginalFilename());
 		return "home";
 }
-	void SaveFile(int idUser , MultipartFile fileUpload,ModelMap modelMap){
+	void SaveFile(int idUser , MultipartFile fileUpload,ModelMap modelMap ,long totalSizeUser){
 
 	
 		
 		user.setIdUser(idUser);
+		user.setTotalSize(totalSizeUser);
 		
 		//save file
 		file.setNameFile(fileUpload.getOriginalFilename());
@@ -156,8 +193,6 @@ public class HomeController {
 		}
 		else{
 			modelMap.addAttribute("message", "Wrong!!!!!!!!!!!!!!!!!");
-		}
-		
-		
+		}		
 	}
 }
