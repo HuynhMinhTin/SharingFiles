@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini File Sharing</title>
+    <!-- Google icon -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <!-- icon for Web -->
+    <link rel="icon" href="../image/icon.png">
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">    
+    <!-- bootstrap 4 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- customize bootstrap -->
+    <link rel="stylesheet" href="../css/layout-header-class.css">
+    <link rel="stylesheet" href="../css/registry.css">
+</head>
+<body>
+    
+    <div class="panel-wrapper">
+        <div  class = "feature-panel--enterprise">
+            <h2 id="enterprise-panel__header"  style="pading_top: 330px;">
+                
+            <small id="enterprise-panel__subheader">Thông Tin Các Thành Viên</small><br>
+                Nhóm Siêu Quậy Tí Hon
+            </h2>
+            <p id="enterprise-panel__caption"> Master Design. in class desinger fresher</p>
+
+
+            <a href="https://www.invisionapp.com/" target="_blank" class="enterprise-panel__button"  style="border: 1px solid rgb(255, 51, 102); background: none; color: rgb(255, 51, 102); visibility: visible;">Learn More</a>
+
+            <div class="enterprise-panel__footer">
+                <p>
+                    TRUSTED BY THE WORLD'S SMARTEST COMPANIES <br>
+                    My group Slogan
+                </p>
+            </div>
+
+        </div>
+
+        <div class="main-panel">
+                <div class="main-panel__table">
+                    <div class="main-panel__table-cell">
+                        <div class="main-panel__switch">
+                            <span class="main-panel__switch__text">Don't have an account?</span>
+                            <a class="main-panel__switch__button">Get Started</a>
+                        </div>
+                        <div class="main-panel__content">
+                            <h1 class="main-panel__heading">
+                            Sign in to Files Sharing.
+                            <small class="main-panel__subheading">Enter your details below.
+                                </small></h1>
+                            <form  action="/d/login/authenticate" method="post" novalidate>
+                                <div class="form__group">
+                                    <label for="emailAddress" class="form__label">Email Address</label>
+                                    <input id="emailAddress" type="email" name="email" class="form__input" name="password" placeholder="as1@gmail.com" value>
+                                </div>
+                                <div class="form__group">
+                                    <label for="password" class="form__label">Password</label>
+                                    <input id="password" type="password" class="form__input" name="password" placeholder="Enter your password">
+                                    <a class="form__help">Forgot password?</a>
+                                </div>
+                                <div class="text--center">
+                                    <button class="form__button">Sign in</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</body>
+</html>
