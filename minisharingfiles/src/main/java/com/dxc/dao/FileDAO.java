@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.dxc.daoImp.FileDAOImp;
 import com.dxc.entitty.FileEntity;
+import com.dxc.entitty.LevelUserEntity;
 import com.dxc.entitty.UserEntity;
 
 @Repository
@@ -37,17 +38,20 @@ public class FileDAO implements FileDAOImp {
 			
 			int fileCount = (Integer) session.save(file);
 			//session.clear();
+			//System.out.println(fileCount);
 			if(fileCount > 0) {
 				System.out.println(file.getNameFile() +"OK");
 				return true;
 			}else {
 				System.out.println(file.getNameFile() + "wrong");
+				return false;
 			}
 			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		return false;
+		
 	}
 
 	
@@ -63,17 +67,35 @@ public class FileDAO implements FileDAOImp {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
 		List<FileEntity> fileEntity ;
+		
 		try {
 			fileEntity = (List<FileEntity>) session.createQuery("from file where idUser='"+idUser+"'").getResultList();		
 			return fileEntity;
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+	//	return fileEntity;
 		return null;
 		
-	//	return fileEntity;
+	}
+
+	@Transactional
+	public int GetIdUser(int idUser) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		LevelUserEntity levelUserEntity = new LevelUserEntity();
+		try {
+			UserEntity userEntity = (UserEntity) session.createQuery("from user where idUser='"+idUser+"'").getSingleResult();
+			levelUserEntity = userEntity.getIdLevel();
+			int idLevel = levelUserEntity.getIdLevel();
+			System.out.println(idLevel);
+			return idLevel;
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		
-		
+		return 0;
 	}
 
 }

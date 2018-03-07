@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
+import java.io.IOException;
 import java.util.List;
 
 import com.dxc.entitty.FileEntity;
@@ -29,6 +30,9 @@ public class HomeController {
 	
 	@Autowired
 	FileService fileService;
+	
+	FileEntity file = new FileEntity();
+	UserEntity user = new UserEntity();
 	
 	@GetMapping
 	public String Default (ModelMap map) {
@@ -64,7 +68,7 @@ public class HomeController {
 	
 	
 	@PostMapping("/{idUser}")
-	public String UploadFile (@PathVariable int idUser , ModelMap modelMap,HttpServletRequest request , @RequestParam("upload_file_form") MultipartFile fileUpload) throws Exception {
+	public String UploadFile (@PathVariable int idUser , ModelMap modelMap, @RequestParam("upload_file_form") MultipartFile fileUpload) throws Exception {
 		
 		/*System.out.println("This is a idUSer :" + idUser);
 		
@@ -80,32 +84,39 @@ public class HomeController {
 		}*/
 		//
 		
-		FileEntity file = new FileEntity();
-		UserEntity user = new UserEntity();
-		user.setIdUser(idUser);
+		int idLevel = fileService.GetIdUser(idUser);
 		
-		file.setNameFile(fileUpload.getOriginalFilename());
-		
-		file.setSizeFile(fileUpload.getSize());
-		
-		file.setCommentFile("This is a file of User : " +idUser);
-		file.setIdUser(user);
-		
-		file.setDetail(fileUpload.getBytes());
-		
-		
-		boolean check = fileService.UploadFile(file);
-		
-		if(check){
-			List<FileEntity> fileDetail = fileService.GetInfoFile(idUser)	;	
-			
-			for(FileEntity f : fileDetail){
-				System.out.println(f.getNameFile());
+		System.out.println(idLevel);
+		//Level User is  Bronze
+		if(idLevel==1){
+			if(fileUpload.getSize() > 5242880){
+				modelMap.addAttribute("message", "Level wrong ! You have to upaload file < 5MB");
 			}
-		}else{
-			modelMap.addAttribute("message", "Wrong!!!!!!!!!!!!!!!!!");
+			else{
+				SaveFile(idUser, fileUpload, modelMap);
+			}
 		}
-		
+		//Level User is Silver
+		else if(idLevel==2){
+			if(fileUpload.getSize() > 10485760){
+				modelMap.addAttribute("message", "Level wrong ! You have to upaload file < 10MB");
+			}
+			else{
+				SaveFile(idUser, fileUpload, modelMap);
+			}
+		}
+		//Level User is Gold 
+		else if(idLevel==3){
+			if(fileUpload.getSize() > 20971520){
+				modelMap.addAttribute("message", "Level wrong ! You have to upaload file < 20MB");
+			}
+			else{
+				SaveFile(idUser, fileUpload, modelMap);
+			}
+		}
+		else{
+			modelMap.addAttribute("message", "Level wrong !Nothing to show");
+		}
 		
 		//System.out.println(idUser);
 		//modelMap.addAttribute("message", "This is Get Method using @POSTMApping annotation..!");
@@ -113,4 +124,40 @@ public class HomeController {
 		//System.out.println(fileUpload.getOriginalFilename());
 		return "home";
 }
+	void SaveFile(int idUser , MultipartFile fileUpload,ModelMap modelMap){
+
+	
+		
+		user.setIdUser(idUser);
+		
+		//save file
+		file.setNameFile(fileUpload.getOriginalFilename());
+		file.setSizeFile(fileUpload.getSize());
+		file.setCommentFile("This is a file of User : " +idUser);
+		file.setIdUser(user);
+		try {
+			file.setDetail(fileUpload.getBytes());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}// save file into database
+		
+		
+		boolean check = fileService.UploadFile(file);
+		
+		System.out.println(check);
+		
+		if(check){
+			List<FileEntity> fileDetail = fileService.GetInfoFile(idUser)	;	
+			
+			for(FileEntity f : fileDetail){
+				System.out.println(f.getNameFile());
+			}
+		}
+		else{
+			modelMap.addAttribute("message", "Wrong!!!!!!!!!!!!!!!!!");
+		}
+		
+		
+	}
 }

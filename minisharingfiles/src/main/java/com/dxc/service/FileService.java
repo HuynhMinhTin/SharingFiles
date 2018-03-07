@@ -21,7 +21,7 @@ public class FileService implements FileDAOImp{
 		// TODO Auto-generated method stub
 		
 		boolean check = fileDAO.UploadFile(file);
-		return false;
+		return check;
 	}
 
 	public boolean DownloadFile(FileEntity file) {
@@ -35,6 +35,12 @@ public class FileService implements FileDAOImp{
 		List<FileEntity> file = fileDAO.GetInfoFile(idUser);
 		
 		return file;
+	}
+
+	public int GetIdUser(int idUser) {
+		// TODO Auto-generated method stub
+		int idLevel = fileDAO.GetIdUser(idUser);
+		return idLevel;
 	}
 
 	
