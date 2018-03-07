@@ -98,4 +98,24 @@ public class FileDAO implements FileDAOImp {
 		return 0;
 	}
 
+
+	public int GetTotalSize(int isUser) {
+		// TODO Auto-generated method stub
+		
+		Session session = sessionFactory.getCurrentSession();
+		LevelUserEntity levelUserEntity = new LevelUserEntity();
+		try {
+			UserEntity userEntity = (UserEntity) session.createQuery("from user where idUser='"+isUser+"'").getSingleResult();
+			levelUserEntity = userEntity.getIdLevel();
+			int idLevel = levelUserEntity.getIdLevel();
+			System.out.println(idLevel);
+			return idLevel;
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return 0;
+	}
+
 }

@@ -87,6 +87,21 @@ public class UserDAO implements UserDAOImp{
 		
 	}
 	
+	@Transactional
+	public int GetTotalSize(int isUser) {
+		// TODO Auto-generated method stub
+		
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			int totalSize = (Integer) session.createQuery("select totaSize from user where idUser='"+isUser+"'").getSingleResult();
+			return totalSize;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return 0;
+	}
+	
 	
 	
 }

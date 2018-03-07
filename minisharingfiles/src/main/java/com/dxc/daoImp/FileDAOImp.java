@@ -12,5 +12,5 @@ public interface FileDAOImp {
 	boolean DownloadFile(FileEntity file);
 	List<FileEntity> GetInfoFile(int idUser);
 	int GetIdUser(int idUser);
-	
+	int GetTotalSize(int isUser);
 }
