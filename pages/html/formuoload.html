@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini File Sharing</title>
+    <!-- Google icon -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <!-- icon for Web -->
+    <link rel="icon" href="../image/icon.png">
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">    
+    <!-- bootstrap 4 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- customize bootstrap -->
+    <link rel="stylesheet" href="../css/layout-header-footer.css">
+</head>
+<body>
+    <!-- header --> 
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col">                   
+                    <i class="material-icons brand">cloud_done</i>  
+                </div>          
+                <div class="col-md-8 col-sm-7 direction">               
+                    <ul class="nav">                        
+                        <li class="nav-item">
+                            <a class="nav-link active" href="home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="link1">Link 1</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="link2">Link 2</a>
+                        </li>                     
+                    </ul>               
+                </div>  
+                <div class="col-md-3 col-sm-4">
+                    <div class="nav justify-content-end registry-guest">
+                        <li class="nav-item">
+                            <a class="nav-link" href="">Login</a>
+                        </li>                   
+                        <li class="nav-item">
+                            <a class="nav-link" href="">Register</a>
+                        </li>   
+                    </div>
+                    <div class="registry-user">
+                        <i class="material-icons account">account_circle</i>
+                        <label>username</label>
+                    </div>                      
+                </div>              
+            </div>
+        </div>      
+    </header>
+
+    <!-- upload form -->
+    <main class="container center">
+        <form action="">
+            <div class="form-group">
+                <label for="category">Category</label>       
+                <select class="form-control" name="category" id="category">          
+                    <option value="Book">Book</option>
+                    <option value="Study">Study</option>
+                    <option value="Work">Work</option>
+                    <option value="Picture">Picture</option>
+                    <option value="Video">Video</option>
+                    <option value="Music">Music</option>
+                </select>            
+            </div>        
+            <div class="form-group">
+                <label for="status">Status</label>
+                <div id="status">
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="rad-public" name="status" class="custom-control-input" value="public">
+                      <label class="custom-control-label" for="rad-public">Public</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="rad-private" name="status" class="custom-control-input" value="private">
+                      <label class="custom-control-label" for="rad-private">Private</label>
+                    </div>
+                </div>            
+            </div>
+            <div class="form-group">
+                <label for="descript">Description</label>
+                <textarea class="form-control" rows="3" id="descript"></textarea>
+            </div>            
+            <button class="btn btn-primary" type="file">Chosse Image</button>            
+        </form>
+    </main>    
+
+    <!-- footer -->
+    <footer class="footer text-center">
+        <div class="row">
+            <div class="col">
+                <h6 class="h6">about</h6>
+                <p></p>
+            </div>
+            <div class="col">
+                <h6 class="h6">contact</h6>
+                <p></p>
+            </div>
+        </div>
+    </footer>
+    <!-- bootstrap css, jQuery 4 -->    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- angular 1.6.4 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</body>
+</html>
