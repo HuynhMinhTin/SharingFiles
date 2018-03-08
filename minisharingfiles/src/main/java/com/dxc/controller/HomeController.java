@@ -38,6 +38,8 @@ public class HomeController {
 	FileEntity file = new FileEntity();
 	UserEntity user = new UserEntity();
 	
+	boolean check= false;
+	
 	@GetMapping
 	public String Default (ModelMap map) {
 		map.addAttribute("message", "This is Get Method using @GetMapping annotation..!");
@@ -61,16 +63,21 @@ public class HomeController {
 		}*/
 		//
 		
-		System.out.print(idUser);
-		
-		modelMap.addAttribute("message", "This is Get Method using @GetMapping annotation..!");
+	//	System.out.print(idUser);
 		
 		
+			List<FileEntity> fileDetail = fileService.GetInfoFile(idUser)	;	
+			
+			for(FileEntity f : fileDetail){
+				System.out.println(f.getNameFile());
+			}
+			
+			
+	
+		//modelMap.addAttribute("message", "This is Get Method using @GetMapping annotation..!");	
 		return "home";
 	}
-	
-	
-	
+
 	@PostMapping("/{idUser}")
 	public String UploadFile (@PathVariable int idUser , ModelMap modelMap, @RequestParam("upload_file_form") MultipartFile fileUpload) throws Exception {
 		
@@ -151,7 +158,19 @@ public class HomeController {
 			modelMap.addAttribute("message", "Level wrong !Nothing to show");
 		}
 		
+		//check if user upload succes then load file 
+		System.out.println(check);
 		
+		if(check){
+			List<FileEntity> fileDetail = fileService.GetInfoFile(idUser)	;	
+			
+			for(FileEntity f : fileDetail){
+				System.out.println(f.getNameFile());
+			}
+		}
+		else{
+			modelMap.addAttribute("message", "Wrong!!!!!!!!!!!!!!!!!");
+		}		
 		
 		
 		//System.out.println(idUser);
@@ -180,19 +199,8 @@ public class HomeController {
 		}// save file into database
 		
 		
-		boolean check = fileService.UploadFile(file);
+		check = fileService.UploadFile(file);
 		
-		System.out.println(check);
 		
-		if(check){
-			List<FileEntity> fileDetail = fileService.GetInfoFile(idUser)	;	
-			
-			for(FileEntity f : fileDetail){
-				System.out.println(f.getNameFile());
-			}
-		}
-		else{
-			modelMap.addAttribute("message", "Wrong!!!!!!!!!!!!!!!!!");
-		}		
 	}
 }
