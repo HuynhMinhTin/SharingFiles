@@ -10,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.dxc.service.FileService;
@@ -20,8 +21,14 @@ public class DownloadController {
 	@Autowired
 	FileService fileService;
 	
+//	@GetMapping
+//	public String loadPage(){
+//		return "download";
+//	}
+	
+//	@GetMapping("/{fileId}")
 	@GetMapping
-	public ResponseEntity<ByteArrayResource> Default() {
+	public ResponseEntity<ByteArrayResource> download(/*@PathVariable int _id*/) {
 //		dir: C:/Users/training/Desktop/login.html 
 //		file want to download
 		java.nio.file.Path path = Paths.get("C:/Users/training/Desktop/login.html");
