@@ -2,6 +2,7 @@ package com.dxc.entitty;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,11 +26,11 @@ public class UserEntity {
 	@JoinColumn(name="idPosition")
 	PositionEntity idPosition;
 	
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="idFile")
 	Set<FileEntity> idFile;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="idLevel")
 	LevelUserEntity idLevel;
 	

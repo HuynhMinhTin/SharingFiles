@@ -32,4 +32,20 @@ public class UserService implements UserDAOImp{
 		return userDAO.getIDUser();
 	}
 
+	public long GetTotalSize(int isUser) {
+		// TODO Auto-generated method stub
+		long totalSize = userDAO.GetTotalSize(isUser);
+		
+		return totalSize;
+	}
+
+
+	public boolean UpdateUser(int idUser, long totalSizeOfFile) {
+		// TODO Auto-generated method stub
+		
+		boolean check = userDAO.UpdateUser(idUser, totalSizeOfFile);
+		
+		return check;
+	}
+
 }

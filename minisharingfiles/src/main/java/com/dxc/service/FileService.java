@@ -42,11 +42,5 @@ public class FileService implements FileDAOImp{
 		int idLevel = fileDAO.GetIdUser(idUser);
 		return idLevel;
 	}
-
-	public int GetTotalSize(int isUser) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 	
 }
