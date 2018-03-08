@@ -22,6 +22,8 @@
 <!-- customize bootstrap -->
 <link href="<c:url value="resources/css/layout-header-footer.css" />"
 	rel="stylesheet">
+<link href="<c:url value="/resources/css/layout-header-footer.css" />"
+	rel="stylesheet">
 </head>
 <body>
 	<!-- header -->
