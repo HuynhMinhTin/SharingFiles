@@ -17,6 +17,7 @@
 
 	<mvc:annotation-driven enable-matrix-variables="true"/>
 	<mvc:resources location="/resources/" mapping="/resources/**"/>
+	<mvc:resources location="/home/resources/" mapping="/resources/**"/>
 	<mvc:annotation-driven/> 
 	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -31,10 +32,9 @@
         <property name="maxUploadSize" value="209715200" /> <!-- 200MB -->
          
         <!-- max size of file in memory (in bytes) -->
-        <property name="maxInMemorySize" value="1048576" /> <!-- 1MB -->
+        <property name="maxInMemorySize" value="2097152 " /> <!-- 2MB -->
  
     </bean>
-	
 	<import resource="classpath:IoC.xml"/>
 	
 	
