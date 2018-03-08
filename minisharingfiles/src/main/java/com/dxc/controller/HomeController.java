@@ -67,10 +67,7 @@ public class HomeController {
 		
 		
 			List<FileEntity> fileDetail = fileService.GetInfoFile(idUser)	;	
-			
-			for(FileEntity f : fileDetail){
-				System.out.println(f.getNameFile());
-			}
+			modelMap.addAttribute("listFiles", fileDetail);
 			
 			
 	

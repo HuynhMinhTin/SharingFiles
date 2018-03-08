@@ -160,8 +160,43 @@ main{
 
 .card-body{
 	padding: 5px;
+	background-color: #D3D3D3;
 }
 
 .text-center{
 	text-align: center;
+}
+
+/* 
+card */
+
+
+.card-title{
+	width: 150px;
+    height: 30px;
+    font-size: 14px;
+    
+}
+.detail_file{
+	margin-top:5px;
+	
+}
+
+/* custom btn upload */
+.btn_upload{
+	 border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 3px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.btn_upload_file{
+	 border: 2px solid gray;
+	  color: gray;
+  background-color: white;
+  padding: 3px;
+  border-radius: 8px;
+  width: 300px;
 }

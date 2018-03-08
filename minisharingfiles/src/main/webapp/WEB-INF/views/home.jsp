@@ -106,23 +106,44 @@
 								3</a></li>
 					</ul>
 				</div>
+				
+				
+				
+				
 
 				<!-- file list -->
+					
+						
 				<div class="col-md-10 col-sm-8 file-list">
-					<h6 class="title">file list</h6>				
+					<form  action="" method="post" enctype="multipart/form-data">
+						<input class="btn_upload_file" type="file" name="upload_file_form" size="25">
+		 				<input class="btn_upload" type="submit" value="Upload" />
+					</form>
+								<h6 class="title">file list</h6>
+								<div class="card-deck">
+						<c:forEach var="file" items="${listFiles}">
+						 	 <a class="detail_file" href="detail/${file.getIdFile()}">
+								 <div class="card">
+								 <img class="card-img-top file">						    
+								 <div class="card-body">
+								  <h5 class="card-title">${file.getNameFile()}</h5>
+								  <p class="card-text"><small class="text-muted">${file.getSizeFile()} Bytes</small></p>
+								   <p class="card-text"><small class="text-muted">${file.getIdUser().getNameUser()}</small></p>		
+								</div>
+								</div>
+							</a>
+						</c:forEach>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<form action="" method="post" enctype="multipart/form-data">
-		<input type="file" name="upload_file_form" size="50"> <input
-			type="submit" value="Upload" />
-		</td>
-		</tr>
-	</form>
+	
+	
 
 	<span>${message}</span>
+	
+	
 	<!-- footer -->
 	<%@ include file="footer.jsp"%>
 
