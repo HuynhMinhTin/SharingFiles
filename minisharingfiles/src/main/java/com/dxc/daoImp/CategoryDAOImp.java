@@ -1,5 +1,11 @@
 package com.dxc.daoImp;
 
-public interface CategoryDAOImp {
+import java.util.List;
 
+import com.dxc.entitty.CategoryEntity;;
+
+public interface CategoryDAOImp {
+	
+	List<CategoryEntity> GetCategory();
+	
 }

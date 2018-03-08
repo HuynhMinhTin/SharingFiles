@@ -69,7 +69,7 @@ public class FileDAO implements FileDAOImp {
 		List<FileEntity> fileEntity ;
 		
 		try {
-			fileEntity = (List<FileEntity>) session.createQuery("from file where idUser='"+idUser+"'").getResultList();		
+			fileEntity = (List<FileEntity>) session.createQuery("from file where idUser='"+idUser+"'").setFirstResult(0).setMaxResults(20).getResultList();		
 			return fileEntity;
 		} catch (Exception e) {
 			// TODO: handle exception

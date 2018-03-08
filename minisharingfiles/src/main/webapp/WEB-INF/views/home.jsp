@@ -98,12 +98,12 @@
 				<div class="col-md-2 col-sm-4 category">
 					<h6 class="title">category</h6>
 					<ul class="nav nav-pills flex-column">
-						<li class="nav-item"><a class="nav-link active" href="#">category
-								1</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">category
-								2</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">category
-								3</a></li>
+					
+					<c:forEach var="cate" items="${category }">
+								<li class="nav-item"><a class="nav-link active" href=""> ${cate.getNameCategory()}
+								</a></li>
+					</c:forEach>
+						
 					</ul>
 				</div>
 				

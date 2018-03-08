@@ -20,8 +20,10 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import java.io.IOException;
 import java.util.List;
 
+import com.dxc.entitty.CategoryEntity;
 import com.dxc.entitty.FileEntity;
 import com.dxc.entitty.UserEntity;
+import com.dxc.service.CategoryService;
 import com.dxc.service.FileService;
 import com.dxc.service.UserService;
 
@@ -34,6 +36,9 @@ public class HomeController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	CategoryService categoryService;
 	
 	FileEntity file = new FileEntity();
 	UserEntity user = new UserEntity();
@@ -49,22 +54,10 @@ public class HomeController {
 	@GetMapping("/{idUser}")
 	public String TestUser (@PathVariable int idUser , ModelMap modelMap) {
 		
-		/*System.out.println("This is a idUSer :" + idUser);
-		
-		System.out.println("HttpSession : " + httpSession.getAttribute("idUserLogin"));
-		*/
-		
-		/*	for(CommonsMultipartResolver multi : upload_file) {
-			System.out.println(multi.getFileUpload());			
-		}*/
-		
-		/*for(CommonsMultipartFile multi : btn_upload_file) {
-			System.out.println(multi.getOriginalFilename());
-		}*/
-		//
-		
-	//	System.out.print(idUser);
-		
+			if(categoryService != null){
+				List<CategoryEntity> categoryEntities = categoryService.GetCategory();
+				modelMap.addAttribute("category", categoryEntities);
+			}
 		
 			List<FileEntity> fileDetail = fileService.GetInfoFile(idUser)	;	
 			modelMap.addAttribute("listFiles", fileDetail);
@@ -82,8 +75,13 @@ public class HomeController {
 		int idLevel = fileService.GetIdUser(idUser);
 		long totalSize = 0;
 		
+		if(categoryService != null){
+			List<CategoryEntity> categoryEntities = categoryService.GetCategory();
+			modelMap.addAttribute("category", categoryEntities);
+		}
+	
 		
-		System.out.println(idLevel);
+		//System.out.println(idLevel);
 		//Level User is  Bronze
 		if(idLevel==1){
 			// >5MB
@@ -168,6 +166,9 @@ public class HomeController {
 		else{
 			modelMap.addAttribute("message", "Wrong!!!!!!!!!!!!!!!!!");
 		}		
+		
+		List<FileEntity> fileDetail = fileService.GetInfoFile(idUser)	;	
+		modelMap.addAttribute("listFiles", fileDetail);
 		
 		
 		//System.out.println(idUser);
