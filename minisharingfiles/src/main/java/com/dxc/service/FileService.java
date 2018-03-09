@@ -46,5 +46,11 @@ public class FileService implements FileDAOImp{
 		return fileDAO.getDataById(_id);
 	}
 	
-//	public String 
+	public List<FileEntity> GetFileFromCategoryForUser(int idCategory,
+			int idUser) {
+		// TODO Auto-generated method stub
+		
+		List<FileEntity> listFile = fileDAO.GetFileFromCategoryForUser(idCategory, idUser);
+		return listFile;
+	}
 }
