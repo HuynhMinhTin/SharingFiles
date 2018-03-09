@@ -176,7 +176,7 @@ public class HomeController {
 	
 		
 		user.setIdUser(idUser);
-		user.setTotalSize(totalSizeUser);
+//		user.setTotalSize(totalSizeUser);
 		
 		//save file
 		file.setNameFile(fileUpload.getOriginalFilename());
