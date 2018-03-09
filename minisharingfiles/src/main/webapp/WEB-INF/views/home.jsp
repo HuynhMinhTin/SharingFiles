@@ -141,7 +141,6 @@
 	
 	
 
-	<span>${message}</span>
 	
 	
 	<!-- footer -->

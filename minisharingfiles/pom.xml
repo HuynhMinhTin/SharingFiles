@@ -5,7 +5,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   
-   <dependencies>
+  <dependencies>
 		   
 		   <!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
 		<dependency>
@@ -85,6 +85,5 @@
 		
   
   
-    </dependencies>
-  
+    </dependencies>  
 </project>
