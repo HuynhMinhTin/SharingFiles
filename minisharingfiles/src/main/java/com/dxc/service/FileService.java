@@ -42,9 +42,7 @@ public class FileService implements FileDAOImp{
 		return idLevel;
 	}
 
-	public byte[] getDataById(int _id) {		
-		return fileDAO.getDataById(_id);
-	}
+
 	
 	public List<FileEntity> GetFileFromCategoryForUser(int idCategory,
 			int idUser) {
