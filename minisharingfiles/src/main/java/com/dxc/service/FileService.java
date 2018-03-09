@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.dxc.dao.FileDAO;
 import com.dxc.daoImp.FileDAOImp;
 import com.dxc.entitty.FileEntity;
-import com.dxc.entitty.UserEntity;
 
 
 @Service
@@ -42,5 +41,10 @@ public class FileService implements FileDAOImp{
 		int idLevel = fileDAO.GetIdUser(idUser);
 		return idLevel;
 	}
+
+	public byte[] getDataById(int _id) {		
+		return fileDAO.getDataById(_id);
+	}
 	
+//	public String 
 }

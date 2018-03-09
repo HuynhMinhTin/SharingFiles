@@ -26,26 +26,29 @@ public class DownloadController {
 //		return "download";
 //	}
 	
-//	@GetMapping("/{fileId}")
-	@GetMapping
-	public ResponseEntity<ByteArrayResource> download(/*@PathVariable int _id*/) {
-//		dir: C:/Users/training/Desktop/login.html 
-//		file want to download
-		java.nio.file.Path path = Paths.get("C:/Users/training/Desktop/login.html");
-		byte[] data = null;
+	@GetMapping("/{fileId}")
+	public ResponseEntity<ByteArrayResource> download(@PathVariable("fileId") Integer _id) {
+		byte[] data = "error download".getBytes();
+		ByteArrayResource resource = new ByteArrayResource(data);
+		
 		try {
-//			get data of file by byte
-			data = Files.readAllBytes(path);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			data = fileService.getDataById(_id);			
+			if (data == null){
+				System.out.println("Controller fail");
+				new Exception("Lost file......");
+			} else {
+				resource = new ByteArrayResource(data);
+			}
+		} catch (Exception e) {
+			System.out.println("Download file fail.....!!!!");
 			e.printStackTrace();
 		}
-		ByteArrayResource resource = new ByteArrayResource(data);
+		
 
 		return ResponseEntity
 				.ok()
 				.header(HttpHeaders.CONTENT_DISPOSITION,
-						"attachment;filename=" + path.getFileName().toString())				
+						"attachment;filename=test.pptx")				
 				.contentLength(data.length).body(resource);		
 	}
 }

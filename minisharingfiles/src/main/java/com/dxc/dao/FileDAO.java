@@ -1,8 +1,8 @@
 package com.dxc.dao;
 
 import java.util.List;
-import java.util.Set;
 
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import org.hibernate.Session;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.dxc.daoImp.FileDAOImp;
 import com.dxc.entitty.FileEntity;
@@ -97,5 +96,20 @@ public class FileDAO implements FileDAOImp {
 		
 		return 0;
 	}
+
+	@Transactional(rollbackOn= {Exception.class})
+	public byte[] getDataById(int _id) {
+		byte[] data = null;
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "select detail from file where idFile = :id";
+		Query query = session.createQuery(hql);
+		
+		query.setParameter("id", _id);
+		data =  (byte[]) query.getSingleResult();
+		System.out.println("data in mySQL: " + data);
+
+		return data;
+	}
+
 
 }
