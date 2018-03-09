@@ -21,9 +21,9 @@ public class FileEntity {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int idFile ;
 	
-	@OneToMany(fetch=FetchType.LAZY ,cascade=CascadeType.ALL)
+	@OneToOne(fetch=FetchType.LAZY ,cascade=CascadeType.ALL)
 	@JoinColumn(name="idCategory")
-	Set<CategoryEntity> idCategory;
+	CategoryEntity idCategory;
 	
 	
 	@OneToOne
@@ -40,10 +40,11 @@ public class FileEntity {
 	int countDowloadFile;
 	
 	
-	public Set<CategoryEntity> getIdCategory() {
+	
+	public CategoryEntity getIdCategory() {
 		return idCategory;
 	}
-	public void setIdCategory(Set<CategoryEntity> idCategory) {
+	public void setIdCategory(CategoryEntity idCategory) {
 		this.idCategory = idCategory;
 	}
 	public UserEntity getIdUser() {
@@ -114,10 +115,10 @@ public class FileEntity {
 	public FileEntity() {
 		super();
 	}
-	public FileEntity(int idFile, Set<CategoryEntity> idCategory,
-			UserEntity idUser, String nameFile, int sizeFile,
-			String commentFile, byte[] detail, String dateCreateFile,
-			String statusFile, String imageLinksFile, int countDowloadFile) {
+	public FileEntity(int idFile, CategoryEntity idCategory, UserEntity idUser,
+			String nameFile, long sizeFile, String commentFile, byte[] detail,
+			String dateCreateFile, String statusFile, String imageLinksFile,
+			int countDowloadFile) {
 		super();
 		this.idFile = idFile;
 		this.idCategory = idCategory;

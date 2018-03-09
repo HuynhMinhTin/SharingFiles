@@ -96,4 +96,24 @@ public class FileDAO implements FileDAOImp {
 		
 		return 0;
 	}
+
+	
+	@Transactional
+	public List<FileEntity> GetFileFromCategoryForUser(int idCategory,
+			int idUser) {
+		// TODO Auto-generated method stub
+		
+		Session session = sessionFactory.getCurrentSession();
+		
+		List<FileEntity> fileEntities = (List<FileEntity>)session.createQuery("from file where idCategory='"+idCategory+" 'AND idUser=' "+idUser+"'").getResultList();
+		
+		
+		for(FileEntity f: fileEntities){
+			System.out.println(f.getNameFile());
+		}
+		
+		return fileEntities;
+	}
+
+
 }

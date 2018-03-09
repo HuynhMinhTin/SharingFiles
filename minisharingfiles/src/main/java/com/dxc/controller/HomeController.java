@@ -46,10 +46,14 @@ public class HomeController {
 	boolean check= false;
 	
 	@GetMapping
-	public String Default (ModelMap map) {
-		map.addAttribute("message", "This is Get Method using @GetMapping annotation..!");
+	public String Default (ModelMap modelMap) {
+		if(categoryService != null){
+			List<CategoryEntity> categoryEntities = categoryService.GetCategory();
+			modelMap.addAttribute("category", categoryEntities);
+		}
 		return "home";
 	}
+	
 	
 	@GetMapping("/{idUser}")
 	public String TestUser (@PathVariable int idUser , ModelMap modelMap) {
@@ -61,6 +65,8 @@ public class HomeController {
 		
 			List<FileEntity> fileDetail = fileService.GetInfoFile(idUser)	;	
 			modelMap.addAttribute("listFiles", fileDetail);
+			
+			
 			
 			
 	
@@ -153,20 +159,8 @@ public class HomeController {
 			modelMap.addAttribute("message", "Level wrong !Nothing to show");
 		}
 		
-		//check if user upload succes then load file 
-		System.out.println(check);
 		
-		if(check){
-			List<FileEntity> fileDetail = fileService.GetInfoFile(idUser)	;	
-			
-			for(FileEntity f : fileDetail){
-				System.out.println(f.getNameFile());
-			}
-		}
-		else{
-			modelMap.addAttribute("message", "Wrong!!!!!!!!!!!!!!!!!");
-		}		
-		
+		//load info => view
 		List<FileEntity> fileDetail = fileService.GetInfoFile(idUser)	;	
 		modelMap.addAttribute("listFiles", fileDetail);
 		

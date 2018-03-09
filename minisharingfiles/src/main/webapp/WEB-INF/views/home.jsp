@@ -100,15 +100,14 @@
 					<ul class="nav nav-pills flex-column">
 					
 					<c:forEach var="cate" items="${category }">
-								<li class="nav-item"><a class="nav-link active" href=""> ${cate.getNameCategory()}
-								</a></li>
+								<li class="nav-item">
+								<a class="nav-link active" href= '<c:url value="/home/${idUser}/${cate.getIdCategory()}"/>'> ${cate.getNameCategory()}
+								</a>
+								</li>
 					</c:forEach>
 						
 					</ul>
 				</div>
-				
-				
-				
 				
 
 				<!-- file list -->
@@ -120,7 +119,7 @@
 		 				<input class="btn_upload" type="submit" value="Upload" />
 					</form>
 								<h6 class="title">file list</h6>
-								<div class="card-deck">
+								<div class="card-deck" >
 						<c:forEach var="file" items="${listFiles}">
 						 	 <a class="detail_file" href="detail/${file.getIdFile()}">
 								 <div class="card">
