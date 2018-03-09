@@ -96,20 +96,4 @@ public class FileDAO implements FileDAOImp {
 		
 		return 0;
 	}
-
-	@Transactional(rollbackOn= {Exception.class})
-	public byte[] getDataById(int _id) {
-		byte[] data = null;
-		Session session = sessionFactory.getCurrentSession();
-		String hql = "select detail from file where idFile = :id";
-		Query query = session.createQuery(hql);
-		
-		query.setParameter("id", _id);
-		data =  (byte[]) query.getSingleResult();
-		System.out.println("data in mySQL: " + data);
-
-		return data;
-	}
-
-
 }

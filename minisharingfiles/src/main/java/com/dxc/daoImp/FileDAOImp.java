@@ -10,6 +10,5 @@ public interface FileDAOImp {
 	boolean UploadFile(FileEntity file);
 	boolean DownloadFile(FileEntity file);
 	List<FileEntity> GetInfoFile(int idUser);
-	int GetIdUser(int idUser);
-	byte[] getDataById(int _id);
+	int GetIdUser(int idUser);	
 }
