@@ -125,8 +125,4 @@ public class UserEntity {
 				+ ", passwordUser=" + passwordUser + ", idFile=" + idFile + ", idPosition=" + idPosition + "]";
 	}
 
-	
-	
-	
-	
 }

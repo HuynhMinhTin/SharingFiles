@@ -33,10 +33,15 @@ public class AdminDAO implements AdminDAOImp {
 
 	@Transactional
 	public void DeleteUser(int userId) {
+		
+		Session session = sessionFactory.getCurrentSession();
+		
+		session.createQuery("delete from file where idUser='"+userId+"'").executeUpdate();
+		
 		String hql = "delete from user where idUser = :id";
 		//String hql = "from user";
 		
-		sessionFactory.getCurrentSession()
+			session
 			.createQuery(hql)
 			.setParameter("id", userId)			
 			.executeUpdate();
