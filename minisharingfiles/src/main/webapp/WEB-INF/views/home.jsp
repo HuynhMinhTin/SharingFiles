@@ -65,9 +65,13 @@
 								<div class="form-group">
 									<label for="category">Category</label> <select id="category"
 										name="orderby" class="form-control">
-										<option value="animals" selected>Động vật</option>
-										<option value="films">Phim, ảnh</option>
-										<option value="games">Game</option>
+										<option value="book">Book</option>
+										<option value="music">Music</option>
+										<option value="video">Video</option>
+										<option value="picture">Picture</option>
+										<option value="program">Program</option>
+										<option value="study">Study</option>
+										<option value="work">Work</option>
 									</select>
 								</div>
 								<div class="form-group">
@@ -78,11 +82,11 @@
 								<div class="form-group">
 									<label for="size">Size</label> <select name="size"
 										class="form-control">
-										<option value="30">từ 0mb đến30mb</option>
-										<option value="40">từ 30mb đến 40mb</option>
-										<option value="60">Từ 41mb đến 60mb</option>
-										<option value="80">Từ 61mb đến 80mb</option>
-										<option value="81">Từ 81mb trở lên</option>
+										<option value="30">from 0mb to 30mb</option>
+										<option value="40">from 30mb to 40mb</option>
+										<option value="60">from 41mb to 60mb</option>
+										<option value="80">from 61mb to 80mb</option>
+										<option value="81">81mb or more</option>
 									</select>
 								</div>
 							</div>

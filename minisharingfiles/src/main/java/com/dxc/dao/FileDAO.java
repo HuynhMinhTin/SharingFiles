@@ -1,10 +1,7 @@
 package com.dxc.dao;
 
 import java.util.List;
-
-import javax.persistence.Query;
 import javax.transaction.Transactional;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -112,6 +109,20 @@ public class FileDAO implements FileDAOImp {
 			System.out.println(f.getNameFile());
 		}
 		
+		return fileEntities;
+	}
+
+	@Transactional
+	public List<FileEntity> GetFileFromCategory(int idCategory) {
+		// TODO Auto-generated method stub
+			Session session = sessionFactory.getCurrentSession();
+		
+		List<FileEntity> fileEntities = (List<FileEntity>)session.createQuery("from file where idCategory='"+idCategory+"'").getResultList();
+		
+		
+		for(FileEntity f: fileEntities){
+			System.out.println(f.getNameFile());
+		}
 		return fileEntities;
 	}
 
