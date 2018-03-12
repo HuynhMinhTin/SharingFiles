@@ -1,5 +1,7 @@
 package com.dxc.controller;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
@@ -9,20 +11,33 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.dxc.entitty.FileEntity;
 import com.dxc.service.DownloadService;
 
 @Controller
-@RequestMapping("/download")
+@RequestMapping("/file")
 public class DownloadController {
 	@Autowired
 	DownloadService downloadService;
 		
-//	@GetMapping
-//	public String loadPage(){
-//		return "download";
-//	}
-	
 	@GetMapping("/{fileId}")
+	public FileEntity loadPage(@PathVariable("fileId") Integer _id){
+		FileEntity file = (FileEntity) downloadService.getFileById(_id);
+		
+		System.out.println("===============\nFileEntity [idFile=" + file.getIdFile() 
+				+ ", idCategory=" + file.getIdCategory()
+				+ ", idUser=" + file.getIdUser() 
+				+ ", nameFile=" + file.getNameFile()
+				+ ", sizeFile=" + file.getSizeFile() + ", commentFile=" + file.getCommentFile()
+				+ ", detail=" + Arrays.toString(file.getDetail()) + ", dateCreateFile="
+				+ file.getDateCreateFile() + ", statusFile=" + file.getStatusFile()
+				+ ", imageLinksFile=" + file.getImageLinksFile() + ", countDowloadFile="
+				+ file.getCountDowloadFile() + "]\n=========");
+		
+		return (FileEntity) downloadService.getFileById(_id);
+	}
+	
+	@GetMapping("/{fileId}/download")
 	public ResponseEntity<ByteArrayResource> download(@PathVariable("fileId") Integer _id) {
 		byte[] data = "error download".getBytes();
 		ByteArrayResource resource = new ByteArrayResource(data);
