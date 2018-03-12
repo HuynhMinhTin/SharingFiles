@@ -47,7 +47,7 @@
 								<thead>
 									<tr>
 										<th>STT</th>
-										<th class="Name">Họ Tên</th>
+										<th>Name</th>
 										<th>Email</th>
 										<th>level</th>
 									</tr>
@@ -55,7 +55,7 @@
 								<tbody>
 									<c:forEach var="user" items="${listUser}">
 										<tr>
-											<td>${user.getIdUser()}</td>
+											<td name="id">${user.getIdUser()}</td>
 											<td>${user.getNameUser()}</td>
 											<td>${user.getEmailUser()}</td>
 											<td>
@@ -67,8 +67,13 @@
 
 												</div>
 											</td>
-											<td><input type="button" value="Delete"
-												onclick="deleteRow(this)" /></td>
+										 	<td>
+										 			
+  													   <input type="submit" value="Delete" action = "/admin/delete/${user.getIdUser()}"/>
+													
+           									
+       						 				</td>
+										
 
 
 										</tr>

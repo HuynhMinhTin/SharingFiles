@@ -1,21 +1,18 @@
 package com.dxc.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.management.Query;
 import javax.transaction.Transactional;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Repository;
 
 import com.dxc.daoImp.AdminDAOImp;
-import com.dxc.entitty.FileEntity;
 import com.dxc.entitty.UserEntity;
 
 @Repository
@@ -26,12 +23,12 @@ public class AdminDAO implements AdminDAOImp {
 	SessionFactory sessionFactory;
 	UserEntity userEntity;
 
-	public boolean UpdateUser(UserEntity ad) {
+	public boolean UpdateUser(UserEntity user) {
 		Session session = sessionFactory.getCurrentSession();
 		Transaction transaction = null;
 		try {
 			transaction = session.beginTransaction();
-			session.update(ad);
+			session.update(user);
 			transaction.commit();
 			return true;
 		} catch (Exception ex) {
@@ -46,24 +43,26 @@ public class AdminDAO implements AdminDAOImp {
 		return false;
 	}
 
-	public boolean DeleteUser(UserEntity ad) {
-		Session session = sessionFactory.getCurrentSession();
-		Transaction transaction = null;
-		try {
-			transaction = session.beginTransaction();
-			session.delete(ad);
-			transaction.commit();
-			return true;
-		} catch (Exception ex) {
-			if (transaction != null) {
-				transaction.rollback();
-			}
-			ex.printStackTrace();
-		} finally {
-			session.flush();
-			session.close();
-		}
-		return false;
+	@Transactional
+	public void DeleteUser(int userId) {
+		String hql = "delete from user where idUser = :id";
+		//String hql = "from user";
+		
+		sessionFactory.getCurrentSession()
+			.createQuery(hql)
+			.setParameter("id", userId)			
+			.executeUpdate();
+		
+//		Session session= 	sessionFactory.getCurrentSession();
+//		
+//		session.createQuery("delete from user where idUser='"+userId+"'").executeUpdate();		
+	}
+
+
+
+	@Transactional
+	public UserEntity findByID(int id) {
+		return (UserEntity) sessionFactory.getCurrentSession().get(UserEntity.class, id);
 	}
 
 	@Transactional
@@ -82,5 +81,4 @@ public class AdminDAO implements AdminDAOImp {
 		return null;
 
 	}
-
 }
