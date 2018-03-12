@@ -2,67 +2,51 @@ package com.dxc.dao;
 
 import java.util.List;
 
+
 import javax.transaction.Transactional;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Repository;
 
+
 import com.dxc.daoImp.AdminDAOImp;
 import com.dxc.entitty.UserEntity;
+
 
 @Repository
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class AdminDAO implements AdminDAOImp {
+	 public SessionFactory getSessionFactory() {
+	        return sessionFactory;}
+
 
 	@Autowired
 	SessionFactory sessionFactory;
 	UserEntity userEntity;
-	
-	public boolean UpdateUser(UserEntity ad) {
-		Session session = sessionFactory.getCurrentSession();
-		Transaction transaction = null;
-		try {
-			transaction = session.beginTransaction();
-			session.update(ad);
-			transaction.commit();
-			return true;
-		} catch (Exception ex) {
-			if (transaction != null) {
-				transaction.rollback();
-			}
-			ex.printStackTrace();
-		} finally {
-			session.flush();
-			session.close();
-		}
-		return false;
+
+
+
+	@Transactional
+	public void DeleteUser(int userId) {
+		String hql = "delete from user where idUser = :id";
+		//String hql = "from user";
+		
+		sessionFactory.getCurrentSession()
+			.createQuery(hql)
+			.setParameter("id", userId)			
+			.executeUpdate();
+
+	}@Transactional
+	public void UpdateUser(UserEntity user) {
+		sessionFactory.getCurrentSession().update(userEntity);
+
 	}
-	
-	
-	public boolean DeleteUser(UserEntity ad) {
-		Session session = sessionFactory.getCurrentSession();
-		Transaction transaction = null;
-		try {
-			transaction = session.beginTransaction();
-			session.delete(ad);
-			transaction.commit();
-			return true;
-		} catch (Exception ex) {
-			if (transaction != null) {
-				transaction.rollback();
-			}
-			ex.printStackTrace();
-		} finally {
-			session.flush();
-			session.close();
-		}
-		return false;
-	}
+	 
 
 	@Transactional
 	public List<UserEntity> GetAllUser() {
@@ -70,15 +54,9 @@ public class AdminDAO implements AdminDAOImp {
 		Session session = sessionFactory.getCurrentSession();
 		List<UserEntity> userEntity;
 
-		try {
 			userEntity = (List<UserEntity>) session.createQuery("from user").setFirstResult(1).list();
 			return userEntity;
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		// return fileEntity;
-		return null;
-
+	
 	}
 
 }

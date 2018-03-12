@@ -1,4 +1,4 @@
-package com.dxc.entitty;
+	package com.dxc.entitty;
 
 import java.util.Set;
 
@@ -37,7 +37,7 @@ public class UserEntity {
 	@JoinColumn(name="idFile")
 	Set<FileEntity> idFile;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.ALL , orphanRemoval=true)
 	@JoinColumn(name="idLevel")
 	LevelUserEntity idLevel;
 	
@@ -124,6 +124,7 @@ public class UserEntity {
 		return "UserEntity [idUser=" + idUser + ", nameUser=" + nameUser + ", emailUser=" + emailUser
 				+ ", passwordUser=" + passwordUser + ", idFile=" + idFile + ", idPosition=" + idPosition + "]";
 	}
+
 	
 	
 	

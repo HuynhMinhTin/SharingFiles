@@ -13,21 +13,23 @@ import com.dxc.entitty.UserEntity;
 public class AdminService implements AdminServiceImp {
 
 	@Autowired
-	AdminDAO admindao;
+	AdminDAO adminDAO;
 
-	public boolean UpdateUser(UserEntity user) {
-		// TODO Auto-generated method stub
-		return false;
+	public void UpdateUser(UserEntity user) {
+		adminDAO.UpdateUser(user);
 	}
 
-	public boolean DeleteUser(UserEntity user) {
-		// TODO Auto-generated method stub
-		return false;
+	public void DeleteUser(int id) {
+		adminDAO.DeleteUser(id);
 	}
+
 
 	public List<UserEntity> GetAllUser() {
-		List<UserEntity> user = admindao.GetAllUser();
+		List<UserEntity> user = adminDAO.GetAllUser();
 		return user;
 	}
+
+
+
 
 }

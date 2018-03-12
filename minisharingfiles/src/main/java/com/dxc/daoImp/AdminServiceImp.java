@@ -8,9 +8,9 @@ import com.dxc.entitty.UserEntity;
 
 @Service
 public interface AdminServiceImp{
-	boolean UpdateUser(UserEntity user);
+	void UpdateUser(UserEntity user);
+	void DeleteUser(int userId);
 
-	boolean DeleteUser(UserEntity user);
 
 	List<UserEntity> GetAllUser();
 }
