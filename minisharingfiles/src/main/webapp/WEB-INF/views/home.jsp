@@ -45,6 +45,8 @@
 	<div class="container-fluid margin-top-60">
 		<!-- search nav -->
 		<div class="row shadow-bottom margin-bottom-15 padding-search-bar">
+		
+		
 			<form class="col-6 inline-form center">
 				<div class="input-group">
 					<input class="form-control" type="text" placeholder="Search"
@@ -63,15 +65,13 @@
 						<div class="modal-content">
 							<div class="dropdown">
 								<div class="form-group">
-									<label for="category">Category</label> <select id="category"
+									<label for="category">Category</label> 
+									<select id="category"
 										name="orderby" class="form-control">
-										<option value="book">Book</option>
-										<option value="music">Music</option>
-										<option value="video">Video</option>
-										<option value="picture">Picture</option>
-										<option value="program">Program</option>
-										<option value="study">Study</option>
-										<option value="work">Work</option>
+										
+										<c:forEach var="cate" items="${category }">		
+											<option selected>${cate.getNameCategory()}t</option>
+										</c:forEach>
 									</select>
 								</div>
 								<div class="form-group">
@@ -82,11 +82,11 @@
 								<div class="form-group">
 									<label for="size">Size</label> <select name="size"
 										class="form-control">
-										<option value="30">from 0mb to 30mb</option>
-										<option value="40">from 30mb to 40mb</option>
-										<option value="60">from 41mb to 60mb</option>
-										<option value="80">from 61mb to 80mb</option>
-										<option value="81">81mb or more</option>
+										<option value="30">0mb-30mb</option>
+										<option value="40">30mb-40mb</option>
+										<option value="60">41mb-60mb</option>
+										<option value="80">61mb-80mb</option>
+										<option value="81"> >81mb </option>
 									</select>
 								</div>
 							</div>
@@ -94,8 +94,9 @@
 					</div>
 				</div>
 			</form>
+			
+			
 		</div>
-
 		<div class="container-fluid">
 			<div class="row">
 				<!-- category -->
@@ -142,7 +143,7 @@
 	</div>
 
 	
-	
+
 
 	
 	

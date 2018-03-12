@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/main/java/com/dxc/controller/GuestController.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/admin.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/header.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/home.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/register.jsp=UTF-8

@@ -1,5 +1,7 @@
 package com.dxc.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -7,6 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+
+
 import com.dxc.service.UserService;
 
 @Controller
@@ -23,27 +28,25 @@ public class LoginController {
 	}
 	
 	@PostMapping
-	public String Login (@RequestParam String password_login_form , @RequestParam String email_login_form , ModelMap map) {
+	public String Login (@RequestParam String password_login_form , @RequestParam String email_login_form , ModelMap modelMap, HttpSession httpSession) {
 		
 		boolean checkLogin = userService.CheckLogin(email_login_form, password_login_form);	
 		
 		if(checkLogin) {
-			//map.addAttribute("checkUserLogin", "OK");
-			
-		/*	boolean kiemtra = nhanVienService.KiemTraDangNhap(email,matkhau);
-			modelMap.addAttribute("user",email);*/
 			
 			int idUser = userService.getIDUser();
-			
-			//map.addAttribute("idUserLogin", idUser);
+			httpSession.setAttribute("userName", email_login_form);
+			//modelMap.addAttribute("userName", email_login_form);
+			//admin
 			if(idUser == 1) {
 				return "redirect:admin";
 			}
+			//user
 			else {
 				return "redirect:home/"+idUser;
 			}	
 		}else {
-			map.addAttribute("checkUserLogin", "This email and password combination is incorrect.");
+			modelMap.addAttribute("checkUserLogin", "This email and password combination is incorrect.");
 			return "login";
 		}
 	}

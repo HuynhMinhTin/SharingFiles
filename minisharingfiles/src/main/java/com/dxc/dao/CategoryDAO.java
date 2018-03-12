@@ -27,9 +27,7 @@ public class CategoryDAO implements CategoryDAOImp{
 		Session session = sessionFactory.getCurrentSession();
 		
 		List<CategoryEntity> categoryEntities = session.createQuery("from category").getResultList();
-		
-		
-		
+
 		return categoryEntities;
 	}
 	

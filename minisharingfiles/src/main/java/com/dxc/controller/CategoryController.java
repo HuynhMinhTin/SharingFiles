@@ -1,7 +1,5 @@
 package com.dxc.controller;
 
-
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +16,7 @@ import com.dxc.service.FileService;
 
 
 @Controller
-@RequestMapping("/home")
+
 public class CategoryController {
 
 	@Autowired
@@ -27,8 +25,8 @@ public class CategoryController {
 	@Autowired
 	FileService fileService;
 	
-	
-	@GetMapping("/{idUser}/{idCategory}")
+	@RequestMapping("/home/{idUser}/{idCategory}")
+	@GetMapping
 	public String Default(@PathVariable int idUser , @PathVariable int idCategory , ModelMap modelMap){
 		
 		if(categoryService != null){
@@ -40,12 +38,9 @@ public class CategoryController {
 		
 			modelMap.addAttribute("listFiles", listFile);
 			System.out.println("test");
-		}		
-		
-		System.out.println("GetMapping");
+		}
 		
 		return "home";
 	}
-	
-	
+	//cate-{id}
 }

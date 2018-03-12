@@ -1,5 +1,6 @@
 package com.dxc.entitty;
 
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,7 +19,7 @@ public class FileEntity {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int idFile ;
 	
-	@OneToOne(fetch=FetchType.LAZY ,cascade=CascadeType.ALL)
+	@OneToOne(fetch=FetchType.EAGER ,cascade=CascadeType.ALL)
 	@JoinColumn(name="idCategory")
 	CategoryEntity idCategory;
 	
