@@ -35,53 +35,17 @@
 	<div class="container-fluid margin-top-60">
 		<!-- search nav -->
 		<div class="row shadow-bottom margin-bottom-15 padding-search-bar">
-			<form class="col-6 inline-form center">
+			<form method="post" action="" class="col-6 inline-form center">
 				<div class="input-group">
 					<input class="form-control" type="text" placeholder="Search"
-						name="filename">
+						name="filename_search">
 					<div class="input-group-append">
-						<input class="btn btn-outline-primary rounded-right" type="button"
-							value="Customize" data-toggle="modal"
-							data-target="#customize-search" aria-haspopup="true"
-							aria-expanded="false">
+						<input class="btn btn-outline-primary rounded-right" type="submit"
+							value="Search" data-toggle="modal"
+							data-target="#customize-search"
+						>
 					</div>
-					<button class="btn btn-outline-primary margin-left-8" type="submit">Search</button>
-				</div>
-				<!-- customize search -->
-				<div id="customize-search" class="modal fade" role="dialog">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<div class="dropdown">
-								<div class="form-group">
-									<label for="category">Category</label> <select id="category"
-										name="orderby" class="form-control">
-										<option value="book">Book</option>
-										<option value="music">Music</option>
-										<option value="video">Video</option>
-										<option value="picture">Picture</option>
-										<option value="program">Program</option>
-										<option value="study">Study</option>
-										<option value="work">Work</option>
-									</select>
-								</div>
-								<div class="form-group">
-									<label for="uploader">Uploader</label> <input type="text"
-										class="form-control" name="uploader" id="uploader"
-										placeholder="Uploader...">
-								</div>
-								<div class="form-group">
-									<label for="size">Size</label> <select name="size"
-										class="form-control">
-										<option value="30">from 0mb to 30mb</option>
-										<option value="40">from 30mb to 40mb</option>
-										<option value="60">from 41mb to 60mb</option>
-										<option value="80">from 61mb to 80mb</option>
-										<option value="81">81mb or more</option>
-									</select>
-								</div>
-							</div>
-						</div>
-					</div>
+					<!-- <button class="btn btn-outline-primary margin-left-8" type="submit">Search</button> -->
 				</div>
 			</form>
 		</div>
@@ -92,16 +56,7 @@
 				<div class="col-md-2 col-sm-4 category">
 					<h6 class="title">category</h6>
 					<ul class="nav nav-pills flex-column">
-						<!-- <li class="nav-item"><a class="nav-link active">Book</a>
-						</li>
-						<li class="nav-item"><a class="nav-link" href="#">Music</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Video</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Picture</a>
-						</li>
-						<li class="nav-item"><a class="nav-link" href="#">Program</a>
-						</li>
-						<li class="nav-item"><a class="nav-link" href="#">Study</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Work</a></li> -->
+					
 						<c:forEach var="cate" items="${category }">
 								<li class="nav-item">
 								<a class="nav-link active" href= '<c:url value="cate-${cate.getIdCategory()}"/>'> ${cate.getNameCategory()}
@@ -112,7 +67,7 @@
 				</div>
 
 				<!--cai bang  -->
-				<div class="example">
+				<div class="example col-md-10 col-sm-8 category">
 					<div class="container">
 						<div class="row">
 							<table class="table table-striped">

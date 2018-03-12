@@ -22,6 +22,9 @@ public class GUESTDAO implements GUESTDAOImp  {
 
 	FileEntity fileEntity ;
 	
+	
+	
+	
 	@Transactional
 	public List<FileEntity> GetAllInfoFile() {
 		// TODO Auto-generated method stub

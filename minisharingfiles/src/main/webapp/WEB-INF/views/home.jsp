@@ -47,7 +47,7 @@
 		<div class="row shadow-bottom margin-bottom-15 padding-search-bar">
 		
 		
-			<form class="col-6 inline-form center">
+			<form class="col-6 inline-form center" method="post" ac  >
 				<div class="input-group">
 					<input class="form-control" type="text" placeholder="Search"
 						name="filename">

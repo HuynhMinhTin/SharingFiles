@@ -1,5 +1,6 @@
 package com.dxc.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,13 +8,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dxc.entitty.CategoryEntity;
 import com.dxc.entitty.FileEntity;
 import com.dxc.service.CategoryService;
 import com.dxc.service.FileService;
 import com.dxc.service.GuestSevice;
+import com.dxc.service.SearchService;
 
 @Controller
 @RequestMapping("/")
@@ -27,7 +32,23 @@ public class GuestController {
 	
 	@Autowired
 	FileService fileService;
+	
+	@Autowired
+	SearchService searchService;
 
+	
+	@ResponseBody
+	@GetMapping("/indexData")
+	public String indexData() {
+		try {
+			searchService.indexBooks();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "Indexed at " + new Date().toGMTString();
+	}
+
+	
 
 	@GetMapping
 	public String listguest(ModelMap modelMap) throws Exception {
@@ -39,8 +60,8 @@ public class GuestController {
 			List<CategoryEntity> categoryEntities = categoryService.GetCategory();
 			modelMap.addAttribute("category", categoryEntities);
 		}
-		//cho ra dnah sách  các file chua  cho loc theo danh muc trả ve listfile
-		System.out.println(fileDetail);
+		
+		//System.out.println(fileDetail);
 		return "guest";
 	}
 		
@@ -58,13 +79,21 @@ public class GuestController {
 	
 		modelMap.addAttribute("listFiles", listcategory);
 	}
+		return "guest";
+
+	}
+	
+	
+	@PostMapping
+	public String SearchFile(@RequestParam String filename_search , ModelMap modelMap){
 		
-	//System.out.println("GetMapping");
+		System.out.println(filename_search);
+		
+		List<FileEntity> listFiles = searchService.SearchFile(filename_search);
+		
 		return "guest";
 		
-		
 	}
-//System.out.println(categoryEntities);
-
+	
 
 }

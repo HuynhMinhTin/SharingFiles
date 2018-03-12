@@ -11,13 +11,20 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
 
+@Indexed
 @Entity(name="user")
 public class UserEntity {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int idUser;
 	
+	 @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
 	String nameUser;
 	String emailUser;
 	String passwordUser;

@@ -30,17 +30,25 @@
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect </prop>
 				<prop key="hibernate.show_sql">true</prop>
-				
 				<prop key="hibernate.cache.provider_class">org.hibernate.cache.internal.NoCachingRegionFactory</prop>
                 <prop key="hibernate.search.default.directory_provider">
-                    org.hibernate.search.store.impl.FSDirectoryProvider
+                    filesystem
                 </prop>
                 <prop key="hibernate.search.default.indexBase">
                 <!--TODO Thay bằng đường dẫn của bạn -->
                     D:\Minhtin\sharingfiles\files\indexes
-                </prop>			
+                </prop>	
+                
+                
+                
+              <!--   <mapping class="com.dxc.entitty.FileEntity"/>  -->
+                		
 			</props>
 		</property>
+		
+		
+
+		
 	</bean>
 	
 	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">

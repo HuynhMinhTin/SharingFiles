@@ -23,6 +23,7 @@ import com.dxc.entitty.FileEntity;
 import com.dxc.entitty.UserEntity;
 import com.dxc.service.CategoryService;
 import com.dxc.service.FileService;
+import com.dxc.service.SearchService;
 import com.dxc.service.UserService;
 
 @Controller
@@ -37,6 +38,10 @@ public class HomeController {
 	
 	@Autowired
 	CategoryService categoryService;
+	
+	
+	@Autowired
+	SearchService searchService;
 	
 	FileEntity file = new FileEntity();
 	UserEntity user = new UserEntity();
@@ -67,11 +72,13 @@ public class HomeController {
 		return modelMap;
 	}
 	
+	
+	
+	
 	@GetMapping
 	public String Default (ModelMap modelMap) {
 		
 		modelMap = GetAllCategory(modelMap);
-		
 		return "home";
 	}
 	
@@ -207,6 +214,11 @@ public class HomeController {
 		
 		check = fileService.UploadFile(file);
 		
-		
 	}
+	
+	
+	
+	
+	
+	
 }

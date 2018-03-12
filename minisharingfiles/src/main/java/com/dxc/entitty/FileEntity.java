@@ -1,7 +1,10 @@
 package com.dxc.entitty;
 
 
+import java.util.Arrays;
+
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,9 +13,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.FieldBridge;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
+import org.hibernate.search.bridge.builtin.LongBridge;
+
 
 
 @Entity(name="file")
+@Indexed
 public class FileEntity {
 
 	@Id
@@ -28,7 +40,14 @@ public class FileEntity {
 	@JoinColumn(name="idUser")
 	UserEntity idUser;
 	
+	
+	@Column(name = "nameFile", nullable= false, length = 256)
+	 @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
 	String nameFile;
+	
+	@Column(name = "sizeFile", nullable= false, length = 256)
+	 @Field(index=Index.YES ,  analyze = Analyze.NO, store=Store.NO)
+	 @FieldBridge(impl = LongBridge.class)
 	long sizeFile;
 	String commentFile;
 	byte[] detail;
@@ -131,7 +150,15 @@ public class FileEntity {
 		this.countDowloadFile = countDowloadFile;
 	}
 	
-	
-	
-	
+	@Override
+	public String toString() {
+		return "Chan qa ban oi  [idFile=" + idFile + ", idCategory=" + idCategory
+				+ ", idUser=" + idUser + ", nameFile=" + nameFile
+				+ ", sizeFile=" + sizeFile + ", commentFile=" + commentFile
+				+ ", detail=" + Arrays.toString(detail) + ", dateCreateFile="
+				+ dateCreateFile + ", statusFile=" + statusFile
+				+ ", imageLinksFile=" + imageLinksFile + ", countDowloadFile="
+				+ countDowloadFile + "]";
+	}
+
 }

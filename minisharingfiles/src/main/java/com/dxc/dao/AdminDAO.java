@@ -22,7 +22,7 @@ public class AdminDAO implements AdminDAOImp {
 	@Autowired
 	SessionFactory sessionFactory;
 	UserEntity userEntity;
-
+	
 	public boolean UpdateUser(UserEntity ad) {
 		Session session = sessionFactory.getCurrentSession();
 		Transaction transaction = null;
@@ -42,7 +42,8 @@ public class AdminDAO implements AdminDAOImp {
 		}
 		return false;
 	}
-
+	
+	
 	public boolean DeleteUser(UserEntity ad) {
 		Session session = sessionFactory.getCurrentSession();
 		Transaction transaction = null;
