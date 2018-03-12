@@ -35,28 +35,23 @@ public class DownloadController {
 				System.out.println("Controller fail");
 				new Exception("Lost file......");
 			} else {
-//				Get extension and filename download file								
+//				Get extension and filename download file by split by dot sign								
 				String[] nameFile = downloadService.getFileNameById(_id).split("\\.");
 				
-				System.out.println("filename: " + downloadService.getFileNameById(_id) 
-						+ "\nnameFileSize: " + nameFile.length);
-				
-				filename = nameFile[0];			// get filename part
-				extension = nameFile[1];		// get extension part
 				resource = new ByteArrayResource(data);
-				if (extension == null){
+				if (nameFile.length >= 2){					 
+					filename = nameFile[0];			// get filename part
+					extension = nameFile[1];		// get extension part
+				} else{
 					// Warning 
-				} else {
-					System.out.println("extension file: " + extension);					
 				}
 			}
 		} catch (Exception e) {
-			System.out.println("Download file fail.....!!!!");
 			e.printStackTrace();
 		}
 		
 		return ResponseEntity
-				.ok()
+				.ok()	
 				.header(HttpHeaders.CONTENT_DISPOSITION,
 						"attachment;filename= " + filename  + "." + extension)
 				.contentLength(data.length).body(resource);		
