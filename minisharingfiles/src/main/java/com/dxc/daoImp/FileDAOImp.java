@@ -14,5 +14,5 @@ public interface FileDAOImp {
 	
 	List<FileEntity> GetFileFromCategoryForUser(int idCategory , int idUser);
 
-	
+	List<FileEntity> GetFileFromCategory(int idCategory);
 }

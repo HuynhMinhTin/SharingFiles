@@ -12,6 +12,7 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Repository;
 
 import com.dxc.daoImp.GUESTDAOImp;
+import com.dxc.entitty.CategoryEntity;
 import com.dxc.entitty.FileEntity;
 @Repository
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
@@ -20,25 +21,23 @@ public class GUESTDAO implements GUESTDAOImp  {
 	SessionFactory sessionFactory;
 
 	FileEntity fileEntity ;
-	@Transactional
-	public boolean UploadFile(FileEntity file) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Transactional
-	public boolean DownloadFile(FileEntity file) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 	
 	@Transactional
 	public List<FileEntity> GetAllInfoFile() {
 		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();	
+			List<FileEntity> resultList = (List<FileEntity>) session.createQuery("from file").list();			
+			return resultList;
+	}
+	
+	
+	@Transactional
+	public List<CategoryEntity> GetCategory() {
+		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
-		List<FileEntity> fileEntity ;		
-			List<FileEntity> resultList = (List<FileEntity>) session.createQuery("from file").list();
-			fileEntity = resultList;		
-			return fileEntity;
+		List<CategoryEntity> categoryEntities = session.createQuery("from category").getResultList();
+		
+		return categoryEntities;
 	}
 
 }

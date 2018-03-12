@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta charset="UTF-8">
 <title>Mini File Sharing</title>
 <!-- Google icon -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -22,6 +21,8 @@
 	crossorigin="anonymous">
 <!-- customize bootstrap -->
 <link href="<c:url value="/resources/css/layout-header-class.css" />"
+	rel="stylesheet">
+<link href="<c:url value="/resources/css/layout-header-footer.css" />"
 	rel="stylesheet">
 </head>
 <body>
@@ -91,7 +92,7 @@
 				<div class="col-md-2 col-sm-4 category">
 					<h6 class="title">category</h6>
 					<ul class="nav nav-pills flex-column">
-						<li class="nav-item"><a class="nav-link active" href="#">Book</a>
+						<!-- <li class="nav-item"><a class="nav-link active">Book</a>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="#">Music</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">Video</a></li>
@@ -100,7 +101,13 @@
 						<li class="nav-item"><a class="nav-link" href="#">Program</a>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="#">Study</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Work</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Work</a></li> -->
+						<c:forEach var="cate" items="${category }">
+								<li class="nav-item">
+								<a class="nav-link active" href= '<c:url value="cate-${cate.getIdCategory()}"/>'> ${cate.getNameCategory()}
+								</a>
+								</li>
+					</c:forEach>
 					</ul>
 				</div>
 
@@ -133,23 +140,10 @@
 									
 									</c:forEach>
 							
-							<%-- 
-								<c:forTokens items="fileDetail" begin="1" delims="5">
-										
-											<td><c:out value="${stt}" /></td>
-											<td><c:out value="${iduser}"/></td>
-											<td><c:out value="${nameFile}"/></td>
-											<td>${sizeFile}</td>
-											<td>${commentFile}</td>
-											<td>${dateGreateFile}</td>
-	
-									
-								</c:forTokens> --%>
+						
 							</table>
 						</div>
 					</div>
-
-					<span>${message}</span>
 
 				</div>
 

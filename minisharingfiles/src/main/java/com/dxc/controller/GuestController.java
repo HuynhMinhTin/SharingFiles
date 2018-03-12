@@ -2,8 +2,6 @@ package com.dxc.controller;
 
 import java.util.List;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,42 +9,62 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
-
+import com.dxc.entitty.CategoryEntity;
 import com.dxc.entitty.FileEntity;
-import com.dxc.entitty.UserEntity;
+import com.dxc.service.CategoryService;
+import com.dxc.service.FileService;
 import com.dxc.service.GuestSevice;
 
 @Controller
-@RequestMapping("/guest")
+@RequestMapping("/")
 public class GuestController {
 
 	@Autowired
 	GuestSevice guestService3;
 	FileEntity file = new FileEntity();
-	//UserEntity user = new UserEntity();
-//	 @GetMapping
-//	 public String Default(ModelMap map) {
-//	 map.addAttribute("message",
-//	 "This is Get Method using @GetMapping annotation..!");
-//	 return "guest";
-//	 }
+	@Autowired
+	CategoryService categoryService;
+	
+	@Autowired
+	FileService fileService;
 
-	@GetMapping("/showall")
+
+	@GetMapping
 	public String listguest(ModelMap modelMap) throws Exception {
-		List<FileEntity> fileDetail = guestService3.GetAllInfoFile();				
+		List<FileEntity> fileDetail = guestService3.GetAllInfoFile();						
+		modelMap.addAttribute("listFiles", fileDetail);	
 		
-		/*for (FileEntity s : fileDetail) {
-			modelMap.addAttribute("stt", s.getIdFile());
-			//modelMap.addAttribute("iduser", fileDetail.get(0).getIdUser());
-			modelMap.addAttribute("sizeFile", s.getSizeFile());
-			modelMap.addAttribute("nameFile", s.getNameFile());
-			modelMap.addAttribute("commentFile", s.getCommentFile());
-			modelMap.addAttribute("dateGreateFile", s.getDateCreateFile());
-		}*/
-		modelMap.addAttribute("listFiles", fileDetail);
 		
+		if(categoryService != null){
+			List<CategoryEntity> categoryEntities = categoryService.GetCategory();
+			modelMap.addAttribute("category", categoryEntities);
+		}
+		//cho ra dnah sách  các file chua  cho loc theo danh muc trả ve listfile
 		System.out.println(fileDetail);
 		return "guest";
 	}
+		
+	@GetMapping("/cate-{idCategory}")
+	public String Default(@PathVariable int idCategory , ModelMap modelMap){
+		
+		
+		if(categoryService != null){
+			List<CategoryEntity> categoryEntities = categoryService.GetCategory();
+			modelMap.addAttribute("category", categoryEntities);
+		}
+		
+	if(fileService.GetFileFromCategory(idCategory) != null ){
+		List<FileEntity> listcategory = fileService.GetFileFromCategory(idCategory);
+	
+		modelMap.addAttribute("listFiles", listcategory);
+	}
+		
+	//System.out.println("GetMapping");
+		return "guest";
+		
+		
+	}
+//System.out.println(categoryEntities);
+
+
 }

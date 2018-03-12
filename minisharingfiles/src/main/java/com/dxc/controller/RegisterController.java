@@ -10,9 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.dxc.dao.UserDAO;
 import com.dxc.entitty.LevelUserEntity;
 import com.dxc.entitty.PositionEntity;
 import com.dxc.entitty.UserEntity;
