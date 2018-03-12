@@ -34,20 +34,10 @@ public class UserEntity {
 	@JoinColumn(name="idLevel")
 	LevelUserEntity idLevel;
 	
-	long totalSize;
 	
 	
 	
 	
-	
-	public long getTotalSize() {
-		return totalSize;
-	}
-
-	public void setTotalSize(long totalSize) {
-		this.totalSize = totalSize;
-	}
-
 	
 	
 	public UserEntity(int idUser, String nameUser, String emailUser,
@@ -61,7 +51,6 @@ public class UserEntity {
 		this.idPosition = idPosition;
 		this.idFile = idFile;
 		this.idLevel = idLevel;
-		this.totalSize = totalSize;
 	}
 
 	public LevelUserEntity getIdLevel() {
