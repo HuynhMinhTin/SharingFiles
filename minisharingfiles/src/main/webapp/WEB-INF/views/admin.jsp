@@ -67,6 +67,7 @@
 
 												</div>
 											</td>
+											<td>${user.getIdLevel().getNameLevel()}</td>
 											<td><input type="button" value="Delete"
 												onclick="deleteRow(this)" /></td>
 

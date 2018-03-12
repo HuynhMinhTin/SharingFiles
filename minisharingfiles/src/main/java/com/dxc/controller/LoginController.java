@@ -39,9 +39,12 @@ public class LoginController {
 			int idUser = userService.getIDUser();
 			
 			//map.addAttribute("idUserLogin", idUser);
-			
-			return "redirect:home/"+idUser;
-			
+			if(idUser == 1) {
+				return "redirect:admin";
+			}
+			else {
+				return "redirect:home/"+idUser;
+			}	
 		}else {
 			map.addAttribute("checkUserLogin", "This email and password combination is incorrect.");
 			return "login";

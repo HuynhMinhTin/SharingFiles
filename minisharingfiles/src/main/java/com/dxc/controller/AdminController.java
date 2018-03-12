@@ -20,7 +20,7 @@ public class AdminController {
 	@Autowired
 	AdminService adminservice;
 	UserEntity user = new UserEntity();
-	@GetMapping("/showall")
+	@GetMapping
 	public String update(ModelMap mm) {
 		List<UserEntity> listUser;
 		listUser = adminservice.GetAllUser();
