@@ -200,3 +200,8 @@ card */
   border-radius: 8px;
   width: 300px;
 }
+
+
+.hide_input{
+	display: none;
+}

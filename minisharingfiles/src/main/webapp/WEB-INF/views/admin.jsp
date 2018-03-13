@@ -28,17 +28,19 @@
 <body>
 	<!-- header -->
 	<%@ include file="header.jsp"%>
-
-	<!-- content -->
-	<div class="container-fluid margin-top-60">
-		<!-- search nav -->
-		<div class="row shadow-bottom margin-bottom-15 padding-search-bar">
-			<form class="col-6 inline-form center">
-				<div class="input-group">
-					<input class="form-control" type="text" placeholder="Search"
-						name="username">
-					<button class="btn btn-outline-primary margin-left-8" type="submit">Search</button>
-				</div>
+	<form name="body" class="col-6 inline-form center">
+		<!-- content -->
+		<div class="container-fluid margin-top-60">
+			<!-- search nav -->
+			<div class="row shadow-bottom margin-bottom-15 padding-search-bar">
+				<form name="search">
+					<div class="input-group">
+						<input class="form-control" type="text" placeholder="Search"
+							name="username">
+						<button class="btn btn-outline-primary margin-left-8"
+							type="submit">Search</button>
+					</div>
+				</form>
 				<div class="example">
 					<div class="container">
 						<div class="row">
@@ -54,40 +56,39 @@
 								</thead>
 								<tbody>
 									<c:forEach var="user" items="${listUser}">
-										<tr>
-											<td name="id">${user.getIdUser()}</td>
-											<td>${user.getNameUser()}</td>
-											<td>${user.getEmailUser()}</td>
-											<td>
-												<div class="quantity buttons_added">
-													<input type="number" step="1" min="1" max="3"
-														name="quantity" title="Qty" class="input-text qty text"
-														size="4" pattern="[0-9]*" inputmode="numeric"
-														value="${user.getIdLevel().getIdLevel()}" />
+										<a href="admin/${user.getIdUser()}">
+											<form name="delete" action="" method="post">
+												<tr>
+													<td>${user.getIdUser()}</td>
+													<input class="hide_input" name="id" value="${user.getIdUser()}" />
+													<td>${user.getNameUser()}</td>
+													<td>${user.getEmailUser()}</td>
+													<td>
+														<div class="quantity buttons_added">
+															<input type="number" step="1" min="1" max="3" title="Qty"
+																size="4" value="${user.getIdLevel().getIdLevel()}" />
 
-												</div>
-											</td>
-											<td>
-												<form>
-													<input type="submit" value="delete" action="/delete/{id}" method="get" />
-
-												</form>
-											</td>
-										</tr>
+														</div>
+													</td>
+													<td><input type="submit" value="delete" /></td>
+												</tr>
+											</form>
+										</a>
 									</c:forEach>
 								</tbody>
 							</table>
 						</div>
 					</div>
 				</div>
-			</form>
+
+			</div>
 		</div>
-	</div>
+	</form>
 
 
 	<script>
-
-</script>
+		
+	</script>
 	<!-- footer -->
 	<%@ include file="footer.jsp"%>`x
 </body>
