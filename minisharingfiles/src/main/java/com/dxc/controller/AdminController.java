@@ -20,7 +20,7 @@ public class AdminController {
 	AdminService adminservice;
 	UserEntity user = new UserEntity();
 
-//	@GetMapping("/showall")
+
 	@GetMapping
 	public String show(ModelMap mm) {
 		List<UserEntity> listUser;
@@ -33,12 +33,12 @@ public class AdminController {
 	}
 
 	@GetMapping(value = "/delete/{id}")
-	public String update(ModelMap mm, @PathVariable(value = "id") int id) {
+	public String delete(ModelMap mm, @PathVariable(value = "id") int id) {
 		System.out.println("Delete User controller");
 
 		adminservice.DeleteUser(id);
 		
-		return "home";
+		return "admin";
 	}
 
 }

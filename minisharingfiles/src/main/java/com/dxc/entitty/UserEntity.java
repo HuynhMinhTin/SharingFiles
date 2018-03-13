@@ -103,6 +103,7 @@ public class UserEntity {
 		return "UserEntity [idUser=" + idUser + ", nameUser=" + nameUser + ", emailUser=" + emailUser
 				+ ", passwordUser=" + passwordUser + ", idFile=" + idFile + ", idPosition=" + idPosition + "]";
 	}
+
 	
 	
 	

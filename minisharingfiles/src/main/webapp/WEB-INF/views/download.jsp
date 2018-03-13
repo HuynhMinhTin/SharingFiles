@@ -42,41 +42,25 @@
 				<div class="example">
 					<div class="container">
 						<div class="row">
+							<div class="container-fluid text-center">
+								<div class="row">
 
-							<table class="table table-striped">
-								<thead>
-									<tr>
-										<th>STT</th>
-										<th>Name</th>
-										<th>Email</th>
-										<th>level</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach var="user" items="${listUser}">
-										<tr>
-											<td name="id">${user.getIdUser()}</td>
-											<td>${user.getNameUser()}</td>
-											<td>${user.getEmailUser()}</td>
-											<td>
-												<div class="quantity buttons_added">
-													<input type="number" step="1" min="1" max="3"
-														name="quantity" title="Qty" class="input-text qty text"
-														size="4" pattern="[0-9]*" inputmode="numeric"
-														value="${user.getIdLevel().getIdLevel()}" />
 
-												</div>
-											</td>
-											<td>
-												<form>
-													<input type="submit" value="delete" action="/delete/{id}" method="get" />
+									<div class="col">
+										<h6 class="title">FILE</h6>
+										<h5 class="col-title" value="name">NAME</h5>
+										<p class="col-text" value="size">size:</p>
+										<p class="col-text" value="category">Category:</p>
+										<p class="col-text" value="uploader">uploader:</p>
+									</div>
+									<div class="col">
+										<a> <input type="button" onclick="register()"
+											value="DOWNLOAD"></a>
+									</div>
+								</div>
 
-												</form>
-											</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
+							</div>
+
 						</div>
 					</div>
 				</div>
@@ -86,8 +70,8 @@
 
 
 	<script>
-
-</script>
+		
+	</script>
 	<!-- footer -->
 	<%@ include file="footer.jsp"%>`x
 </body>
