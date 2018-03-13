@@ -1,5 +1,6 @@
 package com.dxc.entitty;
 
+import java.sql.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -22,6 +23,9 @@ public class UserEntity {
 	String nameUser;
 	String emailUser;
 	String passwordUser;
+	long totalSize;
+	long storageDaily;
+	Date lastDownload;
 	
 	@OneToOne
 	@JoinColumn(name="idPosition")
@@ -32,15 +36,26 @@ public class UserEntity {
 	Set<FileEntity> idFile;
 	
 	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="idLevel")
+	@JoinColumn(name="idLevel")	
 	LevelUserEntity idLevel;
 	
-	long totalSize;
 	
-	
-	
-	
-	
+	public long getStorageDaily() {
+		return storageDaily;
+	}
+
+	public void setStorageDaily(long storageDail) {
+		this.storageDaily = storageDail;
+	}
+
+	public Date getLastDownload() {
+		return lastDownload;
+	}
+
+	public void setLastDownload(Date lastDownload) {
+		this.lastDownload = lastDownload;
+	}
+
 	public long getTotalSize() {
 		return totalSize;
 	}

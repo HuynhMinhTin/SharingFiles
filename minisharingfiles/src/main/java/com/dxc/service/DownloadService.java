@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.dxc.dao.DownloadDAO;
 import com.dxc.daoImp.DownloadInterface;
 import com.dxc.entitty.FileEntity;
+import com.dxc.entitty.UserEntity;
 
 @Service
 public class DownloadService implements DownloadInterface{
@@ -22,5 +23,9 @@ public class DownloadService implements DownloadInterface{
 
 	public FileEntity getFileById(int _id) {		
 		return downloadDao.getFileById(_id);
+	}
+
+	public UserEntity getUserByUserId(int _id) {
+		return downloadDao.getUserByUserId(_id);
 	}
 }

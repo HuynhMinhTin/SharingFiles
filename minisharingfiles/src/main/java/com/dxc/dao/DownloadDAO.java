@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dxc.daoImp.DownloadInterface;
 import com.dxc.entitty.FileEntity;
+import com.dxc.entitty.UserEntity;
 
 @Repository
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
@@ -44,6 +45,16 @@ public class DownloadDAO implements DownloadInterface {
 		String hql = "from file where idFile = :id";
 		
 		return (FileEntity) sessionFactory.getCurrentSession()
+				.createQuery(hql)
+				.setParameter("id", _id)
+				.getSingleResult();
+	}
+	
+	@Transactional
+	public UserEntity getUserByUserId(int _id) {
+		String hql = "from user where idUser = :id";
+				
+		return (UserEntity) sessionFactory.getCurrentSession()
 				.createQuery(hql)
 				.setParameter("id", _id)
 				.getSingleResult();
