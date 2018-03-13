@@ -53,13 +53,13 @@ public class SearchDAO implements SearchImp{
 									.buildQueryBuilder().forEntity(FileEntity.class ).get();
 		
 		org.apache.lucene.search.Query query = queryBuilder.keyword()
-															.onFields("nameFile", "sizeFile")//colum to search
+															.onFields("nameFile")//colum to search
 															.matching(keyword)
 															.createQuery();
 		
 		
 		
-		System.out.println(query);
+		System.out.println(query.toString());
 	
 		/*org.hibernate.Query hibQuery =  fullTextSession.createFullTextQuery(query,FileEntity.class);
 		((FullTextQuery) fullTextSession).initializeObjectsWith(ObjectLookupMethod.SKIP, DatabaseRetrievalMethod.FIND_BY_ID);*/

@@ -24,55 +24,113 @@
 
 <link href="<c:url value="/resources/css/layout-header-footer.css" />"
 	rel="stylesheet">
+
+<link href="<c:url value="/resources/css/layout-header-footer.css" />"
+	rel="stylesheet">
 </head>
 <body>
 	<!-- header -->
 	<%@ include file="header.jsp"%>
 
-	<!-- content -->
-	<div class="container-fluid margin-top-60">
-		<!-- search nav -->
-		<div class="row shadow-bottom margin-bottom-15 padding-search-bar">
-			<form class="col-6 inline-form center">
-				<div class="input-group">
-					<input class="form-control" type="text" placeholder="Search"
-						name="username">
-					<button class="btn btn-outline-primary margin-left-8" type="submit">Search</button>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<div class="container">
+		<div class="row" style="margin-top: 16px">
+			<div class="col-sm-4 col-md-4">
+				<img class="img_width"
+					src='<c:url value="/resources/image/fileImage.jpg"/>' />
+			</div>
+			<div class="col-sm-8 col-md-8">
+				<div class="col">
+					<h3 class="title">FILE : ${kindFile } </h6>
+					<h5 class="col-title" value="name">NAME : ${fileDetail.getNameFile()}</h5>
+					<p class="col-text" value="size">Size: ${fileDetail.getSizeFile()} Bytes</p>
+					<p class="col-text" value="category">Category: ${fileDetail.getIdCategory().getNameCategory()}</p>
+					<p class="col-text" value="uploader">Uploader: ${fileDetail.getIdUser().getNameUser()} </p>
+					<p class="col-text" value="comment">Comment: ${fileDetail.getCommentFile()} Bytes</p>
 				</div>
-				<div class="example">
-					<div class="container">
-						<div class="row">
-							<div class="container-fluid text-center">
-								<div class="row">
-
-
-									<div class="col">
-										<h6 class="title">FILE</h6>
-										<h5 class="col-title" value="name">NAME</h5>
-										<p class="col-text" value="size">size:</p>
-										<p class="col-text" value="category">Category:</p>
-										<p class="col-text" value="uploader">uploader:</p>
-									</div>
-									<div class="col">
-										<a> <input type="button" onclick="register()"
-											value="DOWNLOAD"></a>
-									</div>
-								</div>
-
-							</div>
-
-						</div>
-					</div>
+				<div>
+					<p>
+					<a href='<c:url value="/home/download/${fileDetail.getIdFile() }"/>'>
+						<input type="button" value="Download" id="btn_download"> 
+					</a>
+						
+						<input
+							type="button" value="Update" id="btn_update">
+						 <input type="button"
+							value="Delete" id="btn_delete" 	>
+					</p>
 				</div>
-			</form>
+			</div>
 		</div>
 	</div>
+	
 
-
-	<script>
+	<form action="" method="post" id="file_form" class="hide_form_update">
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Category</th>
+			<th>Comment</th>
+			<th>Descirption</th>
+		</tr>
+		<tr>
+			<td>
+			 <input rows="4" cols="50"  type="text" name="nameUpdate">
+			</td>
+			<br>
+			<td >
+					<c:forEach var="cate" items="${category }">		
+							<input type="radio" name="categoryUpdate" value="${cate.getIdCategory()}"
+							/> ${cate.getNameCategory()}
+							<br>
+					</c:forEach>
+			</td>
+			<td>
+			
+					<textarea rows="4" cols="50" name="commentUpdate" form="file_form" > </textarea>
+					<br>
+			</td>
+			<td>
+					<textarea rows="4" cols="50" name="descriptionUpdate" form="file_form" > </textarea>
+					<br>
+			</td>
+			<br>
+		</tr>
+		<br>
 		
-	</script>
+	</table>
+	<br>
+	<input type="submit" value="Update" />
+	</form>
+
+
+	
 	<!-- footer -->
-	<%@ include file="footer.jsp"%>`x
+	<%@ include file="footer.jsp"%>
+	
+	<!-- bootstrap css, jQuery 4 -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+	<!-- angular 1.6.4 -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		
+	<script src='<c:url value="/resources/js/login.js"/>'></script>
+	<script src='<c:url value="/resources/js/login.js"/>'></script>
+	
 </body>
 </html>

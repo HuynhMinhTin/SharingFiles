@@ -15,4 +15,9 @@ public interface FileDAOImp {
 	List<FileEntity> GetFileFromCategoryForUser(int idCategory , int idUser);
 
 	List<FileEntity> GetFileFromCategory(int idCategory);
+	
+	void UpdateFile(FileEntity file);
+	
+	FileEntity GetInfoFileDetail(int idFile);
+	
 }

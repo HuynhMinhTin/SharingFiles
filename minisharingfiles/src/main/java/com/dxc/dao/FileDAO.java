@@ -127,4 +127,29 @@ public class FileDAO implements FileDAOImp {
 	}
 
 
+	@Transactional
+	public void UpdateFile(FileEntity file) {
+		// TODO Auto-generated method stub
+		
+		Session session = sessionFactory.getCurrentSession();
+		
+		session.update(file);
+
+	}
+
+	
+	@Transactional
+	public FileEntity GetInfoFileDetail(int idFile) {
+		// TODO Auto-generated method stub
+		
+		Session session = sessionFactory.getCurrentSession();
+		FileEntity fileEntity ;
+		
+
+			fileEntity =  (FileEntity) session.createQuery("from file where idFile='"+idFile+"'").getSingleResult();
+			return fileEntity;
+
+	}
+
+
 }

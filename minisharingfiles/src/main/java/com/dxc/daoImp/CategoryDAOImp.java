@@ -7,5 +7,5 @@ import com.dxc.entitty.CategoryEntity;;
 public interface CategoryDAOImp {
 	
 	List<CategoryEntity> GetCategory();
-	
+	CategoryEntity getCategoryEntity(int idCategory);
 }

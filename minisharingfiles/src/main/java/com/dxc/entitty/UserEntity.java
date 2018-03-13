@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,7 +38,7 @@ public class UserEntity {
 	@JoinColumn(name="idFile")
 	Set<FileEntity> idFile;
 	
-	@OneToOne(cascade=CascadeType.ALL , orphanRemoval=true)
+	@OneToOne(cascade=CascadeType.ALL , orphanRemoval=true , fetch = FetchType.EAGER)
 	@JoinColumn(name="idLevel")
 	LevelUserEntity idLevel;
 	

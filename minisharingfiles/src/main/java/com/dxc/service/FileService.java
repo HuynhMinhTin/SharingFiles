@@ -58,5 +58,18 @@ public class FileService implements FileDAOImp{
 		List<FileEntity> listFile = fileDAO.GetFileFromCategory(idCategory);
 		return listFile;
 	}
+
+	public void UpdateFile(FileEntity file) {
+		// TODO Auto-generated method stub
+		fileDAO.UpdateFile(file);
+	}
+
+	public FileEntity GetInfoFileDetail(int idFile) {
+		// TODO Auto-generated method stub
+		
+		FileEntity fileEntity = fileDAO.GetInfoFileDetail(idFile);
+		
+		return fileEntity;
+	}
 }
 

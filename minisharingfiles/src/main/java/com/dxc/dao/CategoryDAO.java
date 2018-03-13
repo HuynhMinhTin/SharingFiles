@@ -30,6 +30,18 @@ public class CategoryDAO implements CategoryDAOImp{
 
 		return categoryEntities;
 	}
+
+	
+	@Transactional
+	public CategoryEntity getCategoryEntity(int idCategory) {
+		// TODO Auto-generated method stub
+		
+		Session session = sessionFactory.getCurrentSession();
+		
+		CategoryEntity categoryEntity = (CategoryEntity) session.createQuery("from category where idCategory='"+idCategory+"'").getSingleResult();
+		
+		return categoryEntity;
+	}
 	
 	
 	

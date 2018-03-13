@@ -126,7 +126,7 @@
 								<h6 class="title">file list</h6>
 								<div class="card-deck" >
 						<c:forEach var="file" items="${listFiles}">
-						 	 <a class="detail_file" href="detail/${file.getIdFile()}">
+						 	 <a class="detail_file" href="detail-${file.getIdFile()}">
 								 <div class="card">
 								 <img class="card-img-top file">						    
 								 <div class="card-body">

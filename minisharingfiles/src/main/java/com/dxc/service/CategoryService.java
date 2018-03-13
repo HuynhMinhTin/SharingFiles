@@ -24,4 +24,12 @@ public class CategoryService implements CategoryDAOImp {
 		return categoryEntities;
 	}
 
+	public CategoryEntity getCategoryEntity(int idCategory) {
+		// TODO Auto-generated method stub
+		CategoryEntity categoryEntity = categoryDAO.getCategoryEntity(idCategory);
+		
+		
+		return categoryEntity;
+	}
+
 }

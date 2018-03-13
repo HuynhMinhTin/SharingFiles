@@ -230,3 +230,16 @@ card */
 .name_header{
 	margin: 5px;
 }
+
+/* detail File */
+.img_width{
+	width : 200px;
+	height: 200px;
+}
+table, th, td {
+    border: 1px solid black;
+    padding: 5px;
+}
+.hide_form_update{
+	display: none;
+}

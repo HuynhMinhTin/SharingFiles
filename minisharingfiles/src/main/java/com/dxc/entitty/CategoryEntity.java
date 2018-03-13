@@ -28,7 +28,7 @@ public class CategoryEntity {
 	String imageLinksCategory;
 	
 	
-	@OneToMany(cascade=CascadeType.ALL , orphanRemoval=true)
+	@OneToMany(cascade=CascadeType.ALL, orphanRemoval=true)
 	@JoinColumn(name="idFile")
 	Set<FileEntity> idFile;
 	

@@ -1,10 +1,6 @@
 $(document).ready(function() {
-
-	$("#signup").click(function() {
-		
+	$("#btn_update").click(function(event){
+		$("#file_form").removeClass("hide_form_update");
 	});
 	
-	
-	$("#formRegister").hide();
-// On Click SignIn Button Checks For Valid E-mail And All Field Should Be Filled
 });

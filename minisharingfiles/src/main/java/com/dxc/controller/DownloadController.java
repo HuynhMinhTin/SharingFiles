@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.dxc.service.DownloadService;
 
 @Controller
-@RequestMapping("home/detail")
+@RequestMapping("home/download")
 public class DownloadController {
 	@Autowired
 	DownloadService downloadService;
 		
 	
-	@GetMapping("/{fileId}")
-	public ResponseEntity<ByteArrayResource> download(@PathVariable("fileId") Integer _id) {
+	@GetMapping("/{idFile}")
+	public ResponseEntity<ByteArrayResource> download(@PathVariable("idFile") Integer _id) {
 		byte[] data = "error download".getBytes();
 		ByteArrayResource resource = new ByteArrayResource(data);
 		String filename = "MFS-download-file";
@@ -55,6 +55,7 @@ public class DownloadController {
 				.ok()
 				.header(HttpHeaders.CONTENT_DISPOSITION,
 						"attachment;filename= " + filename  + "." + extension)
-				.contentLength(data.length).body(resource);		
+				.contentLength(resource.getByteArray().length)
+				.body(resource);		
 	}
 }
