@@ -34,11 +34,11 @@ public class UserEntity {
 	@JoinColumn(name="idPosition")
 	PositionEntity idPosition;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL ,  orphanRemoval=true )
 	@JoinColumn(name="idFile")
 	Set<FileEntity> idFile;
 	
-	@OneToOne(cascade=CascadeType.ALL , orphanRemoval=true , fetch = FetchType.EAGER)
+	@OneToOne
 	@JoinColumn(name="idLevel")
 	LevelUserEntity idLevel;
 	

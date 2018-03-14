@@ -19,12 +19,12 @@ public class LevelUserEntity {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int idLevel;
 	
+	String nameLevel;
+	int totalSize;
+	
 	@OneToMany(cascade=CascadeType.ALL , orphanRemoval=true)
 	@JoinColumn(name="idUser")
 	Set<UserEntity> user;
-	
-	String nameLevel;
-	int totalSize;
 	
 	
 	public int getIdLevel() {

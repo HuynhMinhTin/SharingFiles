@@ -43,15 +43,24 @@
 			<div class="col-sm-4 col-md-4">
 				<img class="img_width"
 					src='<c:url value="/resources/image/fileImage.jpg"/>' />
+				<br><br><br>
+				<form  method="post" >
+				<%-- <input class="hide_input"  name="idFileDelete" value="${fileDetail.getIdFile() }" /> --%>
+				<a href='<c:url value="delete-${fileDetail.getIdFile() }"/>'>				
+					<%-- <input class="hide_input"  name="idUserDelete" value="${fileDetail.getIdUser() }" /> --%>
+					<input type="submit" value="Delete" id="btn_delete" class="edit_delete">
+				</a>
+				</form>
 			</div>
+			 
 			<div class="col-sm-8 col-md-8">
 				<div class="col">
 					<h3 class="title">FILE : ${kindFile } </h6>
 					<h5 class="col-title" value="name">NAME : ${fileDetail.getNameFile()}</h5>
 					<p class="col-text" value="size">Size: ${fileDetail.getSizeFile()} Bytes</p>
 					<p class="col-text" value="category">Category: ${fileDetail.getIdCategory().getNameCategory()}</p>
-					<p class="col-text" value="uploader">Uploader: ${fileDetail.getIdUser().getNameUser()} </p>
-					<p class="col-text" value="comment">Comment: ${fileDetail.getCommentFile()} Bytes</p>
+					<p class="col-text" value="uploader">Uploader:${fileDetail.getIdUser().getIdUser()} ${fileDetail.getIdUser().getNameUser()} </p>
+					<p class="col-text" value="comment">Comment: ${fileDetail.getCommentFile()} </p>
 				</div>
 				<div>
 					<p>
@@ -61,8 +70,7 @@
 						
 						<input
 							type="button" value="Update" id="btn_update">
-						 <input type="button"
-							value="Delete" id="btn_delete" 	>
+						
 					</p>
 				</div>
 			</div>

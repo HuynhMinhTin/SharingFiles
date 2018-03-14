@@ -141,15 +141,31 @@ public class FileDAO implements FileDAOImp {
 	@Transactional
 	public FileEntity GetInfoFileDetail(int idFile) {
 		// TODO Auto-generated method stub
-		
-		Session session = sessionFactory.getCurrentSession();
-		FileEntity fileEntity ;
-		
-
+		try {
+			Session session = sessionFactory.getCurrentSession();
+			FileEntity fileEntity ;
 			fileEntity =  (FileEntity) session.createQuery("from file where idFile='"+idFile+"'").getSingleResult();
-			return fileEntity;
+				return fileEntity;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
 
 	}
 
+	@Transactional
+	public boolean DeleteFile(int idFile) {
+		// TODO Auto-generated method stub
+		try {
+			Session session = sessionFactory.getCurrentSession();
+			
+			session.createQuery("delete from file where idFile='"+idFile+"'").executeUpdate();
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+			return false;
+	}
 
 }

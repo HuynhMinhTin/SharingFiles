@@ -102,55 +102,51 @@ public class UserDAO implements UserDAOImp{
 	public boolean UpdateUser(int idUser, long totalSize) {
 		// TODO Auto-generated method stub
 		
-		/*Employee employee = 
-                (Employee)session.get(Employee.class, EmployeeID); 
-     employee.setSalary( salary );
-     session.update(employee); 
-		*/
+		
 		Session session = sessionFactory.getCurrentSession();
 		
-			UserEntity user = 	(UserEntity) session.createQuery("from user where idUser='"+idUser+"'").getSingleResult();
-			
-			/*UserEntity userUpdate = new UserEntity();
-			userUpdate.setIdUser(user.getIdUser());
-			userUpdate.setEmailUser(user.getEmailUser());
-			userUpdate.setPasswordUser(user.getPasswordUser());
-			userUpdate.setNameUser(user.getNameUser());
-			userUpdate.setIdPosition(user.getIdPosition());
-			userUpdate.setTotalSize(totalSize);*/
-			
-			
-			LevelUserEntity levelUser = new LevelUserEntity();
-			levelUser =user.getIdLevel();
-			
+		UserEntity user = 	(UserEntity) session.createQuery("from user where idUser='"+idUser+"'").getSingleResult();
+		
+		/*UserEntity userUpdate = new UserEntity();
+		userUpdate.setIdUser(user.getIdUser());
+		userUpdate.setEmailUser(user.getEmailUser());
+		userUpdate.setPasswordUser(user.getPasswordUser());
+		userUpdate.setNameUser(user.getNameUser());
+		userUpdate.setIdPosition(user.getIdPosition());
+		userUpdate.setTotalSize(totalSize);*/
+		
+		
+		LevelUserEntity levelUser = new LevelUserEntity();
+		levelUser =user.getIdLevel();
+		
 
-			int checkUpdateLevel = levelUser.getIdLevel();
-			
-			System.out.println("This is a old level of user : " + checkUpdateLevel );
-			
-			if(checkUpdateLevel == 1){
-				if(totalSize >= 20971520){
-					LevelUserEntity levelUserUpdated = new LevelUserEntity();
-					levelUserUpdated.setIdLevel(2);
-					user.setIdLevel(levelUserUpdated);
-					//levelUser.setIdLevel(2);
-				}
+		int checkUpdateLevel = levelUser.getIdLevel();
+		
+		System.out.println("This is a old level of user : " + checkUpdateLevel );
+		
+		if(checkUpdateLevel == 1){
+			if(totalSize >= 20971520){
+				LevelUserEntity levelUserUpdated = new LevelUserEntity();
+				levelUserUpdated.setIdLevel(2);
+				user.setIdLevel(levelUserUpdated);
+				//levelUser.setIdLevel(2);
 			}
-			else if(checkUpdateLevel == 2){
-				if(totalSize >= 52428800){
-					LevelUserEntity levelUserUpdated = new LevelUserEntity();
-					levelUserUpdated.setIdLevel(3);
-					user.setIdLevel(levelUserUpdated);
-				}
+		}
+		else if(checkUpdateLevel == 2){
+			if(totalSize >= 52428800){
+				LevelUserEntity levelUserUpdated = new LevelUserEntity();
+				levelUserUpdated.setIdLevel(3);
+				user.setIdLevel(levelUserUpdated);
 			}
-			else{
-			}
-//			user.setTotalSize(totalSize);
-			
-			
-			session.update(user);
-			
-			return true;
+		}
+		else{
+		}
+		user.setTotalSize(totalSize);
+		
+		
+		session.update(user);
+		
+		return true;
 	}
 
 

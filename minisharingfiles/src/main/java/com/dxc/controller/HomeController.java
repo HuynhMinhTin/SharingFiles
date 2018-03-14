@@ -117,7 +117,7 @@ public class HomeController {
 		if(idLevel==1){
 			// >5MB
 			if(fileUpload.getSize() > 5242880){
-				modelMap.addAttribute("message", "Level wrong ! You have to upaload file < 5MB");
+				modelMap.addAttribute("messageFile", "Level wrong ! You have to upaload file < 5MB");
 			}
 			else{			
 				totalSize = userService.GetTotalSize(idUser) + fileUpload.getSize();
@@ -140,7 +140,7 @@ public class HomeController {
 		else if(idLevel==2){
 			// >10MB
 			if(fileUpload.getSize() > 10485760){
-				modelMap.addAttribute("message", "Level wrong ! You have to upaload file < 10MB");
+				modelMap.addAttribute("messageFile", "Level wrong ! You have to upaload file < 10MB");
 			}
 			else{	
 				totalSize = userService.GetTotalSize(idUser) + fileUpload.getSize();
@@ -161,7 +161,7 @@ public class HomeController {
 		else if(idLevel==3){
 			// >20MB
 			if(fileUpload.getSize() > 20971520){
-				modelMap.addAttribute("message", "Level wrong ! You have to upaload file < 20MB");
+				modelMap.addAttribute("messageFile", "Level wrong ! You have to upaload file < 20MB");
 			}
 			else{
 				//SaveFile(idUser, fileUpload, modelMap,totalSize);
@@ -181,7 +181,7 @@ public class HomeController {
 			}
 		}
 		else{
-			modelMap.addAttribute("message", "Level wrong !Nothing to show");
+			modelMap.addAttribute("messageFile", "Level wrong !Nothing to show");
 		}
 		
 		

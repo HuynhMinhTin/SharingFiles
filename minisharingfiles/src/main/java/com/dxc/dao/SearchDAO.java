@@ -2,6 +2,7 @@ package com.dxc.dao;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
 import org.apache.lucene.search.Query;
@@ -10,6 +11,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.search.FullTextQuery;
 import org.hibernate.search.FullTextSession;
 import org.hibernate.search.Search;
+import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.query.DatabaseRetrievalMethod;
 import org.hibernate.search.query.ObjectLookupMethod;
 import org.hibernate.search.query.dsl.QueryBuilder;
@@ -34,6 +36,7 @@ public class SearchDAO implements SearchImp{
 			Session session = sessionFactory.getCurrentSession();
 			FullTextSession fullTextSession = Search.getFullTextSession(session);
 			fullTextSession.createIndexer().startAndWait();
+			
 		} catch(Exception e) {
 			System.out.println(e);
 		}
@@ -48,6 +51,7 @@ public class SearchDAO implements SearchImp{
 		Session session = sessionFactory.getCurrentSession();
 		
 		FullTextSession fullTextSession = Search.getFullTextSession(session);
+
 		
 		QueryBuilder queryBuilder =fullTextSession.getSearchFactory()
 									.buildQueryBuilder().forEntity(FileEntity.class ).get();

@@ -71,5 +71,11 @@ public class FileService implements FileDAOImp{
 		
 		return fileEntity;
 	}
+
+	public boolean DeleteFile(int idFile) {
+		// TODO Auto-generated method stub
+		boolean check =fileDAO.DeleteFile(idFile);
+		return check;
+	}
 }
 

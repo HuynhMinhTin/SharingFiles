@@ -20,4 +20,5 @@ public interface FileDAOImp {
 	
 	FileEntity GetInfoFileDetail(int idFile);
 	
+	boolean DeleteFile(int  idFile);
 }

@@ -36,8 +36,6 @@
  
     </bean>
 	<import resource="classpath:IoC.xml"/>
-	
-	
 
 	
 </beans>

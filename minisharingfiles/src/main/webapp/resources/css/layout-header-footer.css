@@ -243,3 +243,6 @@ table, th, td {
 .hide_form_update{
 	display: none;
 }
+.edit_delete{
+	margin-left: 55px;
+}
