@@ -1,6 +1,7 @@
 package com.dxc.entitty;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -64,22 +65,6 @@ public class UserEntity {
 		this.totalSize = totalSize;
 	}
 
-	
-	
-	public UserEntity(int idUser, String nameUser, String emailUser,
-			String passwordUser, PositionEntity idPosition,
-			Set<FileEntity> idFile, LevelUserEntity idLevel, long totalSize) {
-		super();
-		this.idUser = idUser;
-		this.nameUser = nameUser;
-		this.emailUser = emailUser;
-		this.passwordUser = passwordUser;
-		this.idPosition = idPosition;
-		this.idFile = idFile;
-		this.idLevel = idLevel;
-		this.totalSize = totalSize;
-	}
-
 	public LevelUserEntity getIdLevel() {
 		return idLevel;
 	}
@@ -122,9 +107,29 @@ public class UserEntity {
 	public void setPasswordUser(String passwordUser) {
 		this.passwordUser = passwordUser;
 	}
+	
 	public UserEntity() {
 		super();
+		this.lastDownload = Date.valueOf(LocalDateTime.now().toLocalDate());
 	}
+
+	public UserEntity(int idUser, String nameUser, String emailUser,
+			String passwordUser, long totalSize, long storageDaily,
+			Date lastDownload, PositionEntity idPosition,
+			Set<FileEntity> idFile, LevelUserEntity idLevel) {
+		super();
+		this.idUser = idUser;
+		this.nameUser = nameUser;
+		this.emailUser = emailUser;
+		this.passwordUser = passwordUser;
+		this.totalSize = totalSize;
+		this.storageDaily = storageDaily;
+		this.lastDownload = lastDownload;
+		this.idPosition = idPosition;
+		this.idFile = idFile;
+		this.idLevel = idLevel;
+	}
+
 	@Override
 	public String toString() {
 		return "UserEntity [idUser=" + idUser + ", nameUser=" + nameUser + ", emailUser=" + emailUser

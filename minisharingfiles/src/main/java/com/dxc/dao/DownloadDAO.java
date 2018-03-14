@@ -18,8 +18,6 @@ public class DownloadDAO implements DownloadInterface {
 	@Autowired
 	SessionFactory sessionFactory;
 	
-	FileEntity fileEntity;
-	
 	@Transactional(rollbackOn= {Exception.class})
 	public byte[] getDataById(int _id) {
 		String hql = "select detail from file where idFile = :id";
@@ -58,5 +56,37 @@ public class DownloadDAO implements DownloadInterface {
 				.createQuery(hql)
 				.setParameter("id", _id)
 				.getSingleResult();
+	}
+
+	@Transactional
+	public long getSizeFileById(int _id) {
+		String hql = "select sizeFile from file where idFile = :id";
+		
+		return (Long) sessionFactory.getCurrentSession()
+				.createQuery(hql)
+				.setParameter("id", _id)
+				.getSingleResult();
+	}
+
+	@Transactional
+	public void updateDownloadInformation(int _idFile, int _idUser) {
+		String hqlFile = "update file set countDowloadFile = countDowloadFile + 1"
+				+ "where idFile = :id"; 
+		String hqlUser = "update user set storageDaily = storageDaily + :sizeFile,"
+				+ "lastDownLoad = :date "
+				+ "where idUser = :id";
+		UserEntity user = getUserByUserId(_idUser);
+		FileEntity fileEntity = getFileById(_idFile);
+		
+		sessionFactory.getCurrentSession()
+			.createQuery(hqlFile)
+			.setParameter("id", _idFile)
+			.executeUpdate();
+		sessionFactory.getCurrentSession()
+			.createQuery(hqlUser)
+			.setParameter("date", user.getLastDownload())
+			.setParameter("sizeFile", fileEntity.getSizeFile())
+			.setParameter("id", user.getIdUser())
+			.executeUpdate();		
 	}
 }

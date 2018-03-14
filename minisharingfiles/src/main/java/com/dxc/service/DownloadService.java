@@ -28,4 +28,12 @@ public class DownloadService implements DownloadInterface{
 	public UserEntity getUserByUserId(int _id) {
 		return downloadDao.getUserByUserId(_id);
 	}
+
+	public long getSizeFileById(int _id) {		
+		return downloadDao.getSizeFileById(_id);
+	}
+
+	public void updateDownloadInformation(int _idFile, int _idUser) {		
+		downloadDao.updateDownloadInformation(_idFile, _idUser);		
+	}
 }
