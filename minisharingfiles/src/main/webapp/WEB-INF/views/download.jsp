@@ -64,7 +64,7 @@
 				</div>
 				<div>
 					<p>
-					<a href='<c:url value="/home/download/${fileDetail.getIdFile() }"/>'>
+					<a href='<c:url value="/home/${fileDetail.getIdUser().getIdUser()}/${fileDetail.getIdFile() }/download"/>'>
 						<input type="button" value="Download" id="btn_download"> 
 					</a>
 						

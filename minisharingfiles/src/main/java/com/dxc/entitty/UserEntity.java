@@ -1,5 +1,6 @@
 	package com.dxc.entitty;
 
+import java.sql.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -44,11 +45,29 @@ public class UserEntity {
 	
 	
 	long totalSize;
+	long storageDaily;
+	Date lastDownload;
 	
 	
 	
 	
 	
+	public long getStorageDaily() {
+		return storageDaily;
+	}
+
+	public void setStorageDaily(long storageDaily) {
+		this.storageDaily = storageDaily;
+	}
+
+	public Date getLastDownload() {
+		return lastDownload;
+	}
+
+	public void setLastDownload(Date lastDownload) {
+		this.lastDownload = lastDownload;
+	}
+
 	public long getTotalSize() {
 		return totalSize;
 	}

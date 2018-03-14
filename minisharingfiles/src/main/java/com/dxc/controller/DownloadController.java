@@ -18,31 +18,15 @@ import com.dxc.entitty.UserEntity;
 import com.dxc.service.DownloadService;
 
 @Controller
-@RequestMapping("file")
+@RequestMapping("home/{idUser}")
 public class DownloadController {
 	@Autowired
 	DownloadService downloadService;
 	
-	
-//	Test load information of file
-	@GetMapping("/{fileId}")
-	public String loadPage(@PathVariable("fileId") Integer _id){
-		FileEntity file = (FileEntity) downloadService.getFileById(_id);		
-		
-		System.out.println("FileEntity [idFile=" + file.getIdFile() + ", idCategory=" + file.getIdCategory()
-				+ ", idUser=" + file.getIdUser() + ", nameFile=" + file.getNameFile()
-				+ ", sizeFile=" + file.getSizeFile() + ", commentFile=" + file.getCommentFile()
-				+ ", detail=" + Arrays.toString(file.getDetail()) + ", dateCreateFile="
-				+ file.getDateCreateFile() + ", statusFile=" + file.getStatusFile()
-				+ ", imageLinksFile=" + file.getImageLinksFile() + ", countDowloadFile="
-				+ file.getCountDowloadFile() + "]");
-		
-		return "download";
-	}
-	
-	@GetMapping("detail-{userId}/{fileId}/download")
+
+	@GetMapping("/{fileId}/download")
 	public ResponseEntity<?> download(@PathVariable("fileId") Integer _idFile,
-			@PathVariable("userId") Integer _idUser) {
+			@PathVariable("idUser") Integer _idUser) {
 		UserEntity user = downloadService.getUserByUserId(_idUser);
 		int level = user.getIdLevel().getIdLevel();
 		byte[] data = "error download".getBytes();

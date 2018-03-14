@@ -1,7 +1,10 @@
 package com.dxc.entitty;
 
 
+import java.sql.Date;
 import java.util.Arrays;
+
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,13 +17,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 import org.hibernate.search.annotations.Analyze;
-import org.hibernate.search.annotations.AnalyzerDef;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.FieldBridge;
 import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.Store;
-import org.hibernate.search.annotations.TokenizerDef;
 import org.hibernate.search.bridge.builtin.LongBridge;
 
 
@@ -57,6 +58,9 @@ public class FileEntity {
 	String statusFile;
 	String imageLinksFile;
 	int countDowloadFile;
+	
+	
+	
 	
 	
 	
