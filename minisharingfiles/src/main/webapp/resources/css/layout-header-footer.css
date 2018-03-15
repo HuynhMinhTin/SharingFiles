@@ -246,3 +246,11 @@ table, th, td {
 .edit_delete{
 	margin-left: 55px;
 }
+.dropdown-conten{
+	float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}

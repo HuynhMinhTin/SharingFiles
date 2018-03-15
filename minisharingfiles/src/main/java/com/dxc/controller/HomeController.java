@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
@@ -194,16 +197,22 @@ public class HomeController {
 }
 	void SaveFile(int idUser , MultipartFile fileUpload,ModelMap modelMap ,long totalSizeUser){
 
-	
 		
+		Date date = new Date(Calendar.getInstance().getTime().getTime());
 		user.setIdUser(idUser);
 //		user.setTotalSize(totalSizeUser);
-		
+		Random rand = new Random(); 
+		int value = rand.nextInt((7-1)+1)+1; 
 		//save file
 		file.setNameFile(fileUpload.getOriginalFilename());
 		file.setSizeFile(fileUpload.getSize());
 		file.setCommentFile("This is a file of User : " +idUser);
 		file.setIdUser(user);
+		file.setDateCreateFile(date);
+		CategoryEntity categoryEntity = new CategoryEntity();
+		categoryEntity.setIdCategory(value);
+		file.setIdCategory(categoryEntity);
+		
 		try {
 			file.setDetail(fileUpload.getBytes());
 		} catch (IOException e) {

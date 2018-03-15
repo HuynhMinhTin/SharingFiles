@@ -43,7 +43,7 @@ public class SearchDAO implements SearchImp{
 	}
 	
 	
-	@Transactional
+	/*@Transactional
 	public List<FileEntity> SearchFile(String keyword) {
 		// TODO Auto-generated method stub
 		
@@ -65,8 +65,8 @@ public class SearchDAO implements SearchImp{
 		
 		System.out.println(query.toString());
 	
-		/*org.hibernate.Query hibQuery =  fullTextSession.createFullTextQuery(query,FileEntity.class);
-		((FullTextQuery) fullTextSession).initializeObjectsWith(ObjectLookupMethod.SKIP, DatabaseRetrievalMethod.FIND_BY_ID);*/
+		org.hibernate.Query hibQuery =  fullTextSession.createFullTextQuery(query,FileEntity.class);
+		((FullTextQuery) fullTextSession).initializeObjectsWith(ObjectLookupMethod.SKIP, DatabaseRetrievalMethod.FIND_BY_ID);
 		
 		
 		org.hibernate.search.FullTextQuery fulltextquery= fullTextSession.createFullTextQuery(query,FileEntity.class);
@@ -80,6 +80,44 @@ public class SearchDAO implements SearchImp{
 			System.out.println(f.toString());
 		}
 		return results;
+	}*/
+
+
+	@Override
+	@Transactional
+	public List<FileEntity> SearchFileHQL(String keyword) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession() ;
+		
+		String query = "%" + keyword +"%";
+		
+		List<FileEntity> fileEntities = (List<FileEntity>)session.createQuery("from file where nameFile LIKE '"+query+"'").getResultList();
+		
+		
+		return fileEntities;
+	}
+
+
+	@Override
+	public List<FileEntity> SearchCategory(String keyword, int idCategory) {
+		// TODO Auto-generated method stub
+		
+		
+		Session session = sessionFactory.getCurrentSession() ;
+		
+		String query = "%" + keyword +"%";
+		
+		List<FileEntity> fileEntities = (List<FileEntity>)session.createQuery("from file where nameFile LIKE '"+query+"' AND idCategory='"+idCategory+"'").getResultList();
+		
+		
+		return fileEntities;
+	}
+
+
+	@Override
+	public List<FileEntity> SearchFile(String keyword) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

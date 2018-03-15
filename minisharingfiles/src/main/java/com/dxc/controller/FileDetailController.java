@@ -30,7 +30,7 @@ import com.dxc.service.FileService;
 
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/home/")
 public class FileDetailController {
 	
 	@Autowired
@@ -57,7 +57,7 @@ public class FileDetailController {
 	}
 	
 	
-	@GetMapping("home/{idUser}/detail-{idFile}")
+	@GetMapping("{idUser}/detail-{idFile}")
 	public String Default (ModelMap modelMap , @PathVariable int idFile , HttpServletRequest request  , @PathVariable int idUser , HttpSession httpSession) {
 		if(fileService.GetInfoFileDetail(idFile) != null){
 			modelMap = GetAllCategory(modelMap);
@@ -86,7 +86,7 @@ public class FileDetailController {
 	}
 	
 	
-	@PostMapping("home/{idUser}/detail-{idFile}")
+	@PostMapping("{idUser}/detail-{idFile}")
 	public String UpdateFile (ModelMap modelMap ,@PathVariable int idFile , @RequestParam String  nameUpdate 
 			, @RequestParam int categoryUpdate , @RequestParam String commentUpdate , @RequestParam String descriptionUpdate , HttpServletRequest request ,
 			@PathVariable int idUser , HttpSession httpSession){
@@ -127,7 +127,7 @@ public class FileDetailController {
 		
 	}
 
-	@GetMapping("home/{idUser}/delete-{idFile}")
+	@GetMapping("{idUser}/delete-{idFile}")
 	public String DeleteFile(HttpSession httpSession , HttpServletRequest request , @PathVariable int idFile  
 			, @PathVariable int idUser , ModelMap modelMap ){
 		modelMap = GetFirstLetter(httpSession, modelMap);
@@ -135,21 +135,10 @@ public class FileDetailController {
 		boolean check = 	fileService.DeleteFile(idFile);
 		
 		String referer = request.getHeader("Referer");
-		return "redirect: " + referer;
+		return "redirect:/home/"+idUser ;
 	}
 	
-	@PostMapping(("home/{idUser}/delete-{idFile}"))
-	public String DeleteFilePost(HttpSession httpSession , HttpServletRequest request , @PathVariable int idFile  
-			, @PathVariable int idUser , ModelMap modelMap ){
-		
-		
-		modelMap = GetFirstLetter(httpSession, modelMap);
-		
-		boolean check = 	fileService.DeleteFile(idFile);
-		
-		String referer = request.getHeader("Referer");
-		return "redirect:" + referer;
-	}
+	
 	
 	
 }

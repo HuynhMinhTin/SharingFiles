@@ -10,4 +10,8 @@ public interface SearchImp {
 
 	void indexBooks() throws Exception ;
 	
+	List<FileEntity> SearchFileHQL(String keyword);
+	
+	List<FileEntity> SearchCategory(String keyword , int idCategory);
+	
 }

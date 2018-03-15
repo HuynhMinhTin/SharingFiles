@@ -3,6 +3,8 @@ package com.dxc.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -85,11 +87,35 @@ public class GuestController {
 	
 	
 	@PostMapping
-	public String SearchFile(@RequestParam String filename_search , ModelMap modelMap){
+	public String SearchFile(@RequestParam String filename_search , ModelMap modelMap , @RequestParam String selector ){
 		
-		System.out.println(filename_search);
+	/*	String selectedStr = request.getParameter("selector_id");
+		System.out.println(selectedStr);*/
 		
-		List<FileEntity> listFiles = searchService.SearchFile(filename_search);
+		List<FileEntity> listFiles = null ;
+		
+		System.out.println(selector);
+		
+		if (selector.equals("category")){
+			
+			
+			
+		}else if (selector.equals("uploader")){
+		
+		}else if(selector.equals("size")){
+			
+		}else{
+			listFiles = searchService.SearchFileHQL(filename_search);	
+		}
+							
+		modelMap.addAttribute("listFiles", listFiles);	
+		
+		
+		if(categoryService.GetCategory() != null){
+			List<CategoryEntity> categoryEntities = categoryService.GetCategory();
+			modelMap.addAttribute("category", categoryEntities);
+		}
+
 		
 		return "guest";
 		

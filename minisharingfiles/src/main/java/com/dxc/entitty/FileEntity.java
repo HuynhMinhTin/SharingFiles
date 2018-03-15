@@ -6,6 +6,8 @@ import java.util.Arrays;
 
 
 
+
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -54,7 +56,7 @@ public class FileEntity {
 	long sizeFile;
 	String commentFile;
 	byte[] detail;
-	String dateCreateFile;//date
+	Date dateCreateFile;//date
 	String statusFile;
 	String imageLinksFile;
 	int countDowloadFile;
@@ -64,6 +66,14 @@ public class FileEntity {
 	
 	
 	
+	
+	
+	public Date getDateCreateFile() {
+		return dateCreateFile;
+	}
+	public void setDateCreateFile(Date dateCreateFile) {
+		this.dateCreateFile = dateCreateFile;
+	}
 	public CategoryEntity getIdCategory() {
 		return idCategory;
 	}
@@ -100,12 +110,7 @@ public class FileEntity {
 	public void setCommentFile(String commentFile) {
 		this.commentFile = commentFile;
 	}
-	public String getDateCreateFile() {
-		return dateCreateFile;
-	}
-	public void setDateCreateFile(String dateCreateFile) {
-		this.dateCreateFile = dateCreateFile;
-	}
+	
 	public String getStatusFile() {
 		return statusFile;
 	}
@@ -138,9 +143,12 @@ public class FileEntity {
 	public FileEntity() {
 		super();
 	}
+	
+	
+	
 	public FileEntity(int idFile, CategoryEntity idCategory, UserEntity idUser,
 			String nameFile, long sizeFile, String commentFile, byte[] detail,
-			String dateCreateFile, String statusFile, String imageLinksFile,
+			Date dateCreateFile, String statusFile, String imageLinksFile,
 			int countDowloadFile) {
 		super();
 		this.idFile = idFile;
@@ -155,7 +163,6 @@ public class FileEntity {
 		this.imageLinksFile = imageLinksFile;
 		this.countDowloadFile = countDowloadFile;
 	}
-	
 	@Override
 	public String toString() {
 		return "Chan qa ban oi  [idFile=" + idFile + ", idCategory=" + idCategory

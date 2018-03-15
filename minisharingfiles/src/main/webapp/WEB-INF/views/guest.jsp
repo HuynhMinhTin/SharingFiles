@@ -39,10 +39,20 @@
 				<div class="input-group">
 					<input class="form-control" type="text" placeholder="Search"
 						name="filename_search">
+						
+					<div class="btn btn-outline-primary rounded-right" >
+						<select name="selector">
+						  <option value="file">Name File</option>
+						  <option value="category">Category </option>
+						  <option value="uploader">Uploader</option>
+						  <option value="size">Size</option>
+						</select>
+					</div>
+						
 					<div class="input-group-append">
 						<input class="btn btn-outline-primary rounded-right" type="submit"
 							value="Search" data-toggle="modal"
-							data-target="#customize-search"
+							data-target="#customize-search" "
 						>
 					</div>
 					<!-- <button class="btn btn-outline-primary margin-left-8" type="submit">Search</button> -->

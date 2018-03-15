@@ -30,4 +30,17 @@ public class SearchService implements SearchImp{
 		searchDAO.indexBooks();
 	}
 
+	@Override
+	public List<FileEntity> SearchFileHQL(String keyword) {
+		// TODO Auto-generated method stub
+		List<FileEntity> file = searchDAO.SearchFileHQL(keyword);
+		return file;
+	}
+
+	@Override
+	public List<FileEntity> SearchCategory(String keyword, int idCategory) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

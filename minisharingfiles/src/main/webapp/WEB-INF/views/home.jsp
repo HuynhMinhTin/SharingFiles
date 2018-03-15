@@ -44,59 +44,8 @@
 	<!-- content -->
 	<div class="container-fluid margin-top-60">
 		<!-- search nav -->
-		<div class="row shadow-bottom margin-bottom-15 padding-search-bar">
+	
 		
-		
-			<form class="col-6 inline-form center" method="post" ac  >
-				<div class="input-group">
-					<input class="form-control" type="text" placeholder="Search"
-						name="filename">
-					<div class="input-group-append">
-						<input class="btn btn-outline-primary rounded-right" type="button"
-							value="Customize" data-toggle="modal"
-							data-target="#customize-search" aria-haspopup="true"
-							aria-expanded="false">
-					</div>
-					<button class="btn btn-outline-primary margin-left-8" type="submit">Search</button>
-				</div>
-				<!-- customize search -->
-				<div id="customize-search" class="modal fade" role="dialog">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<div class="dropdown">
-								<div class="form-group">
-									<label for="category">Category</label> 
-									<select id="category"
-										name="orderby" class="form-control">
-										
-										<c:forEach var="cate" items="${category }">		
-											<option selected>${cate.getNameCategory()}t</option>
-										</c:forEach>
-									</select>
-								</div>
-								<div class="form-group">
-									<label for="uploader">Uploader</label> <input type="text"
-										class="form-control" name="uploader" id="uploader"
-										placeholder="Uploader...">
-								</div>
-								<div class="form-group">
-									<label for="size">Size</label> <select name="size"
-										class="form-control">
-										<option value="30">0mb-30mb</option>
-										<option value="40">30mb-40mb</option>
-										<option value="60">41mb-60mb</option>
-										<option value="80">61mb-80mb</option>
-										<option value="81"> >81mb </option>
-									</select>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</form>
-			
-			
-		</div>
 		<div class="container-fluid">
 			<div class="row">
 				<!-- category -->
@@ -132,7 +81,9 @@
 								 <div class="card-body">
 								  <h5 class="card-title">${file.getNameFile()}</h5>
 								  <p class="card-text"><small class="text-muted">${file.getSizeFile()} Bytes</small></p>
-								   <p class="card-text"><small class="text-muted">${file.getIdUser().getNameUser()}</small></p>		
+								   <p class="card-text"><small class="text-muted">${file.getIdUser().getNameUser()}</small></p>	
+								   <p class="card-text"><small class="text-muted">${file.getCommentFile()}</small></p>	
+								   <p class="card-text"><small class="text-muted">${file.getDateCreateFile()}</small></p>	
 								</div>
 								</div>
 							</a>

@@ -44,7 +44,7 @@
 				<img class="img_width"
 					src='<c:url value="/resources/image/fileImage.jpg"/>' />
 				<br><br><br>
-				<form  method="post" >
+				<form  method="get" >
 				<%-- <input class="hide_input"  name="idFileDelete" value="${fileDetail.getIdFile() }" /> --%>
 				<a href='<c:url value="delete-${fileDetail.getIdFile() }"/>'>				
 					<%-- <input class="hide_input"  name="idUserDelete" value="${fileDetail.getIdUser() }" /> --%>
