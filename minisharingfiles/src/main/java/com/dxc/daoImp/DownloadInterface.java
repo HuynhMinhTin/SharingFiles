@@ -10,4 +10,5 @@ public interface DownloadInterface {
 	FileEntity getFileById(int _id);
 	UserEntity getUserByUserId(int _id);
 	void updateDownloadInformation(int _idFile, int _idUser);
+	public void resetStorageDaily();
 }

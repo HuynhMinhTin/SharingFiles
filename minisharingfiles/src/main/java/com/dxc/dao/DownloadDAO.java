@@ -97,4 +97,13 @@ public class DownloadDAO implements DownloadInterface {
 			.setParameter("id", user.getIdUser())
 			.executeUpdate();		
 	}
+
+	@Transactional
+	public void resetStorageDaily() {
+		String hql = "update user set storageDaily = 0";
+		
+		sessionFactory.getCurrentSession()
+			.createQuery(hql)
+			.executeUpdate();		
+	}
 }

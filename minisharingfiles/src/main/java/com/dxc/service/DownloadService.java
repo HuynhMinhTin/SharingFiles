@@ -36,4 +36,10 @@ public class DownloadService implements DownloadInterface{
 	public void updateDownloadInformation(int _idFile, int _idUser) {		
 		downloadDao.updateDownloadInformation(_idFile, _idUser);		
 	}
+
+	public void resetStorageDaily() {
+		downloadDao.resetStorageDaily();		
+	}
+	
+	
 }

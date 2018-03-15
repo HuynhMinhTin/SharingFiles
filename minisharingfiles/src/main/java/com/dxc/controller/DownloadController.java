@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,15 +40,16 @@ public class DownloadController {
 		return "download";
 	}
 	
-	@GetMapping("/{fileId}/download")
-	public ResponseEntity<byte[]> download(@PathVariable("fileId") Integer _id) {
-		UserEntity user = downloadService.getUserByUserId(26);		// 26 is user's id for test
+	@GetMapping("detail-{userId}/{fileId}/download")
+	public ResponseEntity<?> download(@PathVariable("fileId") Integer _idFile,
+			@PathVariable("userId") Integer _idUser) {
+		UserEntity user = downloadService.getUserByUserId(_idUser);
 		int level = user.getIdLevel().getIdLevel();
 		byte[] data = "error download".getBytes();
-		String filename = "MFS-download-file";
-		String extension = ".txt";
-		long limit = 0;		
+		long limit = 0;	
+		long sizeFile = 0;
 		boolean isCheckDownload = true;
+		ResponseEntity<?> response;
 				
 //		Check login...
 //		Check storage download in day
@@ -57,44 +59,46 @@ public class DownloadController {
 		case 2:
 			limit = 73400320;		// 70MB
 			break;
-		case 3:			
+		case 3:
+			limit = Long.MAX_VALUE;
 			break;
 		default:
 			limit = 0;
 			break;
-		}		
-		isCheckDownload = limitStorageDailyFilter(limit, user, downloadService.getSizeFileById(_id));
-		
-		if(isCheckDownload){
-//		process getting data by its id
-			
-			data = downloadService.getDataById(_id);			
-			
-			if (data.length == 0){
-				System.out.println("Fail to get data from database");					
-			} else {
-//					Success to get data
-//					Get extension and filename download file by split by dot sign
-				String[] nameFile = downloadService.getFileNameById(_id).split("\\.");
-//					resource = new ByteArrayResource(data);					
-									
-				downloadService.updateDownloadInformation(_id, user.getIdUser());
-				if (nameFile.length >= 2){					 
-					filename = nameFile[0];			// get filename part
-					extension = nameFile[1];		// get extension part
-					
-				} else{
-					// Warning 
-					System.out.println("Fail to get filename");
-				}
-			}
 		}
 		
-		return ResponseEntity.ok()	
-				.header(HttpHeaders.CONTENT_DISPOSITION,
-						"attachment;filename= " + filename  + "." + extension)
-				.contentLength(data.length)
-				.body(data);		
+//		Check file requested
+		sizeFile = downloadService.getSizeFileById(_idFile);		
+		if (sizeFile > 0){
+			isCheckDownload = limitStorageDailyFilter(limit, user, sizeFile);
+			
+			if(isCheckDownload){
+//				process getting data by its id				
+				data = downloadService.getDataById(_idFile);			
+				
+				if (data.length == 0){
+					response = new ResponseEntity<String>("Lost data", HttpStatus.EXPECTATION_FAILED);					
+				} else {
+//					Success to get data
+//					Get extension and filename download file by split by dot sign
+					String nameFile = downloadService.getFileNameById(_idFile);
+					
+					downloadService.updateDownloadInformation(_idFile, user.getIdUser());										 						
+					response = ResponseEntity.ok()	
+							.header(HttpHeaders.CONTENT_DISPOSITION,
+									"attachment;filename= " + nameFile)
+							.contentLength(data.length)
+							.body(data);
+				}
+			} else {
+				response = new ResponseEntity<String>("<h1>Your used all storage for a day</h1>", 
+						HttpStatus.BANDWIDTH_LIMIT_EXCEEDED);
+			}
+		} else {
+			response = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);			
+		}
+		
+		return response;		
 	}
 	
 	public boolean limitStorageDailyFilter(long limit, UserEntity user, long sizeFile){
@@ -105,19 +109,19 @@ public class DownloadController {
 		long storage = limit - user.getStorageDaily();
 //		get today
 		Date today = Date.valueOf(LocalDateTime.now().toLocalDate());
-//		limit
-		if (sizeFile > 0) {
-			if (today.before(lastDownload)) {
+//		limit		
+		if (today.before(lastDownload)) {
+			allowDownload = false;
+		} else {
+			if (!today.equals(lastDownload)){
+				downloadService.resetStorageDaily();
+			}
+			
+			if (sizeFile > storage) {
 				allowDownload = false;
 			} else {
-				if (sizeFile > storage) {
-					allowDownload = false;
-				} else {
-					allowDownload = true;
-				}
+				allowDownload = true;
 			}
-		} else {
-			allowDownload = false;
 		}
 		
 		return allowDownload;
