@@ -44,8 +44,8 @@
 				<div class="example">
 					<div class="container">
 						<div class="row">
-							<form name="update" action="admin/update/${user.getIdUser()}"
-								method="get">
+							<form name="update" action="${user.getIdUser()}"
+								method="post">
 								<table>
 								<a href="admin/${user.getIdUser()}">
 										<tr>

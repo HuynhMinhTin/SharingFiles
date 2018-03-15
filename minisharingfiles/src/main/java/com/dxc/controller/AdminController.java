@@ -45,17 +45,17 @@ public class AdminController {
 		return "admin";
 	}
 
-	@GetMapping(value = "/update/{id}")
-	public String update(ModelMap mm, @RequestParam(value = "id") int id) {
+	@PostMapping(value = "/{id}")
+	public String update(ModelMap mm, @RequestParam(value = "id") int id ) {
 		System.out.println("update user================================");
 		adminservice.UpdateUser(id);
 		List<UserEntity> listUser;
 		listUser = adminservice.GetAllUser();
 		mm.addAttribute("listUser", listUser);
-		return "admin";
+		return "redirect:/admin";
 	}
 
-	@GetMapping("/LoadUser/{id}")
+	@GetMapping("/{id}")
 	public String getUploadPage(ModelMap mm,  @PathVariable(value = "id") int id) {
 		UserEntity user;
 		user = adminservice.LoadUser(id);

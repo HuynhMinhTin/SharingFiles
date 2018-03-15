@@ -38,14 +38,17 @@ public class AdminDAO implements AdminDAOImp {
 	}
 
 	@Transactional
-	public void UpdateUser(int userId) {
+	public void UpdateUser(int userId ) {
 
 		Session session = sessionFactory.getCurrentSession();
 		session.createQuery("UPDATE  user set idLevel= :idLevel" + "WHERE idUser= :id ")
 				.setParameter("id", userId).executeUpdate();
 		session.createQuery("UPDATE  user set nameUser= :nameUser" + "WHERE idUser= :id ")
 				.setParameter("id", userId).executeUpdate();
-
+		
+		
+		
+		
 	}
 
 	@Transactional
