@@ -1,4 +1,4 @@
-package com.dxc.entitty;
+	package com.dxc.entitty;
 
 import java.util.Set;
 
@@ -11,13 +11,20 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
 
+@Indexed
 @Entity(name="user")
 public class UserEntity {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int idUser;
 	
+	 @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
 	String nameUser;
 	String emailUser;
 	String passwordUser;
@@ -30,9 +37,10 @@ public class UserEntity {
 	@JoinColumn(name="idFile")
 	Set<FileEntity> idFile;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.ALL , orphanRemoval=true)
 	@JoinColumn(name="idLevel")
 	LevelUserEntity idLevel;
+	
 	
 	long totalSize;
 	
@@ -63,6 +71,8 @@ public class UserEntity {
 		this.idLevel = idLevel;
 		this.totalSize = totalSize;
 	}
+	
+	
 
 	public LevelUserEntity getIdLevel() {
 		return idLevel;
@@ -114,8 +124,5 @@ public class UserEntity {
 		return "UserEntity [idUser=" + idUser + ", nameUser=" + nameUser + ", emailUser=" + emailUser
 				+ ", passwordUser=" + passwordUser + ", idFile=" + idFile + ", idPosition=" + idPosition + "]";
 	}
-	
-	
-	
-	
+
 }

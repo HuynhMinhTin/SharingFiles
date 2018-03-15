@@ -38,10 +38,11 @@ public class AdminDAO implements AdminDAOImp {
 	}
 
 	@Transactional
-	public void UpdateUser(UserEntity user) {
+	public void UpdateUser(int userId) {
+
 		Session session = sessionFactory.getCurrentSession();
-		session.createQuery("update  user set nameUser= :nameUser where idLevel= :idlevel")
-				.setParameter("nameUser", user.getNameUser()).setParameter("idLevel", user.getIdLevel())
+		session.createQuery("UPDATE  from user where nameUser= :nameUser" + "WHERE idUser= :id ")
+				.setParameter("nameUser", userEntity.getNameUser()).setParameter("idLevel", userEntity.getIdLevel())
 				.executeUpdate();
 
 	}
@@ -56,5 +57,15 @@ public class AdminDAO implements AdminDAOImp {
 		return userEntity;
 
 	}
+
+	public UserEntity LoadUser(int userId) {
+		Session session = sessionFactory.getCurrentSession();
+
+		UserEntity user;
+		user = (UserEntity) session.createQuery("select from user where idUser = :id").setParameter("id", userId);
+		return user;
+	}
+
+
 
 }

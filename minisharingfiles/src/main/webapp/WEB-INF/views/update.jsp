@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin</title>
+<title>Update</title>
 <!-- Google icon -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
@@ -44,41 +44,45 @@
 				<div class="example">
 					<div class="container">
 						<div class="row">
+							<form name="update" action="admin/update/${user.getIdUser()}"
+								method="get">
+								<table>
+										<tr>
+											<td>ID</td>
+											<td>${user.getIdUser()}</td>
+											<input class="hide_input" name="id"
+												value="${user.getIdUser()}" />
+										</tr>
 
-							<table class="table table-striped">
-								<thead>
-									<tr>
-										<th>ID</th>
-										<th>Name</th>
-										<th>Email</th>
-										<th>level</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach var="user" items="${listUser}">
-										<a href="admin/${user.getIdUser()}">
-											<form name="deleteupdate" action="" method="post">
-												<tr>
-													<td>${user.getIdUser()}</td>
-													<input class="hide_input" name="id"
-														value="${user.getIdUser()}" />
-													<td name="nameUser">${user.getNameUser()}</td>
-													<td>${user.getEmailUser()}</td>
-													<td>
-														<div class="quantity buttons_added">
-															<input type="number" step="1" min="1" max="3" 
-																size="4" value="${user.getIdLevel().getIdLevel()}" />
+										<tr>
+											<td>NAme:</td>
+											<td><input type="text" name="nameUser"
+												value="${user.getNameUser()}"></td>
+										</tr>
+										<tr>
+											<td>emailUser:</td>
+											<td><input name="emailUser"
+												value="${user.getEmailUser()}"></td>
+										</tr>
+										<tr>
+											<td>Level</td>
+											<td>
+												<div class="quantity buttons_added">
+													<input type="number" step="1" min="1" max="3" title="Qty"
+														size="4" value="${user.getIdLevel().getIdLevel()}" />
 
-														</div>
-													</td>
-													<td><input type="submit" value="delete" /></td>
-													<td><a href="<c:url value="admin/update"/>">update</a></td>
+												</div>
+											</td>
+										</tr>
 
-												</tr>
-											</form>
-									</c:forEach>
-								</tbody>
-							</table>
+
+										<tr>
+											<td colspan="2" align="center"><input type="submit"
+												value="Update"></td>
+										</tr>
+								</table>
+							</form>
+							<div></div>
 						</div>
 					</div>
 				</div>
@@ -86,7 +90,10 @@
 			</div>
 		</div>
 	</form>
+
+
+
 	<!-- footer -->
-	<%@ include file="footer.jsp"%>
+	<%@ include file="footer.jsp"%>`x
 </body>
 </html>

@@ -10,17 +10,25 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
+
+@Indexed
 @Entity(name="category")
 public class CategoryEntity {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int idCategory;
+	 @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
 	String nameCategory;
 	String imageLinksCategory;
 	
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL , orphanRemoval=true)
 	@JoinColumn(name="idFile")
 	Set<FileEntity> idFile;
 	

@@ -145,7 +145,7 @@ public class UserDAO implements UserDAOImp{
 			}
 			else{
 			}
-			user.setTotalSize(totalSize);
+//			user.setTotalSize(totalSize);
 			
 			
 			session.update(user);

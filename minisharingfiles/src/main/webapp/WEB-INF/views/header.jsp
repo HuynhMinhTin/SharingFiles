@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    
 <header class="header">
 		<div class="container">
 			<div class="row">
@@ -20,7 +23,20 @@
 					</ul>				
 				</div>	
 				<div class="col-md-3 col-sm-4">
-					<div class="nav justify-content-end registry-guest">
+				
+				
+				<c:choose>
+					<c:when test="${message  != null }">
+						<ul style="list-style: none;">
+						<div class="name_header col-md-6 col-sm-6" >
+							<a class="circle-avartar" href=""><span>${message }</span></a>
+							 <a class="" href=""><span>${emailUser }</span></a>
+						</div>
+						</ul>
+						
+					</c:when>
+					<c:otherwise>
+						<div class="nav justify-content-end registry-guest">
 						<li class="nav-item">
 							<a class="nav-link" href="login">Login</a>
 						</li>					
@@ -28,11 +44,12 @@
 							<a class="nav-link" href="register">Register</a>
 						</li>	
 					</div>
-					<div class="registry-user">
-						<i class="material-icons account">account_circle</i>
-						<label>username</label>
-					</div>						
+					
+					</c:otherwise>
+				</c:choose>
+							
 				</div>				
 			</div>
 		</div>		
+		
 	</header>

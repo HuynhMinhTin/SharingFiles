@@ -12,15 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.dxc.service.DownloadService;
 
 @Controller
-@RequestMapping("/download")
+@RequestMapping("home/detail")
 public class DownloadController {
 	@Autowired
 	DownloadService downloadService;
 		
-//	@GetMapping
-//	public String loadPage(){
-//		return "download";
-//	}
 	
 	@GetMapping("/{fileId}")
 	public ResponseEntity<ByteArrayResource> download(@PathVariable("fileId") Integer _id) {

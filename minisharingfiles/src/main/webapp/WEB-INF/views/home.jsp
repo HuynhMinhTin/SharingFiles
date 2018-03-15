@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -45,7 +45,9 @@
 	<div class="container-fluid margin-top-60">
 		<!-- search nav -->
 		<div class="row shadow-bottom margin-bottom-15 padding-search-bar">
-			<form class="col-6 inline-form center">
+		
+		
+			<form class="col-6 inline-form center" method="post" ac  >
 				<div class="input-group">
 					<input class="form-control" type="text" placeholder="Search"
 						name="filename">
@@ -63,11 +65,13 @@
 						<div class="modal-content">
 							<div class="dropdown">
 								<div class="form-group">
-									<label for="category">Category</label> <select id="category"
+									<label for="category">Category</label> 
+									<select id="category"
 										name="orderby" class="form-control">
-										<option value="animals" selected>Động vật</option>
-										<option value="films">Phim, ảnh</option>
-										<option value="games">Game</option>
+										
+										<c:forEach var="cate" items="${category }">		
+											<option selected>${cate.getNameCategory()}t</option>
+										</c:forEach>
 									</select>
 								</div>
 								<div class="form-group">
@@ -78,11 +82,11 @@
 								<div class="form-group">
 									<label for="size">Size</label> <select name="size"
 										class="form-control">
-										<option value="30">từ 0mb đến30mb</option>
-										<option value="40">từ 30mb đến 40mb</option>
-										<option value="60">Từ 41mb đến 60mb</option>
-										<option value="80">Từ 61mb đến 80mb</option>
-										<option value="81">Từ 81mb trở lên</option>
+										<option value="30">0mb-30mb</option>
+										<option value="40">30mb-40mb</option>
+										<option value="60">41mb-60mb</option>
+										<option value="80">61mb-80mb</option>
+										<option value="81"> >81mb </option>
 									</select>
 								</div>
 							</div>
@@ -90,8 +94,9 @@
 					</div>
 				</div>
 			</form>
+			
+			
 		</div>
-
 		<div class="container-fluid">
 			<div class="row">
 				<!-- category -->
@@ -138,9 +143,8 @@
 	</div>
 
 	
-	
 
-	<span>${message}</span>
+
 	
 	
 	<!-- footer -->

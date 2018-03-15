@@ -6,9 +6,10 @@ import com.dxc.entitty.UserEntity;
 
 
 public interface AdminDAOImp {
-	void UpdateUser(UserEntity user);
+	void UpdateUser(int  userId);
 
 	void DeleteUser(int userId);
+	UserEntity  LoadUser(int userId);
 
 
 

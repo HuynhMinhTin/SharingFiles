@@ -1,4 +1,16 @@
-/*-------tag--------*/
+.circle-avartar{
+	width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #af6f6f;
+    text-align: center;
+    padding: 5px ;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+.name_header{
+	margin: 5px;
+}tag--------*/
 .nav-item a{
 	font-family: 'Lato', sans-serif;
 	color: white;		
@@ -199,4 +211,22 @@ card */
   padding: 3px;
   border-radius: 8px;
   width: 300px;
+}
+
+.hide_input{
+	display: none;
+}
+
+.circle-avartar{
+	width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #af6f6f;
+    text-align: center;
+    padding: 5px ;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+.name_header{
+	margin: 5px;
 }

@@ -15,12 +15,18 @@ public class AdminService implements AdminServiceImp {
 	@Autowired
 	AdminDAO adminDAO;
 
-	public void UpdateUser(UserEntity user) {
-		adminDAO.UpdateUser(user);
+	public void UpdateUser(int id) {
+		adminDAO.UpdateUser(id);
 	}
 
 	public void DeleteUser(int id) {
 		adminDAO.DeleteUser(id);
+	}
+	public UserEntity LoadUser(int id){
+		UserEntity user;
+		user=adminDAO.LoadUser(id);
+		return user;
+		
 	}
 
 
