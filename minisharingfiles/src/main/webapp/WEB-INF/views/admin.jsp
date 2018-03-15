@@ -72,7 +72,7 @@
 														</div>
 													</td>
 													<td><input type="submit" value="delete" /></td>
-													<td><a href="<c:url value="admin/update"/>">update</a></td>
+													<td><a href="<c:url value="admin/LoadUser/${user.getIdUser()}"/>">update</a></td>
 
 												</tr>
 											</form>

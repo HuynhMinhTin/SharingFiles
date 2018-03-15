@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,8 +55,8 @@ public class AdminController {
 		return "admin";
 	}
 
-	@GetMapping("/update/{id}")
-	public String getUploadPage(ModelMap mm, @RequestParam(value = "id") int id) {
+	@GetMapping("/LoadUser/{id}")
+	public String getUploadPage(ModelMap mm,  @PathVariable(value = "id") int id) {
 		UserEntity user;
 		user = adminservice.LoadUser(id);
 		mm.addAttribute("user", user);

@@ -47,6 +47,7 @@
 							<form name="update" action="admin/update/${user.getIdUser()}"
 								method="get">
 								<table>
+								<a href="admin/${user.getIdUser()}">
 										<tr>
 											<td>ID</td>
 											<td>${user.getIdUser()}</td>
