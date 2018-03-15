@@ -1,5 +1,6 @@
 package com.dxc.dao;
 
+import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 
 import org.hibernate.SessionFactory;
@@ -60,12 +61,19 @@ public class DownloadDAO implements DownloadInterface {
 
 	@Transactional
 	public long getSizeFileById(int _id) {
-		String hql = "select sizeFile from file where idFile = :id";
+		String hql = "select sizeFile from file where idFile = :id";		
+		long result;
 		
-		return (Long) sessionFactory.getCurrentSession()
-				.createQuery(hql)
-				.setParameter("id", _id)
-				.getSingleResult();
+		try{
+			result = (Long) sessionFactory.getCurrentSession()
+					.createQuery(hql)
+					.setParameter("id", _id)
+					.getSingleResult();
+		} catch (NoResultException ex){
+			result = 0;
+		}
+		
+		return result;
 	}
 
 	@Transactional

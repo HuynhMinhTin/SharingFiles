@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -41,13 +40,12 @@ public class DownloadController {
 	}
 	
 	@GetMapping("/{fileId}/download")
-	public ResponseEntity<ByteArrayResource> download(@PathVariable("fileId") Integer _id) {
+	public ResponseEntity<byte[]> download(@PathVariable("fileId") Integer _id) {
 		UserEntity user = downloadService.getUserByUserId(26);		// 26 is user's id for test
 		int level = user.getIdLevel().getIdLevel();
 		byte[] data = "error download".getBytes();
-		ByteArrayResource resource = new ByteArrayResource(data);
 		String filename = "MFS-download-file";
-		String extension = "";
+		String extension = ".txt";
 		long limit = 0;		
 		boolean isCheckDownload = true;
 				
@@ -68,38 +66,35 @@ public class DownloadController {
 		isCheckDownload = limitStorageDailyFilter(limit, user, downloadService.getSizeFileById(_id));
 		
 		if(isCheckDownload){
-//		Process getting data by its id
-			try {
-				data = downloadService.getDataById(_id);			
-				if (data == null){
-					System.out.println("Controller fail");
-					new Exception("Lost file......");
-				} else {
-//				Success to get data
-//				Get extension and filename download file by split by dot sign								
-					String[] nameFile = downloadService.getFileNameById(_id).split("\\.");				
-					resource = new ByteArrayResource(data);					
-										
-					downloadService.updateDownloadInformation(_id, user.getIdUser());
-					if (nameFile.length >= 2){					 
-						filename = nameFile[0];			// get filename part
-						extension = nameFile[1];		// get extension part
-						
-					} else{
-						// Warning 
-					}
+//		process getting data by its id
+			
+			data = downloadService.getDataById(_id);			
+			
+			if (data.length == 0){
+				System.out.println("Fail to get data from database");					
+			} else {
+//					Success to get data
+//					Get extension and filename download file by split by dot sign
+				String[] nameFile = downloadService.getFileNameById(_id).split("\\.");
+//					resource = new ByteArrayResource(data);					
+									
+				downloadService.updateDownloadInformation(_id, user.getIdUser());
+				if (nameFile.length >= 2){					 
+					filename = nameFile[0];			// get filename part
+					extension = nameFile[1];		// get extension part
+					
+				} else{
+					// Warning 
+					System.out.println("Fail to get filename");
 				}
-			} catch (Exception e) {
-//			Fail to get data
-				e.printStackTrace();
-			}			
-		}		
+			}
+		}
 		
 		return ResponseEntity.ok()	
 				.header(HttpHeaders.CONTENT_DISPOSITION,
 						"attachment;filename= " + filename  + "." + extension)
-				.contentLength(resource.getByteArray().length)
-				.body(resource);		
+				.contentLength(data.length)
+				.body(data);		
 	}
 	
 	public boolean limitStorageDailyFilter(long limit, UserEntity user, long sizeFile){
@@ -111,14 +106,18 @@ public class DownloadController {
 //		get today
 		Date today = Date.valueOf(LocalDateTime.now().toLocalDate());
 //		limit
-		if (today.before(lastDownload)){
-			allowDownload = false;
-		} else{
-			if (sizeFile > storage){
+		if (sizeFile > 0) {
+			if (today.before(lastDownload)) {
 				allowDownload = false;
 			} else {
-				allowDownload = true;
-			}			
+				if (sizeFile > storage) {
+					allowDownload = false;
+				} else {
+					allowDownload = true;
+				}
+			}
+		} else {
+			allowDownload = false;
 		}
 		
 		return allowDownload;
