@@ -1,5 +1,8 @@
 package com.dxc.dao;
 
+import java.sql.Date;
+import java.time.LocalDateTime;
+
 import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 
@@ -92,18 +95,19 @@ public class DownloadDAO implements DownloadInterface {
 			.executeUpdate();
 		sessionFactory.getCurrentSession()
 			.createQuery(hqlUser)
-			.setParameter("date", user.getLastDownload())
+			.setParameter("date", Date.valueOf(LocalDateTime.now().toLocalDate()))
 			.setParameter("sizeFile", fileEntity.getSizeFile())
 			.setParameter("id", user.getIdUser())
 			.executeUpdate();		
 	}
 
 	@Transactional
-	public void resetStorageDaily() {
-		String hql = "update user set storageDaily = 0";
+	public void resetStorageDaily(int _id) {
+		String hql = "update user set storageDaily = 0 where idUser = :id";
 		
 		sessionFactory.getCurrentSession()
 			.createQuery(hql)
+			.setParameter("id", _id)
 			.executeUpdate();		
 	}
 }
