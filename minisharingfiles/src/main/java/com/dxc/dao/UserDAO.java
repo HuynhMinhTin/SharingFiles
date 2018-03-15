@@ -138,7 +138,6 @@ public class UserDAO implements UserDAOImp{
 				levelUserUpdated.setIdLevel(3);
 				user.setIdLevel(levelUserUpdated);
 			}
-<<<<<<< HEAD
 		}
 		else{
 		}
@@ -148,14 +147,6 @@ public class UserDAO implements UserDAOImp{
 		session.update(user);
 		
 		return true;
-=======
-//			user.setTotalSize(totalSize);
-			
-			
-			session.update(user);
-			
-			return true;
->>>>>>> remotes/origin/nhac
 	}
 	
 	@Transactional

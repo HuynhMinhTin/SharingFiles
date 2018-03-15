@@ -36,7 +36,7 @@ public class FileEntity {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int idFile ;
 	
-	@OneToOne(fetch=FetchType.EAGER ,cascade=CascadeType.ALL)
+	@OneToOne(fetch=FetchType.EAGER )
 	@JoinColumn(name="idCategory")
 	CategoryEntity idCategory;
 	

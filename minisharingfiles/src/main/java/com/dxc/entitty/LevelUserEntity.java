@@ -26,9 +26,7 @@ public class LevelUserEntity {
 	String nameLevel;
 	int totalSize;
 	
-	@OneToMany(cascade=CascadeType.ALL , orphanRemoval=true)
-	@JoinColumn(name="idUser")
-	Set<UserEntity> user;
+	
 	
 	
 	public int getIdLevel() {
