@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <!-- icon for Web -->
-<link rel="icon" href="resources/image/icon.png">
+<link rel="icon" href="<c:url value="/resources/image/icon.png"/>">
 <!-- font -->
 <link href="https://fonts.googleapis.com/css?family=Lato"
 	rel="stylesheet">
@@ -48,7 +48,7 @@
 							<table class="table table-striped">
 								<thead>
 									<tr>
-										<th>STT</th>
+										<th>ID</th>
 										<th>Name</th>
 										<th>Email</th>
 										<th>level</th>
@@ -57,23 +57,20 @@
 								<tbody>
 									<c:forEach var="user" items="${listUser}">
 										<a href="admin/${user.getIdUser()}">
-											<form name="delete" action="" method="post">
+											<form name="deleteupdate" action="" method="post">
 												<tr>
 													<td>${user.getIdUser()}</td>
-													<input class="hide_input" name="id" value="${user.getIdUser()}" />
-													<td>${user.getNameUser()}</td>
+													<input class="hide_input" name="id"
+														value="${user.getIdUser()}" />
+													<td name="nameUser">${user.getNameUser()}</td>
 													<td>${user.getEmailUser()}</td>
-													<td>
-														<div class="quantity buttons_added">
-															<input type="number" step="1" min="1" max="3" title="Qty"
-																size="4" value="${user.getIdLevel().getIdLevel()}" />
-
-														</div>
-													</td>
+													<td>${user.getIdLevel().getIdLevel()}</td>
 													<td><input type="submit" value="delete" /></td>
+													<td><a
+														href="<c:url value="admin/${user.getIdUser()}"/>">update</a></td>
+
 												</tr>
 											</form>
-										</a>
 									</c:forEach>
 								</tbody>
 							</table>
@@ -84,12 +81,7 @@
 			</div>
 		</div>
 	</form>
-
-
-	<script>
-		
-	</script>
 	<!-- footer -->
-	<%@ include file="footer.jsp"%>`x
+	<%@ include file="footer.jsp"%>
 </body>
 </html>

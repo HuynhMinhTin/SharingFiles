@@ -138,6 +138,7 @@ public class UserDAO implements UserDAOImp{
 				levelUserUpdated.setIdLevel(3);
 				user.setIdLevel(levelUserUpdated);
 			}
+<<<<<<< HEAD
 		}
 		else{
 		}
@@ -147,6 +148,25 @@ public class UserDAO implements UserDAOImp{
 		session.update(user);
 		
 		return true;
+=======
+//			user.setTotalSize(totalSize);
+			
+			
+			session.update(user);
+			
+			return true;
+>>>>>>> remotes/origin/nhac
+	}
+	
+	@Transactional
+	public UserEntity GetInfoUser(int idUser) {
+		// TODO Auto-generated method stub
+		
+		Session session = sessionFactory.getCurrentSession();
+		
+		UserEntity userEntity = (UserEntity) session.createQuery("from user where idUser='"+idUser+"'").getSingleResult();
+		
+		return userEntity;
 	}
 
 

@@ -1,4 +1,4 @@
-package com.dxc.entitty;
+	package com.dxc.entitty;
 
 import java.sql.Date;
 import java.time.LocalDateTime;
@@ -20,13 +20,22 @@ import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.Store;
 
 @Indexed
+<<<<<<< HEAD
 @Entity(name = "user")
+=======
+@Entity(name="user")
+>>>>>>> remotes/origin/nhac
 public class UserEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int idUser;
+<<<<<<< HEAD
 
 	@Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO)
+=======
+	
+	 @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
+>>>>>>> remotes/origin/nhac
 	String nameUser;
 	String emailUser;
 	String passwordUser;
@@ -38,11 +47,20 @@ public class UserEntity {
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "idFile")
 	Set<FileEntity> idFile;
+<<<<<<< HEAD
 
 	@OneToOne
 	@JoinColumn(name = "idLevel")
 	LevelUserEntity idLevel;
 
+=======
+	
+	@OneToOne(cascade=CascadeType.ALL , orphanRemoval=true)
+	@JoinColumn(name="idLevel")
+	LevelUserEntity idLevel;
+	
+	
+>>>>>>> remotes/origin/nhac
 	long totalSize;
 	long storageDaily;
 	Date lastDownload;
@@ -90,6 +108,8 @@ public class UserEntity {
 		this.idLevel = idLevel;
 		this.totalSize = totalSize;
 	}
+	
+	
 
 	public LevelUserEntity getIdLevel() {
 		return idLevel;
