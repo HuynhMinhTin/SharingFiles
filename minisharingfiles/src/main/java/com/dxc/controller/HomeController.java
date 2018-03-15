@@ -219,15 +219,6 @@ public class HomeController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}// save file into database
-		
-		
-		check = fileService.UploadFile(file);
-		
+		check = fileService.UploadFile(file);		
 	}
-	
-	
-	
-	
-	
-	
 }

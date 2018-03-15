@@ -2,7 +2,6 @@ package com.dxc.controller;
 
 import java.sql.Date;
 import java.time.LocalDateTime;
-import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -14,32 +13,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.dxc.entitty.FileEntity;
 import com.dxc.entitty.UserEntity;
 import com.dxc.service.DownloadService;
 
 @Controller
-@RequestMapping("file")
+@RequestMapping("home")
 public class DownloadController {
 	@Autowired
 	DownloadService downloadService;
 	
 	
-//	Test load information of file
-	@GetMapping("/{fileId}")
-	public String loadPage(@PathVariable("fileId") Integer _id){
-		FileEntity file = (FileEntity) downloadService.getFileById(_id);		
-		
-		System.out.println("FileEntity [idFile=" + file.getIdFile() + ", idCategory=" + file.getIdCategory()
-				+ ", idUser=" + file.getIdUser() + ", nameFile=" + file.getNameFile()
-				+ ", sizeFile=" + file.getSizeFile() + ", commentFile=" + file.getCommentFile()
-				+ ", detail=" + Arrays.toString(file.getDetail()) + ", dateCreateFile="
-				+ file.getDateCreateFile() + ", statusFile=" + file.getStatusFile()
-				+ ", imageLinksFile=" + file.getImageLinksFile() + ", countDowloadFile="
-				+ file.getCountDowloadFile() + "]");
-		
-		return "download";
-	}
 	
 	@GetMapping("{userId}/{fileId}/download")
 	public ResponseEntity<?> download(@PathVariable("fileId") Integer _idFile,
@@ -94,8 +77,8 @@ public class DownloadController {
 							.body(data);
 				}
 			} else {
-				map.addAttribute("message", "Your used all storage for a day");
-				response = new ResponseEntity<String>("<h1>Your used all storage for a day</h1>", 
+				map.addAttribute("message", "You used all storage for a day");
+				response = new ResponseEntity<String>("<h1>You used all storage for a day</h1>", 
 						HttpStatus.BANDWIDTH_LIMIT_EXCEEDED);
 			}
 		} else {
