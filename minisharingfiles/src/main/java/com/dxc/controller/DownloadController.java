@@ -40,7 +40,7 @@ public class DownloadController {
 		return "download";
 	}
 	
-	@GetMapping("detail-{userId}/{fileId}/download")
+	@GetMapping("{userId}/{fileId}/download")
 	public ResponseEntity<?> download(@PathVariable("fileId") Integer _idFile,
 			@PathVariable("userId") Integer _idUser) {
 		UserEntity user = downloadService.getUserByUserId(_idUser);
@@ -55,12 +55,12 @@ public class DownloadController {
 //		Check storage download in day
 		switch (level){
 		case 1:
-			limit = 52428800; 		// 50MB			
+			limit = 52428800; 		// 50MB	
+			break;
 		case 2:
 			limit = 73400320;		// 70MB
 			break;
-		case 3:
-			limit = Long.MAX_VALUE;
+		case 3:			
 			break;
 		default:
 			limit = 0;
@@ -77,7 +77,7 @@ public class DownloadController {
 				data = downloadService.getDataById(_idFile);			
 				
 				if (data.length == 0){
-					response = new ResponseEntity<String>("Lost data", HttpStatus.EXPECTATION_FAILED);					
+					response = new ResponseEntity<String>("<h1>Lost data</h1>", HttpStatus.EXPECTATION_FAILED);					
 				} else {
 //					Success to get data
 //					Get extension and filename download file by split by dot sign
@@ -95,7 +95,7 @@ public class DownloadController {
 						HttpStatus.BANDWIDTH_LIMIT_EXCEEDED);
 			}
 		} else {
-			response = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);			
+			response = new ResponseEntity<String>("<h1>Error file</h1>", HttpStatus.BAD_REQUEST);			
 		}
 		
 		return response;		
@@ -103,20 +103,19 @@ public class DownloadController {
 	
 	public boolean limitStorageDailyFilter(long limit, UserEntity user, long sizeFile){
 		boolean allowDownload = false;
-//		check last time download
-		Date lastDownload = user.getLastDownload();
-//		get storageDaily
-		long storage = limit - user.getStorageDaily();
-//		get today
+		Date lastDownload = user.getLastDownload();		// check last time download				
+		long storage = 0;								// get storageDaily
 		Date today = Date.valueOf(LocalDateTime.now().toLocalDate());
-//		limit		
-		if (today.before(lastDownload)) {
+		
+		if (user.getIdLevel().equals(3)){
+			allowDownload = true;
+		} else if (today.before(lastDownload)) {
 			allowDownload = false;
-		} else {
-			if (!today.equals(lastDownload)){
-				downloadService.resetStorageDaily();
-			}
-			
+		} else if (!today.equals(lastDownload)){
+			downloadService.resetStorageDaily(user.getIdUser());
+			allowDownload = true;
+		} else {			
+			storage = limit - user.getStorageDaily();
 			if (sizeFile > storage) {
 				allowDownload = false;
 			} else {
