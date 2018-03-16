@@ -9,6 +9,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,7 +43,8 @@ public class DownloadController {
 	
 	@GetMapping("{userId}/{fileId}/download")
 	public ResponseEntity<?> download(@PathVariable("fileId") Integer _idFile,
-			@PathVariable("userId") Integer _idUser) {
+			@PathVariable("userId") Integer _idUser,
+			ModelMap map) {
 		UserEntity user = downloadService.getUserByUserId(_idUser);
 		int level = user.getIdLevel().getIdLevel();
 		byte[] data = "error download".getBytes();
@@ -83,7 +85,8 @@ public class DownloadController {
 //					Get extension and filename download file by split by dot sign
 					String nameFile = downloadService.getFileNameById(_idFile);
 					
-					downloadService.updateDownloadInformation(_idFile, user.getIdUser());										 						
+					downloadService.updateDownloadInformation(_idFile, user.getIdUser());
+					map.addAttribute("message", "Success");
 					response = ResponseEntity.ok()	
 							.header(HttpHeaders.CONTENT_DISPOSITION,
 									"attachment;filename= " + nameFile)
@@ -91,10 +94,12 @@ public class DownloadController {
 							.body(data);
 				}
 			} else {
+				map.addAttribute("message", "Your used all storage for a day");
 				response = new ResponseEntity<String>("<h1>Your used all storage for a day</h1>", 
 						HttpStatus.BANDWIDTH_LIMIT_EXCEEDED);
 			}
 		} else {
+			map.addAttribute("message", "Error file");
 			response = new ResponseEntity<String>("<h1>Error file</h1>", HttpStatus.BAD_REQUEST);			
 		}
 		

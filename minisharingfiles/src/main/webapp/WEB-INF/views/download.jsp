@@ -56,7 +56,9 @@
 			</form>
 		</div>
 	</div>
-
+	<div class="alert alert-primary" role="alert">
+		${message}
+	</div>
 	<!-- footer -->
 	<%@ include file="footer.jsp"%>
 </body>
