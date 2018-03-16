@@ -152,6 +152,17 @@ public class UserDAO implements UserDAOImp{
 			
 			return true;
 	}
+	
+	@Transactional
+	public UserEntity GetInfoUser(int idUser) {
+		// TODO Auto-generated method stub
+		
+		Session session = sessionFactory.getCurrentSession();
+		
+		UserEntity userEntity = (UserEntity) session.createQuery("from user where idUser='"+idUser+"'").getSingleResult();
+		
+		return userEntity;
+	}
 
 
 }

@@ -44,7 +44,7 @@
 				<div class="example">
 					<div class="container">
 						<div class="row">
-							<form name="update" action="${user.getIdUser()}"
+							<form name="update" action=""
 								method="post">
 								<table>
 								<a href="admin/${user.getIdUser()}">
@@ -70,7 +70,7 @@
 											<td>
 												<div class="quantity buttons_added">
 													<input type="number" step="1" min="1" max="3" title="Qty"
-														size="4" value="${user.getIdLevel().getIdLevel()}" />
+														size="4" value="${user.getIdLevel().getIdLevel()}"  name="levelUser"/>
 
 												</div>
 											</td>

@@ -64,15 +64,10 @@
 														value="${user.getIdUser()}" />
 													<td name="nameUser">${user.getNameUser()}</td>
 													<td>${user.getEmailUser()}</td>
-													<td>
-														<div class="quantity buttons_added">
-															<input type="number" step="1" min="1" max="3" 
-																size="4" value="${user.getIdLevel().getIdLevel()}" />
-
-														</div>
-													</td>
+													<td>${user.getIdLevel().getIdLevel()}</td>
 													<td><input type="submit" value="delete" /></td>
-													<td><a href="<c:url value="admin/${user.getIdUser()}"/>">update</a></td>
+													<td><a
+														href="<c:url value="admin/${user.getIdUser()}"/>">update</a></td>
 
 												</tr>
 											</form>

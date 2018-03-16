@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.dxc.entitty.LevelUserEntity;
 import com.dxc.entitty.UserEntity;
 import com.dxc.service.AdminService;
 
@@ -21,6 +22,8 @@ public class AdminController {
 
 	@Autowired
 	AdminService adminservice;
+	
+	
 	UserEntity user = new UserEntity();
 
 	@GetMapping
@@ -46,12 +49,21 @@ public class AdminController {
 	}
 
 	@PostMapping(value = "/{id}")
-	public String update(ModelMap mm, @RequestParam(value = "id") int id ) {
-		System.out.println("update user================================");
-		adminservice.UpdateUser(id);
-		List<UserEntity> listUser;
-		listUser = adminservice.GetAllUser();
-		mm.addAttribute("listUser", listUser);
+	public String update(ModelMap mm,@PathVariable(value = "id") int idUser
+			,@RequestParam String nameUser ,@RequestParam String emailUser  , @RequestParam int levelUser) {
+		
+		
+		UserEntity userEntity = adminservice.LoadUser(idUser);
+		
+		userEntity.setNameUser(nameUser);
+		userEntity.setEmailUser(emailUser);
+		LevelUserEntity levelUserEntity = adminservice.GetLeve(levelUser);
+		
+		userEntity.setIdLevel(levelUserEntity);
+		
+		adminservice.UpdateUser(userEntity);
+		
+		
 		return "redirect:/admin";
 	}
 

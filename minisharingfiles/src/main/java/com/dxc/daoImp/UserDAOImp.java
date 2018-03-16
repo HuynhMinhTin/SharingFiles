@@ -10,7 +10,7 @@ public interface UserDAOImp {
 	boolean AddEmployees(UserEntity user);
 	int getIDUser();
 	long GetTotalSize(int isUser);
-	
 	boolean UpdateUser(int idUser , long totalSizeOfFile);
 	
+	UserEntity GetInfoUser(int idUser);
 }

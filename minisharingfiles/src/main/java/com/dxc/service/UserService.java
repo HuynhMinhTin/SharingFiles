@@ -48,4 +48,9 @@ public class UserService implements UserDAOImp{
 		return check;
 	}
 
+	public UserEntity GetInfoUser(int idUser) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
